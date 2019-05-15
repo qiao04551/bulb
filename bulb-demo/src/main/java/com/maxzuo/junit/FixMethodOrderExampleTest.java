@@ -1,4 +1,4 @@
-package com.maxzuo.test;
+package com.maxzuo.junit;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
