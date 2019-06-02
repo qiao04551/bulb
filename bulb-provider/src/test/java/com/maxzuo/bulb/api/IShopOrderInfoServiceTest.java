@@ -27,8 +27,8 @@ public class IShopOrderInfoServiceTest {
 
     @Test
     public void getShopOrderInfoByPrimaryKey() {
-        ShopOrderInfo shopOrderInfo = shopOrderInfoService.getShopOrderInfoByPrimaryKey(1);
-        Assert.assertEquals(shopOrderInfo.getId().longValue(), 1);
+        ShopOrderInfo shopOrderInfo = shopOrderInfoService.getShopOrderInfoByPrimaryKey(10);
+        Assert.assertEquals(shopOrderInfo.getId().longValue(), 10);
     }
 
     @Test

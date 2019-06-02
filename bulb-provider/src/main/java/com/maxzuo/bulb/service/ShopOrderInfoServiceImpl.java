@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * 订单相关Service实现类
+ * 订单表相关Service实现类
  * Created by zfh on 2019/01/19
  */
 @Service("shopOrderInfoService")

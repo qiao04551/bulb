@@ -19,8 +19,8 @@
     </settings>
 
     <!-- Continue editing here -->
-    <plugins>
+    <!--<plugins>-->
         <!--<plugin interceptor="com.maxzuo.bulb.intercepter.MybatisQueryIntercepter" />-->
-        <plugin interceptor="com.maxzuo.bulb.intercepter.MybatisSaveIntercepter" />
-    </plugins>
+        <!--<plugin interceptor="com.maxzuo.bulb.intercepter.MybatisSaveIntercepter" />-->
+    <!--</plugins>-->
 </configuration>
