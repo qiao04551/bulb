@@ -10,5 +10,5 @@ java -jar spring-boot-demo-1.0.0.SNAPSHOT.jar --spring.profiles.active=prod
 ![配置文件](./doc/images/0.png)
 #### 3.通过命令行选项参数转换为配置信息：
 ```
-java -jar spring-boot-demo-1.0.0.SNAPSHOT.jar --server.port=9000
+java -jar spring-boot-demo-1.0.0.SNAPSHOT.jar --server.port=8099
 ```
