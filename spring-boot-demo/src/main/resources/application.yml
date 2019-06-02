@@ -1,0 +1,7 @@
+# 默认配置（公共配置）
+server:
+  port: 8080
+
+admin:
+  username: dazuo
+  password: 123456
