@@ -48,7 +48,8 @@
         <poi.version>3.17</poi.version>
         <ooxml-schemas.version>1.3</ooxml-schemas.version>
         <aliyun-sdk-oss.version>2.0.6</aliyun-sdk-oss.version>
-        <mongodb.servion>3.10.1</mongodb.servion>
+        <mongodb.vervion>3.10.1</mongodb.vervion>
+        <sentinel.version>1.6.1</sentinel.version>
     </properties>
 
     <modules>
@@ -57,7 +58,8 @@
         <!--<module>bulb-web</module>-->
         <!--<module>bulb-agent</module>-->
         <module>bulb-demo</module>
-        <module>bulb-spring-data-mongodb</module>
+        <!--<module>bulb-spring-data-mongodb</module>-->
+        <module>bulb-sentinel-boot</module>
         <!--<module>bulb-spring</module>-->
         <!--<module>spring-boot-app</module>-->
     </modules>
@@ -350,7 +352,27 @@
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongodb-driver-sync</artifactId>
-                <version>${mongodb.servion}</version>
+                <version>${mongodb.vervion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-core</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-transport-simple-http</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-web-servlet</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-annotation-aspectj</artifactId>
+                <version>${sentinel.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
