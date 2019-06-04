@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Scope;
  * <p>
  * Created by zfh on 2019/04/04
  */
-//@Configuration
+@Configuration
 public class ConfigurationAnnotationExample {
 
     /**
