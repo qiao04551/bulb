@@ -50,6 +50,7 @@
         <aliyun-sdk-oss.version>2.0.6</aliyun-sdk-oss.version>
         <mongodb.vervion>3.10.1</mongodb.vervion>
         <sentinel.version>1.6.1</sentinel.version>
+        <jmh.version>1.19</jmh.version>
     </properties>
 
     <modules>
@@ -57,7 +58,7 @@
         <module>bulb-provider</module>
         <!--<module>bulb-web</module>-->
         <!--<module>bulb-agent</module>-->
-        <!--<module>bulb-demo</module>-->
+        <module>bulb-demo</module>
         <!--<module>bulb-spring-data-mongodb</module>-->
         <module>bulb-sentinel-boot</module>
         <!--<module>bulb-spring</module>-->
@@ -379,6 +380,16 @@
                 <groupId>com.alibaba.csp</groupId>
                 <artifactId>sentinel-dubbo-adapter</artifactId>
                 <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-core</artifactId>
+                <version>${jmh.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-generator-annprocess</artifactId>
+                <version>${jmh.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

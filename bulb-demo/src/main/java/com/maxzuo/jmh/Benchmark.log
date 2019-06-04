@@ -1,0 +1,61 @@
+# JMH version: 1.19
+# VM version: JDK 1.8.0_211, VM 25.211-b12
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/bin/java
+# VM options: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=56873:/Applications/IntelliJ IDEA.app/Contents/bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 2 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.maxzuo.jmh.StringBuilderBenchmark.testStringAdd
+
+# Run progress: 0.00% complete, ETA 00:00:24
+# Fork: 1 of 1
+# Warmup Iteration   1: 5906.174 ops/ms
+# Warmup Iteration   2: 14172.084 ops/ms
+Iteration   1: 15985.701 ops/ms
+Iteration   2: 15104.173 ops/ms
+Iteration   3: 15600.029 ops/ms
+Iteration   4: 16197.998 ops/ms
+Iteration   5: 15271.784 ops/ms
+
+
+Result "com.maxzuo.jmh.StringBuilderBenchmark.testStringAdd":
+  15631.937 ±(99.9%) 1780.104 ops/ms [Average]
+  (min, avg, max) = (15104.173, 15631.937, 16197.998), stdev = 462.287
+  CI (99.9%): [13851.833, 17412.041] (assumes normal distribution)
+
+
+# JMH version: 1.19
+# VM version: JDK 1.8.0_211, VM 25.211-b12
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/bin/java
+# VM options: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=56873:/Applications/IntelliJ IDEA.app/Contents/bin -Dfile.encoding=UTF-8
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 2 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.maxzuo.jmh.StringBuilderBenchmark.testStringBuilderAdd
+
+# Run progress: 50.00% complete, ETA 00:00:13
+# Fork: 1 of 1
+# Warmup Iteration   1: 60321.482 ops/ms
+# Warmup Iteration   2: 81692.615 ops/ms
+Iteration   1: 47105.052 ops/ms
+Iteration   2: 50356.812 ops/ms
+Iteration   3: 48105.963 ops/ms
+Iteration   4: 49711.250 ops/ms
+Iteration   5: 45440.370 ops/ms
+
+
+Result "com.maxzuo.jmh.StringBuilderBenchmark.testStringBuilderAdd":
+  48143.889 ±(99.9%) 7639.255 ops/ms [Average]
+  (min, avg, max) = (45440.370, 48143.889, 50356.812), stdev = 1983.890
+  CI (99.9%): [40504.634, 55783.144] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:00:26
+
+Benchmark                                     Mode  Cnt      Score      Error   Units
+StringBuilderBenchmark.testStringAdd         thrpt    5  15631.937 ± 1780.104  ops/ms
+StringBuilderBenchmark.testStringBuilderAdd  thrpt    5  48143.889 ± 7639.255  ops/ms

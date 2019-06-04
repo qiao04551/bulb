@@ -1,0 +1,279 @@
+# JMH version: 1.19
+# VM version: JDK 1.8.0_211, VM 25.211-b12
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/bin/java
+# VM options: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57026:/Applications/IntelliJ IDEA.app/Contents/bin -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.maxzuo.jmh.SecondBenchmark.multiThreadBench
+# Parameters: (length = 10000)
+
+# Run progress: 0.00% complete, ETA 00:02:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 43.885 us/op
+# Warmup Iteration   2: 20.554 us/op
+# Warmup Iteration   3: 16.991 us/op
+# Warmup Iteration   4: 14.713 us/op
+# Warmup Iteration   5: 15.850 us/op
+Iteration   1: 13.043 us/op
+Iteration   2: 12.887 us/op
+Iteration   3: 15.736 us/op
+Iteration   4: 15.668 us/op
+Iteration   5: 18.262 us/op
+
+# Run progress: 8.33% complete, ETA 00:02:06
+# Fork: 2 of 2
+# Warmup Iteration   1: 17.432 us/op
+# Warmup Iteration   2: 15.903 us/op
+# Warmup Iteration   3: 15.419 us/op
+# Warmup Iteration   4: 15.533 us/op
+# Warmup Iteration   5: 19.529 us/op
+Iteration   1: 16.259 us/op
+Iteration   2: 16.332 us/op
+Iteration   3: 14.413 us/op
+Iteration   4: 14.465 us/op
+Iteration   5: 18.795 us/op
+
+
+Result "com.maxzuo.jmh.SecondBenchmark.multiThreadBench":
+  15.586 ±(99.9%) 2.977 us/op [Average]
+  (min, avg, max) = (12.887, 15.586, 18.795), stdev = 1.969
+  CI (99.9%): [12.609, 18.563] (assumes normal distribution)
+
+
+# JMH version: 1.19
+# VM version: JDK 1.8.0_211, VM 25.211-b12
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/bin/java
+# VM options: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57026:/Applications/IntelliJ IDEA.app/Contents/bin -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.maxzuo.jmh.SecondBenchmark.multiThreadBench
+# Parameters: (length = 100000)
+
+# Run progress: 16.67% complete, ETA 00:01:51
+# Fork: 1 of 2
+# Warmup Iteration   1: 52.293 us/op
+# Warmup Iteration   2: 40.218 us/op
+# Warmup Iteration   3: 34.075 us/op
+# Warmup Iteration   4: 40.032 us/op
+# Warmup Iteration   5: 34.459 us/op
+Iteration   1: 38.469 us/op
+Iteration   2: 33.756 us/op
+Iteration   3: 30.520 us/op
+Iteration   4: 34.232 us/op
+Iteration   5: 35.304 us/op
+
+# Run progress: 25.00% complete, ETA 00:01:39
+# Fork: 2 of 2
+# Warmup Iteration   1: 38.323 us/op
+# Warmup Iteration   2: 45.511 us/op
+# Warmup Iteration   3: 36.777 us/op
+# Warmup Iteration   4: 40.517 us/op
+# Warmup Iteration   5: 38.566 us/op
+Iteration   1: 42.926 us/op
+Iteration   2: 46.490 us/op
+Iteration   3: 43.620 us/op
+Iteration   4: 37.820 us/op
+Iteration   5: 41.009 us/op
+
+
+Result "com.maxzuo.jmh.SecondBenchmark.multiThreadBench":
+  38.414 ±(99.9%) 7.659 us/op [Average]
+  (min, avg, max) = (30.520, 38.414, 46.490), stdev = 5.066
+  CI (99.9%): [30.756, 46.073] (assumes normal distribution)
+
+
+# JMH version: 1.19
+# VM version: JDK 1.8.0_211, VM 25.211-b12
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/bin/java
+# VM options: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57026:/Applications/IntelliJ IDEA.app/Contents/bin -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.maxzuo.jmh.SecondBenchmark.multiThreadBench
+# Parameters: (length = 1000000)
+
+# Run progress: 33.33% complete, ETA 00:01:28
+# Fork: 1 of 2
+# Warmup Iteration   1: 178.542 us/op
+# Warmup Iteration   2: 156.570 us/op
+# Warmup Iteration   3: 163.759 us/op
+# Warmup Iteration   4: 192.021 us/op
+# Warmup Iteration   5: 158.264 us/op
+Iteration   1: 171.534 us/op
+Iteration   2: 180.523 us/op
+Iteration   3: 201.512 us/op
+Iteration   4: 262.678 us/op
+Iteration   5: 195.021 us/op
+
+# Run progress: 41.67% complete, ETA 00:01:16
+# Fork: 2 of 2
+# Warmup Iteration   1: 214.561 us/op
+# Warmup Iteration   2: 158.685 us/op
+# Warmup Iteration   3: 225.861 us/op
+# Warmup Iteration   4: 275.890 us/op
+# Warmup Iteration   5: 218.481 us/op
+Iteration   1: 231.580 us/op
+Iteration   2: 175.873 us/op
+Iteration   3: 185.023 us/op
+Iteration   4: 187.092 us/op
+Iteration   5: 217.570 us/op
+
+
+Result "com.maxzuo.jmh.SecondBenchmark.multiThreadBench":
+  200.841 ±(99.9%) 43.402 us/op [Average]
+  (min, avg, max) = (171.534, 200.841, 262.678), stdev = 28.708
+  CI (99.9%): [157.438, 244.243] (assumes normal distribution)
+
+
+# JMH version: 1.19
+# VM version: JDK 1.8.0_211, VM 25.211-b12
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/bin/java
+# VM options: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57026:/Applications/IntelliJ IDEA.app/Contents/bin -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.maxzuo.jmh.SecondBenchmark.singleThreadBench
+# Parameters: (length = 10000)
+
+# Run progress: 50.00% complete, ETA 00:01:05
+# Fork: 1 of 2
+# Warmup Iteration   1: 3.200 us/op
+# Warmup Iteration   2: 3.210 us/op
+# Warmup Iteration   3: 3.356 us/op
+# Warmup Iteration   4: 3.216 us/op
+# Warmup Iteration   5: 3.114 us/op
+Iteration   1: 3.213 us/op
+Iteration   2: 2.908 us/op
+Iteration   3: 3.211 us/op
+Iteration   4: 3.584 us/op
+Iteration   5: 3.250 us/op
+
+# Run progress: 58.33% complete, ETA 00:00:54
+# Fork: 2 of 2
+# Warmup Iteration   1: 3.429 us/op
+# Warmup Iteration   2: 3.118 us/op
+# Warmup Iteration   3: 3.327 us/op
+# Warmup Iteration   4: 3.103 us/op
+# Warmup Iteration   5: 3.232 us/op
+Iteration   1: 3.242 us/op
+Iteration   2: 2.948 us/op
+Iteration   3: 2.968 us/op
+Iteration   4: 3.499 us/op
+Iteration   5: 3.009 us/op
+
+
+Result "com.maxzuo.jmh.SecondBenchmark.singleThreadBench":
+  3.183 ±(99.9%) 0.348 us/op [Average]
+  (min, avg, max) = (2.908, 3.183, 3.584), stdev = 0.231
+  CI (99.9%): [2.835, 3.532] (assumes normal distribution)
+
+
+# JMH version: 1.19
+# VM version: JDK 1.8.0_211, VM 25.211-b12
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/bin/java
+# VM options: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57026:/Applications/IntelliJ IDEA.app/Contents/bin -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.maxzuo.jmh.SecondBenchmark.singleThreadBench
+# Parameters: (length = 100000)
+
+# Run progress: 66.67% complete, ETA 00:00:43
+# Fork: 1 of 2
+# Warmup Iteration   1: 41.836 us/op
+# Warmup Iteration   2: 43.352 us/op
+# Warmup Iteration   3: 39.644 us/op
+# Warmup Iteration   4: 30.618 us/op
+# Warmup Iteration   5: 31.591 us/op
+Iteration   1: 30.450 us/op
+Iteration   2: 29.826 us/op
+Iteration   3: 28.860 us/op
+Iteration   4: 29.275 us/op
+Iteration   5: 30.373 us/op
+
+# Run progress: 75.00% complete, ETA 00:00:32
+# Fork: 2 of 2
+# Warmup Iteration   1: 48.812 us/op
+# Warmup Iteration   2: 46.748 us/op
+# Warmup Iteration   3: 47.129 us/op
+# Warmup Iteration   4: 28.984 us/op
+# Warmup Iteration   5: 29.713 us/op
+Iteration   1: 34.554 us/op
+Iteration   2: 30.076 us/op
+Iteration   3: 29.417 us/op
+Iteration   4: 29.013 us/op
+Iteration   5: 29.850 us/op
+
+
+Result "com.maxzuo.jmh.SecondBenchmark.singleThreadBench":
+  30.169 ±(99.9%) 2.468 us/op [Average]
+  (min, avg, max) = (28.860, 30.169, 34.554), stdev = 1.633
+  CI (99.9%): [27.701, 32.638] (assumes normal distribution)
+
+
+# JMH version: 1.19
+# VM version: JDK 1.8.0_211, VM 25.211-b12
+# VM invoker: /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/bin/java
+# VM options: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57026:/Applications/IntelliJ IDEA.app/Contents/bin -Dfile.encoding=UTF-8
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.maxzuo.jmh.SecondBenchmark.singleThreadBench
+# Parameters: (length = 1000000)
+
+# Run progress: 83.33% complete, ETA 00:00:21
+# Fork: 1 of 2
+# Warmup Iteration   1: 321.106 us/op
+# Warmup Iteration   2: 347.461 us/op
+# Warmup Iteration   3: 487.269 us/op
+# Warmup Iteration   4: 463.927 us/op
+# Warmup Iteration   5: 448.020 us/op
+Iteration   1: 429.990 us/op
+Iteration   2: 454.343 us/op
+Iteration   3: 446.165 us/op
+Iteration   4: 547.850 us/op
+Iteration   5: 458.511 us/op
+
+# Run progress: 91.67% complete, ETA 00:00:10
+# Fork: 2 of 2
+# Warmup Iteration   1: 343.694 us/op
+# Warmup Iteration   2: 358.643 us/op
+# Warmup Iteration   3: 457.391 us/op
+# Warmup Iteration   4: 471.925 us/op
+# Warmup Iteration   5: 543.197 us/op
+Iteration   1: 456.267 us/op
+Iteration   2: 437.441 us/op
+Iteration   3: 531.245 us/op
+Iteration   4: 483.877 us/op
+Iteration   5: 485.555 us/op
+
+
+Result "com.maxzuo.jmh.SecondBenchmark.singleThreadBench":
+  473.124 ±(99.9%) 59.508 us/op [Average]
+  (min, avg, max) = (429.990, 473.124, 547.850), stdev = 39.361
+  CI (99.9%): [413.617, 532.632] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:02:11
+
+Benchmark                          (length)  Mode  Cnt    Score    Error  Units
+SecondBenchmark.multiThreadBench      10000  avgt   10   15.586 ±  2.977  us/op
+SecondBenchmark.multiThreadBench     100000  avgt   10   38.414 ±  7.659  us/op
+SecondBenchmark.multiThreadBench    1000000  avgt   10  200.841 ± 43.402  us/op
+SecondBenchmark.singleThreadBench     10000  avgt   10    3.183 ±  0.348  us/op
+SecondBenchmark.singleThreadBench    100000  avgt   10   30.169 ±  2.468  us/op
+SecondBenchmark.singleThreadBench   1000000  avgt   10  473.124 ± 59.508  us/op

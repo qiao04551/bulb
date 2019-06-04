@@ -1,9 +1,7 @@
 package com.maxzuo;
 
-import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.regex.Pattern;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * 测试主类
@@ -11,12 +9,22 @@ import java.util.regex.Pattern;
  */
 public class MainTest {
 
-    private static final Pattern NAME_SEPARATOR = Pattern.compile("\\s*[,]+\\s*");
+    private static final ExecutorService pool = Executors.newFixedThreadPool(2);
 
-    @Test
-    public void test() {
-        String message = "hello,world";
-        String[] split = NAME_SEPARATOR.split(message);
-        System.out.println(Arrays.toString(split));
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            int a = i;
+            pool.submit(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        System.out.println(a);
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 }
