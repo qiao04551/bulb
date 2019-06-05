@@ -11,10 +11,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
- * JDK8 新增日期时间API
+ * JDK8 日期时间API
+ * <pre>
+ *   1.SimpleDateFormat 是线程不安全的类，一般不要定义为 static 变量，如果定义为static，必须加锁，或者使用 DateUtils 工具类。
+ *   2.如果是 JDK8 的应用，可以使用 Instant 代替 Date， LocalDateTime 代替 Calendar，DateTimeFormatter 代替 SimpleDateFormat，
+ *     官方给出的解释： simple beautiful strong immutable thread-safe。
+ * </pre>
  * Created by zfh on 2019/02/22
  */
-class DateTimeTest {
+class LocalDateTimeExample {
 
     @DisplayName("获取日期时间的信息")
     @Test
