@@ -23,6 +23,10 @@ class DateTimeTest {
         LocalDate nowDate = LocalDate.now();
         System.out.println("nowDate: " + nowDate);
 
+        /// 日期格式化
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        System.out.println("newDateStr: " + nowDate.format(dtf));
+
         // LocalTime类获取时间信息。格式为 15:33:56.749
         LocalTime nowTime = LocalTime.now();
         System.out.println("nowTime: " + nowTime);
@@ -62,5 +66,24 @@ class DateTimeTest {
         // 输出：2019-02-22 10:10:00.263
         String format1 = dtf.format(nowDateTime);
         System.out.println("format1: " + format1);
+
+        /// 格式化
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String format2 = nowDateTime.format(dateTimeFormatter);
+        System.out.println(format2);
+    }
+
+    @DisplayName("字符串解析为日期")
+    @Test
+    public void testStringParseToDateTime () {
+        /// 格式化字符串日期
+        DateTimeFormatter yyyyMMdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDateStr = LocalDate.parse("2019-06-06", yyyyMMdd);
+        System.out.println("localDateStr: " + localDateStr);
+
+        /// 解析日期+时间
+        DateTimeFormatter yyyyMMddHHmm = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime localDateTimeStr = LocalDateTime.parse("2019-06-05 14:02", yyyyMMddHHmm);
+        System.out.println("localDateTimeStr: " + localDateTimeStr);
     }
 }
