@@ -1,3 +1,6 @@
+# 建库
+CREATE DATABASE IF NOT EXISTS `mooc` CHARACTER SET = utf8mb4;
+
 # 订单表
 CREATE TABLE `shop_order_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

@@ -28,12 +28,15 @@ public class IShopOrderInfoServiceTest {
     @Test
     public void getShopOrderInfoByPrimaryKey() {
         ShopOrderInfo shopOrderInfo = shopOrderInfoService.getShopOrderInfoByPrimaryKey(10);
+        System.out.println("********************：" + shopOrderInfo.getUsername());
         Assert.assertEquals(shopOrderInfo.getId().longValue(), 10);
     }
 
     @Test
     public void updateByPrimarySeletive() {
-        ShopOrderInfo shopOrderInfo = shopOrderInfoService.getShopOrderInfoByPrimaryKey(1);
+        ShopOrderInfo shopOrderInfo = shopOrderInfoService.getShopOrderInfoByPrimaryKey(10);
+        // emoji表情
+        shopOrderInfo.setUsername("\uD83D\uDE02");
         Integer affected = shopOrderInfoService.updateByPrimarySeletive(shopOrderInfo);
         Assert.assertEquals(affected.longValue(), 1);
     }
