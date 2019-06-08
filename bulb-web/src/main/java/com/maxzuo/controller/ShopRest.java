@@ -2,6 +2,7 @@ package com.maxzuo.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.maxzuo.bulb.api.IShopOrderInfoService;
+import com.maxzuo.bulb.model.ShopOrderInfo;
 import com.maxzuo.form.Param;
 import com.maxzuo.vo.Result;
 import org.slf4j.Logger;
@@ -35,7 +36,9 @@ public class ShopRest {
             return result;
         }
         try {
-            shopOrderInfoService.getShopOrderInfoByPrimaryKey(shopId);
+            ShopOrderInfo orderInfo = shopOrderInfoService.getShopOrderInfoByPrimaryKey(shopId);
+
+            result.setData(orderInfo);
             result.setCode(Result.RESULT_SUCCESS);
             result.setMsg("查询成功！");
         } catch (Exception e) {
