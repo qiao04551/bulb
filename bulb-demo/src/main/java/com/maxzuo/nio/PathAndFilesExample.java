@@ -3,14 +3,22 @@ package com.maxzuo.nio;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * JDK7 NIO新增特性Paths和Path
+ * JDK7 新增Paths和Path类
+ * <pre>
+ *  1.Path与Paths
+ *    1）java.nio.file.Path 接口代表一个平台无关的平台路径，描述了目录结构中文件的位置。
+ *    2）Paths提供的get()方法用来获取Path对象。
+ *  2.新增java.nio.file.Files类用于操作文件或目录的工具类，具备文件新增、复制、移动、删除文件等功能，使用起来超级方便。
+ * </pre>
  * Created by zfh on 2019/01/24
  */
-class PathsTest {
+class PathAndFilesExample {
 
     @DisplayName("Paths常用方法")
     @Test
@@ -70,5 +78,35 @@ class PathsTest {
         // 将相对路径解析为绝对路径（相当于将path2的父路径，当成目标参数的父路径，拼接得到新的路径）
         Path resolvePath = path2.getParent().resolve("spring2.png");
         System.out.println("resolvePath: " + resolvePath);
+    }
+
+    @DisplayName("Files常用方法")
+    @Test
+    void testFilesCommonMethod() throws IOException {
+        // 文件复制，成功后，返回拷贝的目标路径（如果文件已存在，会报错）
+        Path copyPath = Files.copy(Paths.get("spring.png"), Paths.get("spring2.png"));
+        System.out.println("copyPath: " + copyPath);
+        // 删除文件或目录
+        Files.delete(copyPath);
+        // Files.deleteIfExists()
+
+        if (Files.exists(Paths.get("spring.png"))) {
+            // 创建一个文件
+            Path newFilePath = Files.createFile(Paths.get("spring2.png"));
+            Files.delete(newFilePath);
+        }
+        // 创建一个目录
+        if (!Files.exists(Paths.get("demo"))) {
+            Path newDirectory = Files.createDirectory(Paths.get("demo"));
+            Files.delete(newDirectory);
+        }
+        long size = Files.size(Paths.get("spring.png"));
+        System.out.println("指定文件的大小：" + size + " byte（字节）");
+
+        // 移动文件
+        Path copyFilePath = Files.copy(Paths.get("demo.txt"), Paths.get("demo2.txt"));
+        Path moveFilePath = Files.move(copyFilePath, Paths.get("src/demo3.txt"));
+        System.out.println("moveFilePath: " + moveFilePath);
+        Files.delete(moveFilePath);
     }
 }
