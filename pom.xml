@@ -52,6 +52,7 @@
         <sentinel.version>1.6.1</sentinel.version>
         <jmh.version>1.19</jmh.version>
         <netty.version>4.1.36.Final</netty.version>
+        <metrics.version>3.0.1</metrics.version>
     </properties>
 
     <modules>
@@ -397,6 +398,11 @@
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
                 <version>${netty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.codahale.metrics</groupId>
+                <artifactId>metrics-core</artifactId>
+                <version>${metrics.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
