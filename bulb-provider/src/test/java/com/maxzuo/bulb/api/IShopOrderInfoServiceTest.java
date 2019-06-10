@@ -18,8 +18,9 @@ public class IShopOrderInfoServiceTest {
     @Test
     public void save() {
         ShopOrderInfo shopOrderInfo = new ShopOrderInfo();
-        shopOrderInfo.setOrderNo("12345");
+        shopOrderInfo.setUserId(10);
         shopOrderInfo.setUsername("dazuo");
+        shopOrderInfo.setOrderNo("12345");
         shopOrderInfo.setCount(1);
         Integer id = shopOrderInfoService.save(shopOrderInfo);
         Assert.assertTrue(id > 0);
@@ -28,7 +29,7 @@ public class IShopOrderInfoServiceTest {
     @Test
     public void getShopOrderInfoByPrimaryKey() {
         ShopOrderInfo shopOrderInfo = shopOrderInfoService.getShopOrderInfoByPrimaryKey(10);
-        System.out.println("********************：" + shopOrderInfo.getUsername());
+        System.out.println("********************：" + shopOrderInfo);
         Assert.assertEquals(shopOrderInfo.getId().longValue(), 10);
     }
 

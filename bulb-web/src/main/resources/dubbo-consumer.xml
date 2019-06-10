@@ -14,4 +14,5 @@
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
     <!--3.声明需要调用的远程服务的接口；生成远程服务代理-->
     <dubbo:reference id="shopOrderInfoService" interface="com.maxzuo.bulb.api.IShopOrderInfoService" check="false" />
+    <dubbo:reference id="scUserService" interface="com.maxzuo.bulb.api.IScUserService" check="false"/>
 </beans>

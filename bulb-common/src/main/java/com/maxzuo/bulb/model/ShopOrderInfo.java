@@ -14,6 +14,11 @@ public class ShopOrderInfo implements Serializable {
     /** 主键 */
     private Integer           id;
 
+    /**
+     * 用户ID
+     */
+    private Integer           userId;
+
     /** 用户名 */
     private String            username;
 
@@ -32,6 +37,14 @@ public class ShopOrderInfo implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -68,7 +81,13 @@ public class ShopOrderInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "ShopOrderInfo{" + "id=" + id + ", username='" + username + '\'' + ", count=" + count + ", orderNo='"
-               + orderNo + '\'' + ", createTime=" + createTime + '}';
+        return "ShopOrderInfo{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", username='" + username + '\'' +
+                ", count=" + count +
+                ", orderNo='" + orderNo + '\'' +
+                ", createTime=" + createTime +
+                '}';
     }
 }

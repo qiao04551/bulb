@@ -3,6 +3,7 @@
 <mapper namespace="com.maxzuo.bulb.dao.ShopOrderInfoMapper">
     <resultMap id="BaseResultMap" type="com.maxzuo.bulb.model.ShopOrderInfo">
         <id column="id" property="id" javaType="int" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" javaType="int" jdbcType="INTEGER" />
         <result column="username" property="username" javaType="string" jdbcType="VARCHAR" />
         <result column="count" property="count" javaType="int" jdbcType="INTEGER" />
         <result column="order_no" property="orderNo" javaType="string" jdbcType="VARCHAR" />
@@ -10,16 +11,17 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, username, `count`, order_no, create_time
+        id, user_id, username, `count`, order_no, create_time
     </sql>
 
     <insert id="insert" parameterType="com.maxzuo.bulb.model.ShopOrderInfo" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO shop_order_info
         (
-          username, `count`, order_no, create_time
+          user_id, username, `count`, order_no, create_time
         )
         VALUES
         (
+          #{userId},
           #{username},
           #{count},
           #{orderNo},

@@ -1,4 +1,4 @@
-package com.maxzuo.utils;
+package com.maxzuo.util;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;

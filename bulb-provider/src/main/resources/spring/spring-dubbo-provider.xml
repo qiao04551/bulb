@@ -20,4 +20,5 @@
     <!--<dubbo:protocol name="dubbo" port="20881"/>-->
     <!--4.暴露服务 ref：指向服务的真正实现-->
     <dubbo:service interface="com.maxzuo.bulb.api.IShopOrderInfoService" ref="shopOrderInfoService" executes="200"/>
+    <dubbo:service interface="com.maxzuo.bulb.api.IScUserService" ref="scUserService" executes="200" />
 </beans>
