@@ -53,14 +53,15 @@
         <jmh.version>1.19</jmh.version>
         <netty.version>4.1.36.Final</netty.version>
         <metrics.version>3.0.1</metrics.version>
+        <mqtt-client.version>1.15</mqtt-client.version>
     </properties>
 
     <modules>
-        <module>bulb-common</module>
-        <module>bulb-provider</module>
-        <module>bulb-web</module>
+        <!--<module>bulb-common</module>-->
+        <!--<module>bulb-provider</module>-->
+        <!--<module>bulb-web</module>-->
         <!--<module>bulb-agent</module>-->
-        <!--<module>bulb-demo</module>-->
+        <module>bulb-demo</module>
         <!--<module>bulb-spring-data-mongodb</module>-->
         <!--<module>bulb-sentinel-boot</module>-->
         <!--<module>spring-boot-webflux</module>-->
@@ -403,6 +404,11 @@
                 <groupId>com.codahale.metrics</groupId>
                 <artifactId>metrics-core</artifactId>
                 <version>${metrics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.fusesource.mqtt-client</groupId>
+                <artifactId>mqtt-client</artifactId>
+                <version>${mqtt-client.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
