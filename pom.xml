@@ -54,6 +54,7 @@
         <netty.version>4.1.36.Final</netty.version>
         <metrics.version>3.0.1</metrics.version>
         <mqtt-client.version>1.15</mqtt-client.version>
+        <dom4j.version>2.1.1</dom4j.version>
     </properties>
 
     <modules>
@@ -409,6 +410,11 @@
                 <groupId>org.fusesource.mqtt-client</groupId>
                 <artifactId>mqtt-client</artifactId>
                 <version>${mqtt-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

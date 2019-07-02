@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://www.maxzuo.com/custom-xsd/1.0"
+           xmlns="http://www.maxzuo.com/custom-xsd/1.0">
+    <xs:element name="project" type="Model">
+        <xs:annotation>
+            <xs:documentation source="version">1.0</xs:documentation>
+            <xs:documentation source="description">
+                自定义 XML Schema
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="Model">
+        <xs:all>
+            <xs:element name="nickname" minOccurs="0" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation source="description">姓名字段</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="age" type="xs:integer">
+                <xs:annotation>
+                    <xs:documentation source="description">
+                        年龄字段
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <!--空元素-->
+            <xs:element name="flag" type="xs:boolean" />
+            <xs:element name="feature" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation source="description">属性特定（复合空元素）</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:all>
+                        <xs:element name="company" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>公司</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:all>
+                    <xs:attribute name="lang" type="xs:string" default="EN">
+                        <xs:annotation>
+                            <xs:documentation source="description">属性字段</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

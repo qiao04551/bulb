@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://www.maxzuo.com/custom-xsd/1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.maxzuo.com/custom-xsd/1.0 custom-xsd.xml">
+
+    <!--引入自定义 XML Schema-->
+
+    <nickname>dazuo</nickname>
+    <age>22</age>
+    <flag>true</flag>
+    <feature lang="CN">
+        <company>工场</company>
+    </feature>
+</project>
