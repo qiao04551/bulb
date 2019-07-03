@@ -25,7 +25,7 @@ public class IScUserServiceTest {
 
     @Test
     public void testQueryUserByPrimaryKey () {
-        ScUser user = scUserService.queryUserByPrimaryKey(10);
-        Assert.assertEquals(Long.valueOf(10).longValue(), user.getId().longValue());
+        ScUser user = scUserService.queryUserByPrimaryKey(1);
+        Assert.assertNotNull(user);
     }
 }
