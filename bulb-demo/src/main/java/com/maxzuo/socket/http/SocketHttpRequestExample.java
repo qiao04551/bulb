@@ -1,4 +1,4 @@
-package com.maxzuo.socket;
+package com.maxzuo.socket.http;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,10 @@ import javax.net.ssl.SSLSocketFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Socket进行http请求
@@ -22,8 +25,10 @@ public class SocketHttpRequestExample {
 
     public static void main(String[] args) {
         SocketHttpRequestExample client = new SocketHttpRequestExample();
-        client.createConnect();
-        client.request();
+        // client.createConnect();
+        // client.simpleRequest();
+
+        client.simpleHttpClientRequest();
     }
 
     /**
@@ -41,7 +46,7 @@ public class SocketHttpRequestExample {
     /**
      * 发送请求
      */
-    private void request () {
+    private void baseRequest () {
         StringBuilder stringBuilder = new StringBuilder();
         // 请求行
         stringBuilder.append("GET / HTTP/1.1\r\n");
@@ -73,6 +78,46 @@ public class SocketHttpRequestExample {
             socket.close();
         } catch (Exception e) {
             logger.info("请求异常！", e);
+        }
+    }
+
+    /**
+     * 简单的请求
+     */
+    private void simpleRequest () {
+        StringBuilder stringBuilder = new StringBuilder();
+        // 请求行
+        stringBuilder.append("GET / HTTP/1.1\r\n");
+        // 请求头
+        stringBuilder.append("Host: www.baidu.com\r\n");
+        stringBuilder.append("User-Agent: curl/7.54.0\r\n");
+        stringBuilder.append("Accept: */*\r\n");
+        // 空行
+        stringBuilder.append("\r\n");
+        try {
+            OutputStream os = socket.getOutputStream();
+            os.write(stringBuilder.toString().getBytes());
+            os.flush();
+
+            SimpleHttpResponse response = new SimpleHttpResponseParser().parse(socket.getInputStream());
+            socket.close();
+            System.out.println("response: " + response);
+        } catch (Exception e) {
+            logger.info("请求异常！", e);
+        }
+
+    }
+
+    /**
+     * 使用SimpleHttpClient发送http请求
+     */
+    private void simpleHttpClientRequest () {
+        SimpleHttpRequest request = new SimpleHttpRequest(new InetSocketAddress("www.baidu.com", 80), "/");
+        try {
+            SimpleHttpResponse response = new SimpleHttpClient().get(request);
+            logger.info("response : " + response);
+        } catch (Exception e) {
+            logger.warn("[SimpleHttpHeartbeatSender] request Failed", e);
         }
     }
 }
