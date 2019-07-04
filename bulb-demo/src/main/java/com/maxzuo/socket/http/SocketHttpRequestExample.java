@@ -9,8 +9,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Socket进行http请求
@@ -25,10 +23,11 @@ public class SocketHttpRequestExample {
 
     public static void main(String[] args) {
         SocketHttpRequestExample client = new SocketHttpRequestExample();
-        // client.createConnect();
-        // client.simpleRequest();
+        client.createConnect();
+        client.baseRequest();
 
-        client.simpleHttpClientRequest();
+        // client.simpleRequest();
+        // client.simpleHttpClientRequest();
     }
 
     /**
@@ -54,8 +53,6 @@ public class SocketHttpRequestExample {
         stringBuilder.append("Host: www.baidu.com\r\n");
         stringBuilder.append("User-Agent: curl/7.54.0\r\n");
         stringBuilder.append("Accept: */*\r\n");
-        // TODO：不维持连接
-        stringBuilder.append("Connection: close\r\n");
         // 空行
         stringBuilder.append("\r\n");
 
@@ -70,8 +67,11 @@ public class SocketHttpRequestExample {
             InputStream is = socket.getInputStream();
             byte[] bytes = new byte[1024];
             int len;
+            // 提前计算出Content-Length
+            int total = 2843;
             // TODO: read 阻塞 !!! Connection: Keep-Alive
-            while ((len = is.read(bytes)) != -1) {
+            while (total > 0 &&(len = is.read(bytes)) != -1) {
+                total -= len;
                 response.append(new String(bytes, 0, len));
             }
             System.out.println("response: " + response);
@@ -100,12 +100,15 @@ public class SocketHttpRequestExample {
             os.flush();
 
             SimpleHttpResponse response = new SimpleHttpResponseParser().parse(socket.getInputStream());
+
+            logger.info("socket 连接状态：{} 关闭状态：{}", socket.isConnected(), socket.isClosed());
             socket.close();
-            System.out.println("response: " + response);
+            logger.info("socket 连接状态：{} 关闭状态：{}", socket.isConnected(), socket.isClosed());
+
+            System.out.println(response);
         } catch (Exception e) {
             logger.info("请求异常！", e);
         }
-
     }
 
     /**
@@ -115,7 +118,7 @@ public class SocketHttpRequestExample {
         SimpleHttpRequest request = new SimpleHttpRequest(new InetSocketAddress("www.baidu.com", 80), "/");
         try {
             SimpleHttpResponse response = new SimpleHttpClient().get(request);
-            logger.info("response : " + response);
+            logger.info(String.valueOf(response));
         } catch (Exception e) {
             logger.warn("[SimpleHttpHeartbeatSender] request Failed", e);
         }
