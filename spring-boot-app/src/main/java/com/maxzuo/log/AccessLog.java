@@ -1,33 +1,33 @@
 package com.maxzuo.log;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 /**
- * 定时输出日志
+ * 接口访问日志
+ * <p>
  * Created by zfh on 2019/01/31
  */
+@Aspect
 @Component
-@EnableScheduling
 public class AccessLog {
 
-    private static final Logger logger = LoggerFactory.getLogger("access");
+    private static final Logger logger = LoggerFactory.getLogger(AccessLog.class);
 
-    @Scheduled(cron = "0/5 * * * * ?")
-    private void recordLog() {
-        logger.debug("record Log：timestamp = {}", System.currentTimeMillis());
-        logger.info("record Log：timestamp = {}", System.currentTimeMillis());
-        logger.warn("record Log：timestamp = {}", System.currentTimeMillis());
-        logger.error("record Log：timestamp = {}", System.currentTimeMillis());
+    @Around("execution(* com.maxzuo.controller..*(..))")
+    public Object recordLog(ProceedingJoinPoint joinPoint) throws Throwable {
         try {
-            if (System.currentTimeMillis() > 1) {
-                throw new RuntimeException("异常信息");
-            }
-        } catch (Exception e) {
-            logger.warn("异常信息 ", e.getMessage(), e);
+            logger.info(LocalDateTime.now().toString());
+            return joinPoint.proceed();
+        } catch (Throwable t) {
+            logger.error("recordLog 异常", t);
+            throw t;
         }
     }
 }
