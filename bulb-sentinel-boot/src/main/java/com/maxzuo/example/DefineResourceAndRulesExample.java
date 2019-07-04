@@ -3,13 +3,13 @@ package com.maxzuo.example;
 import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.SphO;
 import com.alibaba.csp.sentinel.SphU;
-import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
+import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
+import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 /**
  * Sentinel示例Demo，定义资源和规则。
@@ -24,28 +24,46 @@ import java.util.List;
 public class DefineResourceAndRulesExample {
 
     public static void main(String[] args) {
-        initFlowQpsRule();
-
-        // baseThrowException();
-
-        // baseBooleanValue();
+        String resourceName = "HelloWorld";
+        initDegradeRule(resourceName);
+        invoke();
     }
 
     /**
-     * 通过代码定义流量控制规则
-     * 流量控制规则wiki：https://github.com/alibaba/Sentinel/wiki/%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6
+     * 定义流量控制规则 —— Qos模式
      */
-    private static void initFlowQpsRule() {
-        List<FlowRule> rules = new ArrayList<>();
-        FlowRule rule = new FlowRule();
-        rule.setResource("HelloWorld");
-        rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
+    private static void initFlowQpsRule(String resourceName) {
+        FlowRule rule = new FlowRule(resourceName);
         // Set limit QPS to 20.
-        rule.setCount(20);
+        rule.setCount(10);
         rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
-        rules.add(rule);
-        FlowRuleManager.loadRules(rules);
+        FlowRuleManager.loadRules(Collections.singletonList(rule));
     }
+
+    /**
+     * 定义流量控制规则 —— 线程数模式
+     */
+    private static void initFlowThreadRule(String resourceName) {
+        FlowRule rule = new FlowRule(resourceName);
+        rule.setCount(5);
+        rule.setGrade(RuleConstant.FLOW_GRADE_THREAD);
+        FlowRuleManager.loadRules(Collections.singletonList(rule));
+    }
+
+    /**
+     * 熔断降级规则 —— 响应时间
+     */
+    private static void initDegradeRule (String resourceName) {
+        DegradeRule rule = new DegradeRule();
+        rule.setResource(resourceName);
+        // 资源的平均响应时间的阀值
+        rule.setCount(2);
+        rule.setGrade(RuleConstant.DEGRADE_GRADE_RT);
+        // 熔断的时间
+        rule.setTimeWindow(5);
+        DegradeRuleManager.loadRules(Collections.singletonList(rule));
+    }
+
 
     /**
      * 定义资源方式一：主流框架适配
@@ -58,15 +76,29 @@ public class DefineResourceAndRulesExample {
      *   这个时候可以捕捉异常，进行限流之后的逻辑处理。
      * </pre>
      */
-    private static void baseThrowException () {
+    private static void invoke() {
         while (true) {
-            // 1.5.0 版本开始可以直接利用 try-with-resources 特性
-            try (Entry entry = SphU.entry("HelloWorld")) {
-                // 被保护的逻辑
-                System.out.println("hello baseThrowException");
-            } catch (BlockException ex) {
-                // 处理被流控的逻辑
-                // System.out.println("blocked!");
+            defineResource();
+        }
+    }
+
+    /**
+     * 定义资源
+     */
+    private static void defineResource() {
+        Entry entry = null;
+        try {
+            entry = SphU.entry("HelloWorld");
+            // 被保护的逻辑
+            System.out.println("hello baseThrowException");
+
+            Thread.sleep(2);
+        } catch (Exception ex) {
+            // 处理被流控的逻辑
+            // System.out.println("blocked!");
+        } finally {
+            if (entry != null) {
+                entry.exit();
             }
         }
     }
@@ -78,7 +110,7 @@ public class DefineResourceAndRulesExample {
      *   进行限流之后的逻辑处理。
      * </pre>
      */
-    private static void baseBooleanValue () {
+    private static void baseBooleanValue() {
         while (true) {
             if (SphO.entry("HelloWorld")) {
                 try {
@@ -94,8 +126,6 @@ public class DefineResourceAndRulesExample {
         }
     }
 
-
-
     /**
      * 定义资源方式四：注解方式定义资源
      * <pre>
@@ -110,6 +140,4 @@ public class DefineResourceAndRulesExample {
     /**
      * 定义资源方式五：异步调用支持
      */
-
-
 }
