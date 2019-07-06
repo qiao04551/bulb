@@ -1,4 +1,14 @@
-### 本地项目
-GET http://192.168.11.141:8080/rest/main
+### 限流接口
+GET http://192.168.14.141:8080/flow?name=dazuo&age=22
+### 降级接口
+GET http://192.168.14.141:8080/degrade
+
 ### easy-mock
 GET https://www.easy-mock.com/mock/5aceff1900a2457ce2e505e6/example/user
+
+### zxcity-restful
+POST http://192.168.14.141:8080/zxcity_restful/ws/rest
+Content-Type: application/x-www-form-urlencoded
+apikey: test
+
+cmd=shop/findTradingGiftList&data={"userId":1}&version=1
