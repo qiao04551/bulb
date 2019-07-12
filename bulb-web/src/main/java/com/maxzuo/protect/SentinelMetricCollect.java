@@ -5,6 +5,7 @@ import com.alibaba.csp.sentinel.node.ClusterNode;
 import com.alibaba.csp.sentinel.node.metric.MetricNode;
 import com.alibaba.csp.sentinel.slotchain.ResourceWrapper;
 import com.alibaba.csp.sentinel.slots.clusterbuilder.ClusterBuilderSlot;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
@@ -50,7 +51,7 @@ public class SentinelMetricCollect {
     }
 
     /**
-     * 用Kafka替换默认的日志文件 {@link com.alibaba.csp.sentinel.node.metric.MetricTimerListener}
+     * 用Kafka采集Metric，替换默认的日志文件 {@link com.alibaba.csp.sentinel.node.metric.MetricTimerListener}
      */
     @Scheduled(cron = "0/1 * * * * ?")
     private void run () {
@@ -66,13 +67,8 @@ public class SentinelMetricCollect {
         if (!maps.isEmpty()) {
             for (Map.Entry<Long, List<MetricNode>> entry : maps.entrySet()) {
                 try {
-                    // TODO: 采集
-                    ProducerRecord<String, String> record = new ProducerRecord<>("test", "user",entry.getKey().toString());
+                    ProducerRecord<String, String> record = new ProducerRecord<>(metricTopic, entry.getKey().toString(), JSONObject.toJSONString(entry.getValue()));
                     kafkaProducer.send(record);
-
-                    List<MetricNode> value = entry.getValue();
-
-                    logger.info("K => {}  V => {}",  entry.getKey(), entry.getValue());
                 } catch (Exception e) {
                     logger.error("【Sentinel Metric信息收集】发生异常！", e);
                 }
