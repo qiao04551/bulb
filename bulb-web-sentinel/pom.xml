@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>bulb-web</artifactId>
+    <artifactId>bulb-web-sentinel</artifactId>
     <packaging>war</packaging>
 
     <dependencies>
@@ -103,6 +103,7 @@
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-core</artifactId>
+            <version>1.6.1.kafka</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba.csp</groupId>
