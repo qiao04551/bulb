@@ -3,10 +3,10 @@ package com.maxzuo.thread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.TimeUnit;
 
 /**
- * 使用Thread.UncaughtExceptionHandler来处理线程内部的非受检异常（受检异常在run()方法体内部的catch子句中处理，不支持往上抛）
+ * 使用Thread.UncaughtExceptionHandler来处理线程内部的非受检异常（包括main线程）
+ * （受检异常在run()方法体内部的catch子句中处理，不支持往上抛）
  * <p>
  * Created by zfh on 2019/07/13
  */
@@ -24,11 +24,12 @@ public class UncaughtExceptionHandlerExample {
             t.setUncaughtExceptionHandler(new ExceptionHandler());
             t.start();
 
-            TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
+            // TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
         } catch (Exception e) {
             // TODO: 无法捕获子线程的非受检异常
             logger.error("发生异常！", e);
         }
+        throw new RuntimeException("main Thread");
     }
 
     /**
