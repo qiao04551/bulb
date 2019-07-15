@@ -24,6 +24,18 @@ public class ModuloOperationExample {
         System.out.println(-1 % 6);
         System.out.println(-2 % 5);
         System.out.println(-3 % 5);
+        /*
+            1
+            1
+            2
+            2
+            2
+            3
+            3
+            -1
+            -2
+            -3
+         */
     }
 
     /**
@@ -34,8 +46,13 @@ public class ModuloOperationExample {
         System.out.println(1 % 1);
         System.out.println(2 % 2);
         System.out.println(-3 % -3);
+        /*
+            0
+            0
+            0
+         */
 
-        // 右边操作数不能为0
+        // 右边操作数不能为0，发生异常
         System.out.println(0 % 0);
     }
 
@@ -59,5 +76,20 @@ public class ModuloOperationExample {
         System.out.println(6 % -3);
         System.out.println(7 % -4);
         System.out.println(11 % -7);
+        /*
+            0
+            0
+            1
+            0
+            3
+            4
+            ***********************
+            0
+            0
+            1
+            0
+            3
+            4
+         */
     }
 }
