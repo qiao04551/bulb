@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 店铺Rest
@@ -69,6 +70,11 @@ public class ShopRest {
      */
     @PostMapping("/flow")
     public Result flow () {
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.err.println("Welcome to flow method !");
         return new Result(Result.RESULT_SUCCESS, "ok");
     }
