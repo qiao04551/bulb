@@ -1,4 +1,4 @@
-package com.maxzuo.example;
+package com.maxzuo.bulb;
 
 import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.SphO;
@@ -9,7 +9,9 @@ import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Sentinel示例Demo，定义资源和规则。
@@ -25,29 +27,44 @@ public class DefineResourceAndRulesExample {
 
     public static void main(String[] args) {
         String resourceName = "HelloWorld";
-        initDegradeRule(resourceName);
+        initFlowQpsRule(resourceName);
         invoke();
     }
 
     /**
-     * 定义流量控制规则 —— Qos模式
+     * 定义流量控制规则 —— QPS模式
      */
     private static void initFlowQpsRule(String resourceName) {
-        FlowRule rule = new FlowRule(resourceName);
-        // Set limit QPS to 20.
-        rule.setCount(10);
+        List<FlowRule> rules = new ArrayList<>(4);
+        FlowRule rule = new FlowRule();
+        rule.setCount(5);
         rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
-        FlowRuleManager.loadRules(Collections.singletonList(rule));
+        rule.setResource(resourceName);
+        rule.setStrategy(0);
+        rule.setControlBehavior(0);
+        rule.setLimitApp("default");
+        rules.add(rule);
+        FlowRuleManager.loadRules(rules);
+
+        /// 覆盖上一次规则
+        // FlowRuleManager.loadRules(Collections.singletonList(new FlowRule()));
     }
 
     /**
      * 定义流量控制规则 —— 线程数模式
      */
     private static void initFlowThreadRule(String resourceName) {
-        FlowRule rule = new FlowRule(resourceName);
+        List<FlowRule> rules = new ArrayList<>(4);
+        FlowRule rule = new FlowRule();
         rule.setCount(5);
         rule.setGrade(RuleConstant.FLOW_GRADE_THREAD);
-        FlowRuleManager.loadRules(Collections.singletonList(rule));
+        rule.setLimitApp("default");
+        rule.setControlBehavior(0);
+        rule.setResource(resourceName);
+        rule.setStrategy(0);
+        rules.add(rule);
+
+        FlowRuleManager.loadRules(rules);
     }
 
     /**
@@ -78,27 +95,20 @@ public class DefineResourceAndRulesExample {
      */
     private static void invoke() {
         while (true) {
-            defineResource();
-        }
-    }
+            Entry entry = null;
+            try {
+                entry = SphU.entry("HelloWorld");
+                // 被保护的逻辑
+                System.out.println("welcome defineResource");
 
-    /**
-     * 定义资源
-     */
-    private static void defineResource() {
-        Entry entry = null;
-        try {
-            entry = SphU.entry("HelloWorld");
-            // 被保护的逻辑
-            System.out.println("hello baseThrowException");
-
-            Thread.sleep(2);
-        } catch (Exception ex) {
-            // 处理被流控的逻辑
-            // System.out.println("blocked!");
-        } finally {
-            if (entry != null) {
-                entry.exit();
+                Thread.sleep(2);
+            } catch (Exception ex) {
+                // 处理被流控的逻辑
+                // System.out.println("blocked!");
+            } finally {
+                if (entry != null) {
+                    entry.exit();
+                }
             }
         }
     }
