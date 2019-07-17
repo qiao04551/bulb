@@ -21,7 +21,7 @@ public class SentinelMetricConsumer {
 
     private static final Logger logger = LoggerFactory.getLogger(SentinelMetricConsumer.class);
 
-    private static final String BOOTSTRAP_SERVERS = "139.129.216.37:9092";
+    private static final String BOOTSTRAP_SERVERS = "47.98.199.80:9092";
 
     private static final String METRIC_TOPIC = "sentinel-metric";
 

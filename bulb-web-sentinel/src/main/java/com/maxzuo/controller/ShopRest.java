@@ -11,10 +11,7 @@ import com.maxzuo.vo.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +21,7 @@ import java.util.Map;
  * Created by zfh on 2019/01/19
  */
 @RestController
-@RequestMapping("/zxcity_restful/ws/shop")
+@RequestMapping("/ws/shop")
 public class ShopRest {
 
     private static final Logger logger = LoggerFactory.getLogger(ShopRest.class);
@@ -65,5 +62,28 @@ public class ShopRest {
             logger.error("发生异常", e);
         }
         return result;
+    }
+
+    /**
+     * 限流规则接口
+     */
+    @PostMapping("/flow")
+    public Result flow () {
+        System.err.println("Welcome to flow method !");
+        return new Result(Result.RESULT_SUCCESS, "ok");
+    }
+
+    /**
+     * 降级规则接口
+     */
+    @PostMapping("/degrade")
+    public Result degrade () {
+        try {
+            Thread.sleep(520);
+            System.err.println("Welcome to degrade method !");
+        } catch (InterruptedException e) {
+            logger.info("接口超时异常！");
+        }
+        return new Result(Result.RESULT_SUCCESS, "ok");
     }
 }

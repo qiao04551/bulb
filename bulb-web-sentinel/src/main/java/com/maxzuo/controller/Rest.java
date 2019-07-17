@@ -28,29 +28,6 @@ public class Rest {
         param.setData(request.getParameter("data"));
         param.setVersion(request.getParameter("version"));
         request.setAttribute("param", param);
-        return new ModelAndView("forward:/zxcity_restful/ws/" + param.getCmd());
-    }
-
-    /**
-     * 限流规则
-     */
-    @GetMapping("/flow")
-    public Result flow (@RequestParam("name") String name, @RequestParam("age") Integer age) {
-        System.err.println("Welcome to flow method !");
-        return new Result(Result.RESULT_SUCCESS, "ok");
-    }
-
-    /**
-     * 降级规则
-     */
-    @GetMapping("/degrade")
-    public Result degrade () {
-        try {
-            System.err.println("Welcome to degrade method !");
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            logger.info("接口超时异常！");
-        }
-        return new Result(Result.RESULT_SUCCESS, "ok");
+        return new ModelAndView("forward:/ws/" + param.getCmd());
     }
 }
