@@ -8,6 +8,12 @@ import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.apache.zookeeper.CreateMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -21,9 +27,13 @@ import java.util.List;
 @Component
 public class SentinelZookeeperRules {
 
+    private static final Logger logger = LoggerFactory.getLogger(SentinelZookeeperRules.class);
+
     private static final String FLOW_RULE_PATH = "/sentinel_rules/%s/%s/flow";
 
     private static final String DEGRADE_RULE_PATH = "/sentinel_rules/%s/%s/degrade";
+
+    private static final String ONLINE_APP_PATH = "/sentinel/online_app/%s/%s";
 
     @PostConstruct
     public void init() {
@@ -47,5 +57,30 @@ public class SentinelZookeeperRules {
         ReadableDataSource<String, List<DegradeRule>> degradeDataSource = new ZookeeperDataSource<>(zookeeperAddress, degradePath,
                 source -> JSON.parseObject(source, new TypeReference<List<DegradeRule>>() {}));
         DegradeRuleManager.register2Property(degradeDataSource.getProperty());
+
+        serviceOnline(zookeeperAddress, env, finalName);
+    }
+
+    /**
+     * 服务上线
+     * @param zkAddress 地址
+     * @param env       环境
+     * @param finalName 应用
+     */
+    private void serviceOnline (String zkAddress, String env, String finalName) {
+        String nodePath = String.format(ONLINE_APP_PATH, env, finalName);
+        logger.info("【Zookeeper服务上线】nodePath = {}", nodePath);
+        try {
+            CuratorFramework zkClient = CuratorFrameworkFactory.newClient(zkAddress, new ExponentialBackoffRetry(3, 1000));
+            zkClient.start();
+
+            if (zkClient.checkExists().forPath(nodePath) == null) {
+                zkClient.create().creatingParentContainersIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(nodePath, String.valueOf(System.currentTimeMillis()).getBytes());
+            }
+            /// 断开连接后，节点被删除
+            // zkClient.close();
+        } catch (Exception e) {
+            logger.error("【Zookeeper服务上线】发生异常！", e);
+        }
     }
 }
