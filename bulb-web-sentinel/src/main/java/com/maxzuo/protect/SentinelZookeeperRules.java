@@ -101,12 +101,11 @@ public class SentinelZookeeperRules {
             RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
             Integer pid = Integer.valueOf(runtimeMXBean.getName().split("@")[0]);
 
-            Map<String, Object> serviceInfo = new HashMap<>(10);
-            serviceInfo.put("ip", hostAddress);
-            serviceInfo.put("pid", pid);
+            Map<String, String> serviceInfo = new HashMap<>(10);
+            serviceInfo.put("address", hostAddress + pid);
             serviceInfo.put("finalName", "restful");
             serviceInfo.put("component", "SpringMVC");
-            serviceInfo.put("timestamp", System.currentTimeMillis());
+            serviceInfo.put("timestamp", String.valueOf(System.currentTimeMillis()));
             nodeData = JSONObject.toJSONString(serviceInfo).getBytes();
         } catch (Exception e) {
             logger.info("【Zookeeper服务上线】获取服务信息异常！", e);
