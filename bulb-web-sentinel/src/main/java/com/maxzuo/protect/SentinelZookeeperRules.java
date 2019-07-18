@@ -21,6 +21,8 @@ import javax.annotation.PostConstruct;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,11 +103,14 @@ public class SentinelZookeeperRules {
             RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
             Integer pid = Integer.valueOf(runtimeMXBean.getName().split("@")[0]);
 
+            SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss" );
+            String onlineTime = sdf.format(new Date());
+
             Map<String, String> serviceInfo = new HashMap<>(10);
             serviceInfo.put("address", hostAddress + ":" + pid);
             serviceInfo.put("finalName", "restful");
             serviceInfo.put("component", "SpringMVC");
-            serviceInfo.put("timestamp", String.valueOf(System.currentTimeMillis()));
+            serviceInfo.put("onlineTime", onlineTime);
             nodeData = JSONObject.toJSONString(serviceInfo).getBytes();
         } catch (Exception e) {
             logger.info("【Zookeeper服务上线】获取服务信息异常！", e);
