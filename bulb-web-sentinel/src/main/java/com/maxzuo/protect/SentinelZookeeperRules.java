@@ -7,6 +7,7 @@ import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -17,7 +18,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
+import java.net.InetAddress;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Sentinel使用Zookeeper配置动态规则（Push模式）
@@ -75,12 +81,36 @@ public class SentinelZookeeperRules {
             zkClient.start();
 
             if (zkClient.checkExists().forPath(nodePath) == null) {
-                zkClient.create().creatingParentContainersIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(nodePath, String.valueOf(System.currentTimeMillis()).getBytes());
+                zkClient.create().creatingParentContainersIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(nodePath, getServiceInfo());
             }
             /// 断开连接后，节点被删除
             // zkClient.close();
         } catch (Exception e) {
             logger.error("【Zookeeper服务上线】发生异常！", e);
         }
+    }
+
+    /**
+     * 服务的信息
+     */
+    private byte[] getServiceInfo () {
+        byte[] nodeData = new byte[0];
+        try {
+            InetAddress localHost = InetAddress.getLocalHost();
+            String hostAddress = localHost.getHostAddress();
+            RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
+            Integer pid = Integer.valueOf(runtimeMXBean.getName().split("@")[0]);
+
+            Map<String, Object> serviceInfo = new HashMap<>(10);
+            serviceInfo.put("ip", hostAddress);
+            serviceInfo.put("pid", pid);
+            serviceInfo.put("finalName", "restful");
+            serviceInfo.put("component", "SpringMVC");
+            serviceInfo.put("timestamp", System.currentTimeMillis());
+            nodeData = JSONObject.toJSONString(serviceInfo).getBytes();
+        } catch (Exception e) {
+            logger.info("【Zookeeper服务上线】获取服务信息异常！", e);
+        }
+        return nodeData;
     }
 }
