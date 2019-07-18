@@ -102,7 +102,7 @@ public class SentinelZookeeperRules {
             Integer pid = Integer.valueOf(runtimeMXBean.getName().split("@")[0]);
 
             Map<String, String> serviceInfo = new HashMap<>(10);
-            serviceInfo.put("address", hostAddress + pid);
+            serviceInfo.put("address", hostAddress + ":" + pid);
             serviceInfo.put("finalName", "restful");
             serviceInfo.put("component", "SpringMVC");
             serviceInfo.put("timestamp", String.valueOf(System.currentTimeMillis()));
