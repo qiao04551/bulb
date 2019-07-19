@@ -23,7 +23,7 @@ import java.util.List;
  * </pre>
  * Created by zfh on 2019/05/30
  */
-public class DefineResourceAndRulesExample {
+public class SentinelExample {
 
     public static void main(String[] args) {
         String resourceName = "HelloWorld";
