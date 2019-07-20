@@ -5,6 +5,8 @@ import com.alibaba.csp.sentinel.EntryType;
 import com.alibaba.csp.sentinel.SphU;
 import com.alibaba.csp.sentinel.Tracer;
 import com.alibaba.csp.sentinel.context.ContextUtil;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.maxzuo.bulb.exception.SentinelBlockException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -37,6 +39,9 @@ public class SentinelRestControllerProtect {
         } catch (Throwable t) {
             logger.error("【Sentinel保护资源】发生异常！", t);
             Tracer.trace(t);
+            if (t instanceof BlockException) {
+                throw new SentinelBlockException();
+            }
             throw t;
         } finally {
             if (entry != null) {
