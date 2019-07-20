@@ -1,5 +1,6 @@
 package com.maxzuo.controller;
 
+import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import com.alibaba.fastjson.JSONObject;
 import com.maxzuo.bulb.api.IScUserService;
 import com.maxzuo.bulb.api.IShopOrderInfoService;
@@ -70,6 +71,7 @@ public class ShopRest {
      */
     @PostMapping("/flow")
     public Result flow () {
+        logger.info("flowRules: {}", JSONObject.toJSONString(FlowRuleManager.getRules()));
         try {
             TimeUnit.MILLISECONDS.sleep(500);
         } catch (Exception e) {
