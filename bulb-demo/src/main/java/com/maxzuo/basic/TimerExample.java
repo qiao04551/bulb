@@ -1,4 +1,4 @@
-package com.maxzuo.thread;
+package com.maxzuo.basic;
 
 import java.time.LocalDateTime;
 import java.util.Timer;
@@ -33,6 +33,11 @@ public class TimerExample {
                 }
                 ++count;
                 System.out.println("hello timer: " + LocalDateTime.now());
+
+                // 终止
+                if (count == 3) {
+                    timer.cancel();
+                }
             }
         }, delay * 1000, period * 1000);
 
