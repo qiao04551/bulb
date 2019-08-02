@@ -70,7 +70,7 @@
         <!--<module>bulb-web-sentinel</module>-->
         <!--<module>bulb-spring</module>-->
         <!--<module>spring-boot-app</module>-->
-        <module>spring-boot-demo</module>
+        <module>bulb-spring-boot</module>
         <module>bulb-h2</module>
     </modules>
 
