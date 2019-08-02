@@ -1,7 +1,3 @@
-# 默认配置（公共配置）
-server:
-  port: 8080
-
 spring:
   datasource:
     url: jdbc:h2:file:./mooc-db
