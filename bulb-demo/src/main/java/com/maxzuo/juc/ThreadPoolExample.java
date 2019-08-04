@@ -66,27 +66,47 @@ public class ThreadPoolExample {
     }
 
     /**
-     * ExecutorService
+     * 线程池的几种工作队列
+     */
+    private static void threadPoolBlockQueue () {
+        // 基于链表结构的有界阻塞队列，此队列按FIFO （先进先出） 排序元素
+        // 示例：Executors.newFixedThreadPool()和Executors.newSingleThreadExecutor()
+        new ThreadPoolExecutor(1, 10, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10));
+
+        // 一个不存储元素的阻塞队列。每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态
+        // 示例：Executors.newCachedThreadPool()
+        new ThreadPoolExecutor(1, 10, 60, TimeUnit.SECONDS, new SynchronousQueue<>());
+
+        // new ScheduledThreadPoolExecutor(5) 使用的是专用的 DelayedWorkQueue 延迟队列（包内可见）
+
+        // 一个支持线程优先级排序的无界队列，默认自然序进行排序，也可以自定义实现compareTo()方法来指定元素排序规则，不能保证同优先级元素的顺序。
+        new ThreadPoolExecutor(1, 10, 60, TimeUnit.SECONDS, new PriorityBlockingQueue<>());
+
+        // 基于数组结构的有界阻塞队列，此队列按 FIFO（先进先出）原则对元素进行排序。
+        new ThreadPoolExecutor(1, 10, 60, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10));
+
+        // 一个由链表结构组成的双向阻塞队列。队列头部和尾部都可以添加和移除元素，多线程并发时，可以将锁的竞争最多降到一半
+        new ThreadPoolExecutor(1, 10, 60, TimeUnit.SECONDS, new LinkedBlockingDeque<>(10));
+    }
+
+    /**
+     * 常见的线程池及使用场景
      */
     private static void ExecutorService() {
-        /*
-            核心线程数量，也是最大线程数量，不存在空闲线程
-            创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。
-         */
+        // 核心线程数量，也是最大线程数量，不存在空闲线程
+        // 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。
         Executors.newFixedThreadPool(1);
 
         // 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。
         // 当线程执行中出现异常，去创建一个新的线程替换之
         Executors.newSingleThreadExecutor();
 
-        // 线程数最大Integer.MAX_VALUE，是高度可伸缩的线程池，存在OOM风险。keepAliveTime默认为60秒，工作线程处于空闲状态，则回收工作线程。如果任务数增加，再次创建新线程处理任务。
+        // 线程数最大Integer.MAX_VALUE，是高度可伸缩的线程池，存在OOM风险。keepAliveTime默认为60秒，工作线程处于空闲状态，
+        // 则回收工作线程。如果任务数增加，再次创建新线程处理任务。
         Executors.newCachedThreadPool();
 
-        /*
-            ScheduledExecutorService 的主要作用就是可以将定时任务与线程池功能结合使用。
-         */
-        ScheduledExecutorService scheduled = new ScheduledThreadPoolExecutor(5, new NamedThreadFactory("一号机房"),
-            new RejectedHandlerExample());
+        // 可以将定时任务与线程池功能结合使用。
+        ScheduledExecutorService scheduled = new ScheduledThreadPoolExecutor(5);
         scheduled.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
