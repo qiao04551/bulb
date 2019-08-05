@@ -205,7 +205,13 @@ class CuratorExample {
 
             }
         });
-        selector.autoRequeue();
+        /*
+            节点在加入选举以后，除非程序结束或者close()退出选举，否则加点自加入选举以后将持续持有或者保持对主节点的竞争。
+
+            recipes的另外一个实现Leader Election则不同，被选为主节点的节点任务如果执行完就会放弃主节点，然后由剩下的节点进行主节点竞争。
+            如果你希望已经执行完的主节点再次加入主节点选举那么你需要调用autoRequeue()方法去自动加入。
+         */
+        // selector.autoRequeue();
         selector.start();
 
         try {
