@@ -39,11 +39,6 @@
             <version>${commons-logging.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.zxcs</groupId>
-            <artifactId>tfkafka-spring-boot-starter</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
