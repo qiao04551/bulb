@@ -1,7 +1,10 @@
-package com.maxzuo.graphql.model;
+package com.maxzuo.graphql.form;
 
 import java.util.Map;
 
+/**
+ * GraphQL 查询请求对象
+ */
 public class GraphQLRequestBody {
     private String query;
     private String operationName;
