@@ -3,12 +3,21 @@ package com.maxzuo.basic;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.nio.charset.Charset;
+
 /**
  * java.lang.System类的方法使用
  * <p>
  * Created by zfh on 2019/08/04
  */
 class SystemMethod {
+
+    @DisplayName("jvm默认的字符集")
+    @Test
+    void testCharset () {
+        System.out.println(Charset.defaultCharset());
+    }
+
 
     @DisplayName("返回当前时间(以毫秒为单位)")
     @Test
