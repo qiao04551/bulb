@@ -1,0 +1,21 @@
+type Query {
+    hello: String
+    human(id: ID): [Human]
+}
+#
+#interface Character {
+#    id: ID!
+#    name: String!
+#}
+
+type Human {
+    id: ID!
+    name: String!
+    homePlanet: Episode!
+}
+
+enum Episode {
+    NEWHOPE
+    EMPIRE
+    JEDI
+}
