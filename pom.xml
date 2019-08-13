@@ -60,6 +60,8 @@
         <mockito-core.version>2.28.2</mockito-core.version>
         <graphql.version>13.0</graphql.version>
         <libthrift.version>0.12.0</libthrift.version>
+        <servlet.version>3.1.0</servlet.version>
+        <hessian.version>4.0.62</hessian.version>
     </properties>
 
     <modules>
@@ -72,6 +74,7 @@
         <!--<module>bulb-web-sentinel</module>-->
         <module>bulb-spring</module>
         <module>bulb-spring-boot-graphql</module>
+        <module>bulb-hessian</module>
         <!--<module>spring-boot-app</module>-->
         <!--<module>bulb-spring-boot</module>-->
         <!--<module>bulb-h2</module>-->
@@ -487,6 +490,16 @@
                 <groupId>org.apache.thrift</groupId>
                 <artifactId>libthrift</artifactId>
                 <version>${libthrift.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>${hessian.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
