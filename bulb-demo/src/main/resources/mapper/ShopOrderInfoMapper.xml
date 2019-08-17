@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maxzuo.mybatis.dao.ShopOrderInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.maxzuo.mybatis.entity.ShopOrderInfoDO">
+        <id column="id" property="id" javaType="int" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" javaType="int" jdbcType="INTEGER" />
+        <result column="username" property="username" javaType="string" jdbcType="VARCHAR" />
+        <result column="count" property="count" javaType="int" jdbcType="INTEGER" />
+        <result column="order_no" property="orderNo" javaType="string" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" javaType="date" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <resultMap id="BaseUserProfessionMap" type="com.maxzuo.mybatis.entity.ScUserProfessionDO">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="profession_named" property="professionNamed" />
+        <result column="feature" property="feature" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, user_id, username, `count`, order_no, create_time
+    </sql>
+
+    <insert id="insert" parameterType="com.maxzuo.mybatis.entity.ShopOrderInfoDO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO shop_order_info
+        (
+          user_id, username, `count`, order_no, create_time
+        )
+        VALUES
+        (
+          #{userId},
+          #{username},
+          #{count},
+          #{orderNo},
+          now()
+        )
+    </insert>
+
+    <select id="selectShopOrderInfoByPrimaryKey" parameterType="int" resultMap="BaseResultMap" useCache="false">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_order_info
+        WHERE id = #{id}
+    </select>
+
+    <update id="updateShopOrderInfoByPrimaryKey" parameterType="map">
+        UPDATE shop_order_info
+        SET count = count + #{count}
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectShopOrderInfoByUserId" parameterType="int" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_order_info
+        WHERE user_id = #{userId}
+    </select>
+
+    <resultMap id="UserAndOrderInfo" type="com.maxzuo.mybatis.entity.UserAndOrderInfoDTO">
+        <result column="u_id" property="userId" />
+        <result column="u_username" property="username" />
+        <result column="u_password" property="password" />
+        <association property="userProfession" column="userId" javaType="com.maxzuo.mybatis.entity.ScUserProfessionDO">
+            <id column="p_id" property="id" />
+            <result column="p_user_id" property="userId" />
+            <result column="p_profession_named" property="professionNamed" />
+            <result column="p_feature" property="feature" />
+        </association>
+        <collection property="orderInfoList" ofType="com.maxzuo.mybatis.entity.ShopOrderInfoDO">
+            <id column="o_id" property="id" />
+            <result column="o_user_id" property="userId" />
+            <result column="o_username" property="username" />
+            <result column="o_count" property="count" />
+            <result column="o_order_no" property="orderNo" />
+            <result column="o_create_time" property="createTime" />
+        </collection>
+    </resultMap>
+
+    <select id="selectUserAndOrderInfo" parameterType="int" resultMap="UserAndOrderInfo">
+        SELECT
+            u.id AS u_id,
+            u.username AS u_username,
+            u.password AS u_password,
+            p.id AS p_id,
+            p.user_id AS p_user_id,
+            p.profession_named AS p_profession_named,
+            p.feature AS p_feature,
+            o.id AS o_id,
+            o.user_id AS o_user_id,
+            o.username AS o_username,
+            o.count AS o_count,
+            o.order_no AS o_order_no,
+            o.create_time AS o_create_time
+        FROM sc_user u
+        LEFT JOIN sc_user_profession p ON p.user_id = u.id
+        LEFT JOIN shop_order_info o ON o.user_id = u.id
+        WHERE u.id = #{userId}
+    </select>
+
+    <resultMap id="UserAndOrderInfoTwoMap" type="com.maxzuo.mybatis.entity.UserAndOrderInfoDTO">
+        <id column="id" property="userId" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <!--单个参数-->
+        <association property="userProfession" column="id" select="selectUserProfessionByUserId" />
+        <!--传递多个参数-->
+        <!--<association property="userProfession" column="{id=id,userId=id}" select="selectUserProfessionTwo" />-->
+        <collection property="orderInfoList" column="id" ofType="com.maxzuo.mybatis.entity.ShopOrderInfoDO" select="selectShopOrderInfoByUserId" />
+    </resultMap>
+
+    <select id="selectUserAndOrderInfoTwo" parameterType="int" resultMap="UserAndOrderInfoTwoMap">
+        SELECT
+            id,
+            username,
+            `password`
+        FROM sc_user
+        WHERE id = #{userId}
+    </select>
+
+    <select id="selectUserProfessionByUserId" parameterType="int" resultMap="BaseUserProfessionMap">
+        SELECT
+            id,
+            user_id,
+            profession_named,
+            feature
+        FROM sc_user_profession
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="selectUserProfessionTwo" parameterType="map" resultMap="BaseUserProfessionMap">
+        SELECT
+            id,
+            user_id,
+            profession_named,
+            feature
+        FROM sc_user_profession
+        WHERE user_id = #{userId}
+        AND id = #{id}
+    </select>
+</mapper>
