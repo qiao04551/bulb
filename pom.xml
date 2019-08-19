@@ -76,6 +76,7 @@
         <module>bulb-spring</module>
         <module>bulb-spring-boot-graphql</module>
         <module>bulb-hessian</module>
+        <module>bulb-openfire-client</module>
         <!--<module>spring-boot-app</module>-->
         <!--<module>bulb-spring-boot</module>-->
         <!--<module>bulb-h2</module>-->
