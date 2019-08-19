@@ -1,48 +1,52 @@
 package com.maxzuo.graphql.controller;
 
+import com.maxzuo.graphql.config.GraphQLProvider;
 import com.maxzuo.graphql.form.GraphQLRequestBody;
+import com.maxzuo.graphql.vo.Result;
 import graphql.ExecutionInput;
 import graphql.ExecutionResult;
-import graphql.GraphQL;
+import graphql.GraphQLError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
+import java.util.List;
 
 /**
- * GraphQL接口Rest
+ * GraphQL 查询入口
  * <p>
- * Created by zfh on 2019/08/08
+ * Created by zfh on 2019/08/12
  */
+@RequestMapping("faceCircle")
 @RestController
 public class GraphQLController {
 
     @Autowired
-    private GraphQL graphQL;
+    private GraphQLProvider graphQLProvider;
 
-    /**
-     * 查询一本书的信息
-     * <pre>
-     *   Content-Type：application/json;charset=UTF-8
-     *   查询参数（query、operationName、variables）后面两个参数可选
-     * </pre>
-     * @param body {@link GraphQLRequestBody}
-     */
     @PostMapping("graphql")
-    public Object graphqlPOST(@RequestBody GraphQLRequestBody body) {
-        String query = body.getQuery() == null ? "" : body.getQuery();
-        return invoke(query, body.getOperationName(), body.getVariables());
-    }
+    public Object graphql (@RequestBody GraphQLRequestBody form) {
+        form.validateParam();
 
-    private Object invoke(String query, String operationName, Map<String, Object> variables) {
         ExecutionInput executionInput = ExecutionInput.newExecutionInput()
-                .query(query)
-                .operationName(operationName)
-                .variables(variables)
+                .query(form.getQuery())
+                .operationName(form.getOperationName())
+                .variables(form.getVariables())
                 .build();
 
-        return graphQL.executeAsync(executionInput).thenApply(ExecutionResult::toSpecification);
+        ExecutionResult executionResult = graphQLProvider.graphQL.execute(executionInput);
+        List<GraphQLError> errors = executionResult.getErrors();
+
+        Result result = new Result(Result.RESULT_FAILURE, "查询异常！");
+        if (errors.size() > 0) {
+            result.setData(errors);
+        } else {
+            result.setMsg("查询成功！");
+            result.setCode(Result.RESULT_SUCCESS);
+            result.setData(executionResult.getData());
+        }
+        return result;
     }
 }

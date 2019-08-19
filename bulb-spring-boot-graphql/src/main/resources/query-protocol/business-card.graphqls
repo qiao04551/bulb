@@ -1,0 +1,57 @@
+# 名片信息
+type BusinessCard {
+    cardId: ID!             # 名片ID
+    name: String            # 姓名
+    signature: String       # 个性签名
+    position: String        # 职位
+    company: String         # 公司
+    otherJobs: String       # 兼任的职位列表，json
+    tradeId: String         # 行业ID
+    tradeName: String       # 行业名称
+    business: String        # 业务
+    mobile: String          # 手机号
+    email: String           # 邮箱
+    qq: String              # QQ
+    wechat: String          # 微信
+    province: String        # 省
+    city: String            # 市
+    area: String            # 区
+    address: String         # 详细地址
+    longitude: String       # 经度
+    latitude: String        # 纬度
+}
+# 浏览的名片
+type BrowsingHistoryCard {
+    cradId: Int             # 名片ID
+    avatar: String          # 头像
+    name: String            # 姓名
+    namePinyin: String      # 姓名全拼
+    position: String        # 职位
+    company: String         # 公司
+    viewTime: String        # 浏览时间，格式：yyyy-MM-dd HH:mm:ss
+}
+# 名片夹
+type BusinessCardFavorites {
+    cradId: Int             # 名片ID
+    avatar: String          # 头像
+    name: String            # 姓名
+    namePinyin: String      # 姓名全拼
+    position: String        # 职位
+    company: String         # 公司
+    collectTime: String     # 收藏时间，格式：yyyy-MM-dd HH:mm:ss
+}
+
+extend type Query {
+    queryBusinessCard(cardId: Int!): BusinessCard                                               # 名片信息
+    querybrowsingHistoryCard(cardId: Int!, page: Int!, size: Int!): [BrowsingHistoryCard]       # 浏览名片历史
+    queryBusinessCardFavorites(cardId: Int!, page: Int!, size: Int!): [BusinessCardFavorites]   # 收藏夹
+    queryDiscoverCard(tradeId: ID): BusinessCard                                                # 发现页（查询同行名片）
+}
+
+# TODO: 修改、新增
+# 1.更新名片信息
+# 2.发布日记 input{}
+# 3.收藏/删除 名片夹
+# 4.浏览历史
+
+

@@ -1,0 +1,13 @@
+# 日记
+type Diary {
+    cardId: ID!             # 名片ID
+    diaryId: Int            # 日记ID
+    summary: String         # 总结
+    richText: String        # 富文本内容
+    publishTime: String     # 发布时间
+}
+
+extend type Query {
+    queryDiaryHistory(cardId: Int!, page: Int!, size: Int!): [Diary]    # 日记历史
+    queryDiaryInfo(diaryId: Int!): Diary                                # 日记详情
+}
