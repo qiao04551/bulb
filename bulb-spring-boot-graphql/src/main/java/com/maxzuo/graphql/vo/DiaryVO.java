@@ -1,10 +1,13 @@
 package com.maxzuo.graphql.vo;
 
+import lombok.Data;
+
 /**
  * 日记 视图对象
  * <p>
  * Created by zfh on 2019/08/19
  */
+@Data
 public class DiaryVO {
 
     /**
@@ -31,55 +34,4 @@ public class DiaryVO {
      * 发布时间
      */
     private String publishTime;
-
-    public Integer getCardId() {
-        return cardId;
-    }
-
-    public void setCardId(Integer cardId) {
-        this.cardId = cardId;
-    }
-
-    public Integer getDiaryId() {
-        return diaryId;
-    }
-
-    public void setDiaryId(Integer diaryId) {
-        this.diaryId = diaryId;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-    public String getRichText() {
-        return richText;
-    }
-
-    public void setRichText(String richText) {
-        this.richText = richText;
-    }
-
-    public String getPublishTime() {
-        return publishTime;
-    }
-
-    public void setPublishTime(String publishTime) {
-        this.publishTime = publishTime;
-    }
-
-    @Override
-    public String toString() {
-        return "DiaryVO{" +
-                "cardId=" + cardId +
-                ", diaryId=" + diaryId +
-                ", summary='" + summary + '\'' +
-                ", richText='" + richText + '\'' +
-                ", publishTime='" + publishTime + '\'' +
-                '}';
-    }
 }

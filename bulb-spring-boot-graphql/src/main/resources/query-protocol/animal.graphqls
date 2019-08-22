@@ -1,0 +1,29 @@
+# 接口类型
+interface Animal {
+    id: Int!
+    name: String!
+    age: Int!
+}
+
+type Monkey implements Animal {
+    id: Int!
+    name: String!
+    age: Int!
+    height: Int
+}
+
+type Tiger implements Animal {
+    id: Int!
+    name: String!
+    age: Int!
+    weight: Int
+}
+
+union SearchResult = Monkey | Tiger
+
+extend type Query {
+    queryMonkey(id: Int!): Animal
+    queryTiger(id: Int!): Animal
+    # 联合类型
+    searchUnion(id: Int!): SearchResult
+}
