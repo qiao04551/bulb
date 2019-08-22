@@ -19,7 +19,7 @@ query businessCard($cardId: Int = 0) {
 }
 ```
 
-查询变量
+Variables
 
 ```json
 {
@@ -27,7 +27,7 @@ query businessCard($cardId: Int = 0) {
 }
 ```
 
-查询结果
+Response
 
 ```json
 {
@@ -44,6 +44,47 @@ query businessCard($cardId: Int = 0) {
                 "shopId": 288
             }
         ]
+    }
+}
+```
+
+### 变更示例
+
+Matation
+
+```graphql
+mutation ($cardId: Int!, $diary: DiaryInput!) {
+    publishDiary(cardId: $cardId, diary: $diary) {
+        cardId
+        summary
+    }
+}
+```
+
+Variables
+
+```json
+{
+	"cardId": 3,
+	"diary": {
+		"summary": "summary123",
+		"richText": "richText456"
+	}
+}
+```
+
+Response
+
+```
+{
+    "total": null,
+    "code": 1,
+    "msg": "查询成功！",
+    "data": {
+        "publishDiary": {
+            "cardId": "12",
+            "summary": "summary"
+        }
     }
 }
 ```

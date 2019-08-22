@@ -1,5 +1,6 @@
-package com.maxzuo.graphql.resolver;
+package com.maxzuo.graphql.resolver.query;
 
+import com.maxzuo.graphql.resolver.GraphQLQueryResolver;
 import com.maxzuo.graphql.vo.BrowsingHistoryCardVO;
 import com.maxzuo.graphql.vo.BusinessCardFavoritesVO;
 import com.maxzuo.graphql.vo.BusinessCardVO;

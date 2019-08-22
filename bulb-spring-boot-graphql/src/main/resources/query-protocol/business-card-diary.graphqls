@@ -7,7 +7,17 @@ type Diary {
     publishTime: String     # 发布时间
 }
 
+# 发布日记
+input DiaryInput {
+    summary: String!        # 总结
+    richText: String        # 富文本内容
+}
+
 extend type Query {
     queryDiaryHistory(cardId: Int!, page: Int!, size: Int!): [Diary]    # 日记历史
     queryDiaryInfo(diaryId: Int!): Diary                                # 日记详情
+}
+
+extend type Mutation {
+    publishDiary(cardId: Int!, diary: DiaryInput!): Diary               # 发布日记
 }

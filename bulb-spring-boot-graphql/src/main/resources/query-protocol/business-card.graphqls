@@ -47,11 +47,3 @@ extend type Query {
     queryBusinessCardFavorites(cardId: Int!, page: Int!, size: Int!): [BusinessCardFavorites]   # 收藏夹
     queryDiscoverCard(tradeId: ID): BusinessCard                                                # 发现页（查询同行名片）
 }
-
-# TODO: 修改、新增
-# 1.更新名片信息
-# 2.发布日记 input{}
-# 3.收藏/删除 名片夹
-# 4.浏览历史
-
-

@@ -1,5 +1,6 @@
 package com.maxzuo.graphql.config;
 
+import com.maxzuo.graphql.resolver.GraphQLMutationResolver;
 import com.maxzuo.graphql.resolver.GraphQLQueryResolver;
 import graphql.GraphQL;
 import graphql.schema.DataFetcher;
@@ -15,8 +16,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.lang.reflect.Method;
 import java.util.Map;
-
-import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
+import java.util.function.UnaryOperator;
 
 /**
  * GraphQL query provider.
@@ -28,39 +28,68 @@ public class GraphQLProvider implements ApplicationListener<ContextRefreshedEven
 
     private static final Logger logger = LoggerFactory.getLogger(GraphQLProvider.class);
 
-    private TypeRuntimeWiring.Builder builder = newTypeWiring("Query");
+    private RuntimeWiring.Builder builder = RuntimeWiring.newRuntimeWiring();
 
     public GraphQL graphQL;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if(event.getApplicationContext().getParent() == null){
-            Map<String, GraphQLQueryResolver> beansOfType = event.getApplicationContext().getBeansOfType(GraphQLQueryResolver.class);
-            logger.info("================== load graphql resolver ===================");
+            builder.type("Query", new UnaryOperator<TypeRuntimeWiring.Builder>() {
+                @Override
+                public TypeRuntimeWiring.Builder apply(TypeRuntimeWiring.Builder builder) {
+                    logger.info("================== load graphql query resolver ===================");
 
-            for (GraphQLQueryResolver resolver : beansOfType.values()) {
-                Class<? extends GraphQLQueryResolver> aClass = resolver.getClass();
-                logger.info("className: " + aClass.getName());
+                    Map<String, GraphQLQueryResolver> beansOfType = event.getApplicationContext().getBeansOfType(GraphQLQueryResolver.class);
+                    for (GraphQLQueryResolver resolver : beansOfType.values()) {
+                        Class<? extends GraphQLQueryResolver> aClass = resolver.getClass();
+                        logger.info("className: " + aClass.getName());
 
-                Method[] declaredMethods = aClass.getDeclaredMethods();
-                for (Method method : declaredMethods) {
-                    String methodName = method.getName();
-                    try {
-                        builder = this.builder.dataFetcher(methodName, (DataFetcher) method.invoke(resolver));
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        Method[] declaredMethods = aClass.getDeclaredMethods();
+                        for (Method method : declaredMethods) {
+                            String methodName = method.getName();
+                            try {
+                                builder = builder.dataFetcher(methodName, (DataFetcher) method.invoke(resolver));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
+                    return builder;
                 }
-            }
-            logger.info("================== load graphql resolver ===================");
+            });
 
-            initGraphQL();
+            builder.type("Mutation", new UnaryOperator<TypeRuntimeWiring.Builder>() {
+                @Override
+                public TypeRuntimeWiring.Builder apply(TypeRuntimeWiring.Builder builder) {
+                    logger.info("================== load graphql mutation resolver ===================");
+
+                    Map<String, GraphQLMutationResolver> beansOfType = event.getApplicationContext().getBeansOfType(GraphQLMutationResolver.class);
+                    for (GraphQLMutationResolver resolver : beansOfType.values()) {
+                        Class<? extends GraphQLMutationResolver> aClass = resolver.getClass();
+                        logger.info("className: " + aClass.getName());
+
+                        Method[] declaredMethods = aClass.getDeclaredMethods();
+                        for (Method method : declaredMethods) {
+                            String methodName = method.getName();
+                            try {
+                                builder = builder.dataFetcher(methodName, (DataFetcher) method.invoke(resolver));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    return builder;
+                }
+            });
+            RuntimeWiring wiring = builder.build();
+            initGraphQL(wiring);
         }
     }
 
-    private void initGraphQL () {
+    private void initGraphQL (RuntimeWiring wiring) {
         SchemaGenerator schemaGenerator = new SchemaGenerator();
-        GraphQLSchema graphQLSchema = schemaGenerator.makeExecutableSchema(buildTypeRegistry(), buildWiring());
+        GraphQLSchema graphQLSchema = schemaGenerator.makeExecutableSchema(buildTypeRegistry(), wiring);
         graphQL = GraphQL.newGraphQL(graphQLSchema).build();
     }
 
@@ -90,9 +119,5 @@ public class GraphQLProvider implements ApplicationListener<ContextRefreshedEven
                 return false;
             }
         });
-    }
-
-    private RuntimeWiring buildWiring() {
-        return RuntimeWiring.newRuntimeWiring().type(builder).build();
     }
 }

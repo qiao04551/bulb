@@ -1,5 +1,6 @@
-package com.maxzuo.graphql.resolver;
+package com.maxzuo.graphql.resolver.query;
 
+import com.maxzuo.graphql.resolver.GraphQLQueryResolver;
 import com.maxzuo.graphql.vo.ShopInfoVO;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
