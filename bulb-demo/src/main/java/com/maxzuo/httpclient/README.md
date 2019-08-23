@@ -25,4 +25,4 @@ HttpComponents Client是通用HttpClient 3.x的继承者和替代品。
 
 - 内容无关的
 
-
+文档地址：http://hc.apache.org/httpcomponents-client-ga/tutorial/html/
