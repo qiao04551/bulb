@@ -1,7 +1,5 @@
 package com.maxzuo.thread;
 
-import com.maxzuo.juc.NamedThreadFactory;
-
 import java.util.concurrent.*;
 
 /**
@@ -79,7 +77,7 @@ public class CallableAndFutureExample {
      * Callable配置线程池使用
      */
     private static void relationThreadPool () {
-        ExecutorService threadPool = Executors.newCachedThreadPool(new NamedThreadFactory());
+        ExecutorService threadPool = Executors.newCachedThreadPool();
         // 1.使用Callable+Future获取执行结果（子线程）
         CallableTask task1 = new CallableTask();
         Future<Integer> result = threadPool.submit(task1);
