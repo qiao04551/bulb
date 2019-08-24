@@ -12,6 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *    而Condition是需要与互斥锁/共享锁捆绑使用的。
  *  2.Condition它更强大的地方在于：能够更加精细的控制多线程的休眠与唤醒。对于同一个锁，我们可以创建多个Condition，
  *    在不同的情况下使用不同的Condition。
+ *  3.参考文章：https://www.cnblogs.com/Wanted-Tao/p/6378942.html
  * </pre>
  * Created by zfh on 2019/03/12
  */
