@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Scanner;
 
 /**
  * java.lang.System类的方法使用
@@ -57,6 +58,41 @@ class SystemMethod {
             // 执行系统命令
             runtime.exec("calc");
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 使用Runtime创建进程，调用shell
+     * <pre>
+     *   创建进程有两种方式：
+     *     1.使用 Runtime.getRuntime().exec("ls")，不支持 不定长参数。
+     *     2.使用ProcessBuilder来启动一个进程，支持不定长参数。
+     * </pre>
+     */
+    @Test
+    void testRuntimeExec () {
+        try {
+            // 创建一个进程
+            Process process = Runtime.getRuntime().exec("ls");
+            // 获取进程输入流
+            Scanner scanner = new Scanner(process.getInputStream());
+            while (scanner.hasNextLine()) {
+                System.out.println(scanner.nextLine());
+            }
+            scanner.close();
+
+            System.out.println("#######################################");
+
+            // 创建进程的方式二：
+            ProcessBuilder processBuilder = new ProcessBuilder("ls", "-a");
+            Process process2 = processBuilder.start();
+            Scanner scanner2 = new Scanner(process2.getInputStream());
+            while (scanner2.hasNext()) {
+                System.out.println(scanner2.next());
+            }
+            scanner2.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
