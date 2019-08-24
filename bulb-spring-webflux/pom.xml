@@ -10,7 +10,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <description>spring-webflux 反应式Web应用</description>
-    <artifactId>spring-boot-webflux</artifactId>
+    <artifactId>bulb-spring-webflux</artifactId>
     <version>1.0.0.SNAPSHOT</version>
     <packaging>jar</packaging>
 

@@ -1,5 +1,7 @@
 package com.maxzuo.proxy.bytebuddy.model;
 
+import net.bytebuddy.implementation.bind.annotation.*;
+
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.concurrent.Callable;

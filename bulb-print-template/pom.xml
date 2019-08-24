@@ -8,7 +8,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>print-template</artifactId>
+    <artifactId>bulb-print-template</artifactId>
     <name>print-template ${project.version}</name>
     <description>小票打印机，自定义模板样式</description>
 
