@@ -1,4 +1,4 @@
-package com.maxzuo.util;
+package com.maxzuo.utils;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;

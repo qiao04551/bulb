@@ -2,7 +2,8 @@ package com.maxzuo.io;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
 
 /**
  * FileDescriptor 是“文件描述符”。

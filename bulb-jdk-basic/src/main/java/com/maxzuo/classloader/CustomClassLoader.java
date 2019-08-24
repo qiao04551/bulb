@@ -2,8 +2,6 @@ package com.maxzuo.classloader;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.net.URL;
-import java.net.URLClassLoader;
 
 /**
  * 自定义类加载器

@@ -1,4 +1,4 @@
-package com.maxzuo.util;
+package com.maxzuo.utils;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;

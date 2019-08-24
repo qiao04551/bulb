@@ -17,7 +17,7 @@ import java.util.concurrent.*;
  */
 public class ThreadPoolExample {
 
-    private static final Logger logger = LoggerFactory.getLogger(com.maxzuo.juc.ThreadPoolExample.class);
+    private static final Logger logger = LoggerFactory.getLogger(ThreadPoolExample.class);
 
     public static void main(String[] args) throws InterruptedException {
         customThreadPool();

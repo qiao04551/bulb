@@ -1,6 +1,7 @@
 package com.maxzuo.jvm.jmx;
 
 import com.sun.management.ThreadMXBean;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
