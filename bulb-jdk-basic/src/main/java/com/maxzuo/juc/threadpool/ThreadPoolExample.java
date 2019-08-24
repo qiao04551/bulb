@@ -1,4 +1,4 @@
-package com.maxzuo.juc;
+package com.maxzuo.juc.threadpool;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

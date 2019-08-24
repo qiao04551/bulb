@@ -1,4 +1,4 @@
-package com.maxzuo.juc;
+package com.maxzuo.juc.threadpool;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
