@@ -1,4 +1,4 @@
-package com.maxzuo.juc.locks;
+package com.maxzuo.juc;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
