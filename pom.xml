@@ -85,7 +85,6 @@
         <module>bulb-spring-boot</module>
         <module>bulb-jdk-basic</module>
         <module>bulb-design-patterns</module>
-        <!--<module>bulb-h2</module>-->
     </modules>
 
     <!--智创二方库-->

@@ -1,29 +1,18 @@
-package com.maxzuo;
+package com.maxzuo.h2;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
- * 使用H2数据库
+ * H2 内存数据库
  * <p>
- * Created by zfh on 2019/08/01
+ * Created by zfh on 2019/08/24
  */
-@SpringBootApplication
-public class Application {
+public class H2DataSourceExample {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-
         try {
-            DataSource dataSource = context.getBean(DataSource.class);
-            Connection connection = dataSource.getConnection();
+            Class.forName("org.h2.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:h2:file:./mooc-db", "sa", "sa");
             Statement statement = connection.createStatement();
             // 建表
             statement.execute("CREATE TABLE IF NOT EXISTS sc_user(id INTEGER AUTO_INCREMENT PRIMARY KEY,name VARCHAR(30), age INTEGER)");
