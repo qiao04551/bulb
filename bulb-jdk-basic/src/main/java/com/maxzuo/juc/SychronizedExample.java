@@ -1,4 +1,4 @@
-package com.maxzuo.thread;
+package com.maxzuo.juc;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,11 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Synchronize关键字使用
- * <p>
+ * <pre>
+ *   同步、重量级锁
+ *   Synchroized的原理
+ *   锁优化（自旋锁、轻量级锁、重量级锁、偏向锁）
+ * </pre>
  * Created by zfh on 2019/04/06
  */
 public class SychronizedExample {
