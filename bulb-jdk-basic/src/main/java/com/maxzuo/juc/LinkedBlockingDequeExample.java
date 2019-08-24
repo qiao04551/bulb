@@ -19,6 +19,8 @@ import java.util.concurrent.TimeUnit;
  *   享的任务队列上发生竞争。在大多数时候，它们都只是访问自己的双端队列，从而极大地减少了竞争。当工作者线程需要访问另一个队列时，它
  *   会从队列的尾部而不是头部获取工作，因此进一步降低了队列上的竞争程度。
  * </pre>
+ *
+ * 文章参考：https://www.cnblogs.com/duanxz/p/3169362.html
  * <p>
  * Created by zfh on 2019/03/25
  */
