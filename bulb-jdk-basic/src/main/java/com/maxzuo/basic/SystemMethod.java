@@ -3,6 +3,7 @@ package com.maxzuo.basic;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 
 /**
@@ -17,7 +18,6 @@ class SystemMethod {
     void testCharset () {
         System.out.println(Charset.defaultCharset());
     }
-
 
     @DisplayName("返回当前时间(以毫秒为单位)")
     @Test
@@ -42,6 +42,23 @@ class SystemMethod {
 
         // status是非0，表示非正常退出
         System.exit(1);
+    }
+
+    /**
+     * Runtime 类代表着Java程序的运行时环境，每个Java程序都有一个Runtime实例，该类会被自动创建
+     */
+    @Test
+    void testRuntime () {
+        Runtime runtime = Runtime.getRuntime();
+        // 获取jvm可用的处理器核心的数量
+        System.out.println(runtime.availableProcessors());
+
+        try {
+            // 执行系统命令
+            runtime.exec("calc");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
