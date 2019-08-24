@@ -1,10 +1,12 @@
-package com.maxzuo.juc;
+package com.maxzuo.juc.syncauxiliary;
 
 import java.util.Random;
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
- * CountDownLatch使用案例：三个工人先全部干完活，老板才检查。
+ * 同步辅助类-CountDownLatch使用案例：三个工人先全部干完活，老板才检查。
  * <pre>
  *  1.Java的concurrent包里面的CountDownLatch其实可以把它看作一个计数器，只不过这个计数器的操作是原子操作，同时只能有一个线程去操作
  *  这个计数器，也就是同时只能有一个线程去减这个计数器里面的值。
@@ -16,10 +18,7 @@ import java.util.concurrent.*;
 public class CountDownLatchExample {
 
     public static void main(String[] args) {
-        BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>(10);
-        NamedThreadFactory threadFactory = new NamedThreadFactory("一号机房");
-        RejectedHandlerExample rejectHandler = new RejectedHandlerExample();
-        ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, 10, 60, TimeUnit.SECONDS, queue, threadFactory, rejectHandler);
+        ExecutorService poolExecutor = Executors.newCachedThreadPool();
 
         // 闭锁
         CountDownLatch downLatch = new CountDownLatch(3);

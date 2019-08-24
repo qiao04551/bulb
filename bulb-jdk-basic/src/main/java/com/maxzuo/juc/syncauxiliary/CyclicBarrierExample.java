@@ -1,4 +1,4 @@
-package com.maxzuo.juc;
+package com.maxzuo.juc.syncauxiliary;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * CyclicBarrier的使用
+ * 同步辅助类-CyclicBarrier的使用
  * <p>
  * Created by zfh on 2019/02/24
  */
@@ -23,7 +23,7 @@ public class CyclicBarrierExample {
     private final static AtomicInteger count = new AtomicInteger(1);
 
     public static void main(String[] args) {
-        ExecutorService threadPool = Executors.newCachedThreadPool(new NamedThreadFactory());
+        ExecutorService threadPool = Executors.newCachedThreadPool();
 
         for (int i = 0; i < CLIENT_TOTAL; i++) {
             threadPool.execute(new Runnable() {

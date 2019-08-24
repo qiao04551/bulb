@@ -1,9 +1,12 @@
-package com.maxzuo.juc;
+package com.maxzuo.juc.syncauxiliary;
 
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
 
 /**
- * 信号量Semaphore
+ * 同步辅助类-信号量Semaphore
  * Created by zfh on 2019/02/24
  */
 public class SemaphoreExample {
@@ -17,10 +20,7 @@ public class SemaphoreExample {
     private static Integer       count        = 0;
 
     public static void main(String[] args) {
-        BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>(10);
-        NamedThreadFactory threadFactory = new NamedThreadFactory("一号机房");
-        RejectedHandlerExample rejectHandler = new RejectedHandlerExample();
-        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(1, 500, 60, TimeUnit.SECONDS, queue, threadFactory, rejectHandler);
+        ExecutorService threadPool = Executors.newCachedThreadPool();
 
         final Semaphore semaphore = new Semaphore(THREAD_TOTAL);
         CountDownLatch countDownLatch = new CountDownLatch(CLIENT_TOTAL);
