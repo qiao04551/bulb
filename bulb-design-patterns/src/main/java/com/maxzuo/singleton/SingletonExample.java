@@ -70,16 +70,17 @@ class UserThree {
  * <pre>
  *   建议用静态内部类单例模式来替代DCL。
  *
- *   双重检测机制不是线程安全，存在指令重排：
- *     理想的指令执行顺序
- *       1.memory = allocate() 分配对象的内存空间
- *       2.instance = memory 设置intance指向刚分配的内存
- *       3.ctorInstance() 初始化对象
+ *   双重检测机制不是线程安全，存在指令重排（汇编指令）：
+ *     由于instance = new UserFour(); 操作并不是一个原子操作， 会被分为多个指令：
+ *       理想的指令执行顺序
+ *         1.memory = allocate() 分配对象的内存空间
+ *         2.instance = memory 设置intance指向刚分配的内存
+ *         3.ctorInstance() 初始化对象
  *
- *     实际的指令执行执行顺序
- *       1.memory = allocate() 分配对象的内存空间
- *       3.ctorInstance() 初始化对象
- *       2.instance = memory 设置intance指向刚分配的内存
+ *       实际的指令执行执行顺序
+ *         1.memory = allocate() 分配对象的内存空间
+ *         3.ctorInstance() 初始化对象
+ *         2.instance = memory 设置intance指向刚分配的内存
  *
  *     解决方法：使用volatile禁止指令重排
  * </pre>
