@@ -29,7 +29,7 @@
         <dubbo.version>2.6.3</dubbo.version>
         <curator.version>4.0.1</curator.version>
         <jedis.version>2.9.0</jedis.version>
-        <redisson.version>3.3.1</redisson.version>
+        <redisson.version>3.11.2</redisson.version>
         <commons-logging.version>1.2</commons-logging.version>
         <lombok.version>1.18.2</lombok.version>
         <junit.jupiter.version>5.3.2</junit.jupiter.version>
