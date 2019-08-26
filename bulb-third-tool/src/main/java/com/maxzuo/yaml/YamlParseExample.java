@@ -1,4 +1,4 @@
-package com.maxzuo.snakeyaml;
+package com.maxzuo.yaml;
 
 import org.yaml.snakeyaml.Yaml;
 
@@ -10,6 +10,9 @@ import java.util.Map;
  * YAML配置文件解析器：SnakeYAML
  * <pre>
  *   使用SnakeYAML来读取YAML（YML为其简写）配置文件；读取后，装载成Map。
+ *
+ *   参考文章：
+ *     <a href="https://my.oschina.net/u/3471006/blog/1616373">YAML配置文件解析器：SnakeYAML</a>
  * </pre>
  * Created by zfh on 2019/03/30
  */
