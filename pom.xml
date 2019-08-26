@@ -67,6 +67,7 @@
         <okhttp.version>3.14.2</okhttp.version>
         <protobuf-java.version>3.9.1</protobuf-java.version>
         <grpc.version>1.23.0</grpc.version>
+        <pinyin4j.version>2.5.1</pinyin4j.version>
     </properties>
 
     <modules>
@@ -555,6 +556,11 @@
                 <groupId>io.grpc</groupId>
                 <artifactId>grpc-all</artifactId>
                 <version>${grpc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.belerweb</groupId>
+                <artifactId>pinyin4j</artifactId>
+                <version>${pinyin4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
