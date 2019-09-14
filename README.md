@@ -10,8 +10,8 @@
 - bulb-openfire-client：     openfire的二次开发
 - bulb-print-template：      打印模板组件
 - bulb-spring-spring：       spring 源码解析
-- bulb-spring-boot：         spring-boot 测试接口
 - bulb-spring-boot-graphql： 使用Graphql查询的一个web项目
+- bulb-spring-cloud：        Spring Cloud项目
 - bulb-spring-data-mongodb： SpringBoot 与 mongodb的集成
 - bulb-spring-webflux：      spring-webflux 反应式Web应用
 - bulb-third-tool：          第三方流行框架和工具jar的使用
