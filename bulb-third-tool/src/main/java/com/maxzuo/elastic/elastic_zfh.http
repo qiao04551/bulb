@@ -1,30 +1,30 @@
 ### 查看节点信息
-GET http://47.98.199.80:9200
+GET http://192.168.3.186:9200
 ### 列出所有指数
-GET http://47.98.199.80:9200/_cat/indices?v
+GET http://192.168.3.186:9200/_cat/indices?v
 ### 列出每个 Index 所包含的 Type
-GET http://47.98.199.80:9200/_mapping?pretty=true
+GET http://192.168.3.186:9200/_mapping?pretty=true
 ### 新建Index
-PUT http://47.98.199.80:9200/zxcity_elk
+PUT http://192.168.3.186:9200/zxcity_elk
 ### 删除Index
-DELETE http://47.98.199.80:9200/zxcity_elk
+DELETE http://192.168.3.186:9200/zxcity_elk
 ### 查看索引
-GET http://47.98.199.80:9200/zxcity_elk
+GET http://192.168.3.186:9200/zxcity_elk
 ### 查看zxcity_elk的person类型的映射，查看多个索引的映射，用逗号隔开
-GET http://47.98.199.80:9200/zxcity_elk/_mapping/file
+GET http://192.168.3.186:9200/zxcity_elk/_mapping/file
 ### 通过ID查找记录，pretty=true表示以易读的格式返回；返回的数据中，found字段表示查询成功，_source字段返回原始记录。
 ### 如果查询不到数据，found字段就是false。
-GET http://47.98.199.80:9200/zxcity_elk/file/AWioM_tMN7BxFVTpnQA9?pretty=true
+GET http://192.168.3.186:9200/zxcity_elk/file/AWioM_tMN7BxFVTpnQA9?pretty=true
 ### 通过ID删除记录
-DELETE http://47.98.199.80:9200/zxcity_elk/file/AWioM_tMN7BxFVTpnQA9
+DELETE http://192.168.3.186:9200/zxcity_elk/file/AWioM_tMN7BxFVTpnQA9
 ### URI搜索使用 q、size等参数（快速测试）
-GET http://47.98.199.80:9200/zxcity_elk/file/_search?q=log_level=INFO&size=1&from=2
+GET http://192.168.3.186:9200/zxcity_elk/file/_search?q=log_level=INFO&size=1&from=2
 ### Elasticsearch的作者们倾向于使用GET提交查询请求，因为他们觉得这个词相比POST来说，能更好的描述这种行为。然而，因为携带交互数据的GET请求
 ### 并不被广泛支持，所以search API同样支持POST请求。
 ### 查询所有数据，返回结果的 took字段表示该操作的耗时（单位为毫秒），timed_out字段表示是否超时，hits字段表示命中的记录；
 ### 子字段的含义：total：返回记录数 max_score：最高的匹配程度 hits：返回的记录组成的数组
 ### 返回的记录中，每条记录都有一个_score字段，表示匹配的程序，默认是按照这个字段降序排列。
-POST http://47.98.199.80:9200/zxcity_elk/file/_search
+POST http://192.168.3.186:9200/zxcity_elk/file/_search
 
 {
     "query" : {

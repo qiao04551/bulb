@@ -78,12 +78,12 @@
         <module>bulb-spring-boot-graphql</module>
         <module>bulb-hessian</module>
         <module>bulb-openfire-client</module>
-        <module>bulb-spring-boot</module>
         <module>bulb-jdk-basic</module>
         <module>bulb-design-patterns</module>
         <module>bulb-dubbo</module>
         <module>bulb-spring-webflux</module>
         <module>bulb-print-template</module>
+        <module>bulb-spring-cloud</module>
     </modules>
 
     <!--智创二方库-->
