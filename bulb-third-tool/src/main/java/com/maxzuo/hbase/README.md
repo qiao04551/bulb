@@ -1,0 +1,12 @@
+## HBase Client API的使用
+
+### 建表语句
+
+```hbh
+create_namespace 'pb'
+
+create 'pb:user', {NAME => 'b', VERSIONS => '3', TTL => '2147483647', 'BLOOMFILTER' => 'ROW'}, {NAME => 'o', VERSIONS => '3', TTL => '2147483647', 'BLOOMFILTER' => 'ROW'}
+create 'pb:pass', {NAME => 'i', VERSIONS => '3', TTL => '2147483647', 'BLOOMFILTER' => 'ROW'}
+create 'pb:passtemplate', {NAME => 'b', VERSIONS => '3', TTL => '2147483647', 'BLOOMFILTER' => 'ROW'}, {NAME => 'c', VERSIONS => '3', TTL => '2147483647', 'BLOOMFILTER' => 'ROW'}
+create 'pb:feedback', {NAME => 'i', VERSIONS => '3', TTL => '2147483647', 'BLOOMFILTER' => 'ROW'}
+```
