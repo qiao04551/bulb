@@ -86,13 +86,7 @@ public class BaseOperationExample {
             Cell[] cells = result.rawCells();
             for (Cell c : cells) {
                 String columnName = Bytes.toString(c.getQualifierArray(), c.getQualifierOffset(), c.getQualifierLength());
-                String columnValue;
-                if(columnName.equals("income")||columnName.equals("age")){
-                    int i = Bytes.toInt(c.getValueArray());
-                    columnValue=Integer.toString(i);
-                }else{
-                    columnValue = Bytes.toString(c.getValueArray(), c.getValueOffset(), c.getValueLength());
-                }
+                String columnValue = Bytes.toString(c.getValueArray(), c.getValueOffset(), c.getValueLength());
                 System.out.println(columnName + ":" + columnValue);
             }
         } catch (Exception e) {
@@ -121,7 +115,7 @@ public class BaseOperationExample {
     }
 
     /**
-     * 扫描表—设置起始位置/结束位置
+     * 扫描表—设置起始位置/结束位置（通过字符串匹配）
      */
     @Test
     public void testScanTableBetween () {
@@ -138,14 +132,8 @@ public class BaseOperationExample {
                 Cell[] cells = rs.rawCells();
                 for (Cell c : cells) {
                     String columnName = Bytes.toString(c.getQualifierArray(), c.getQualifierOffset(), c.getQualifierLength());
-                    String columnValue;
-                    if(columnName.equals("income")||columnName.equals("age")){
-                        int result=Bytes.toInt(c.getValueArray());
-                        columnValue=Integer.toString(result);
-                    }else{
-                        columnValue = Bytes.toString(c.getValueArray(), c.getValueOffset(), c.getValueLength());
-                    }
-                    System.out.println(columnName +":"+columnValue);
+                    String columnValue = Bytes.toString(c.getValueArray(), c.getValueOffset(), c.getValueLength());
+                    System.out.println(columnName + ":" + columnValue);
                 }
             }
         } catch (Exception e) {
@@ -198,6 +186,36 @@ public class BaseOperationExample {
             put.addColumn(Bytes.toBytes("info"), Bytes.toBytes("time"), Bytes.toBytes(System.currentTimeMillis()));
 
             table.put(put);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (table != null) {
+                try {
+                    table.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * 获取多个版本的数据
+     */
+    @Test
+    public void testQueryMutipleVersionData () {
+        Table table = null;
+        try {
+            table = connection.getTable(TableName.valueOf("user"));
+            Get get = new Get(Bytes.toBytes("row1"));
+            get.readVersions(2);
+            Result result = table.get(get);
+            Cell[] cells = result.rawCells();
+            for (Cell cell : cells) {
+                String columnName = Bytes.toString(cell.getQualifierArray(), cell.getQualifierOffset(), cell.getQualifierLength());
+                String columnValue = Bytes.toString(cell.getValueArray(), cell.getValueOffset(), cell.getValueLength());
+                System.out.println(columnName + ":" + columnValue);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
