@@ -1,4 +1,4 @@
-package com.maxzuo.redis;
+package com.maxzuo.jedis;
 
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;

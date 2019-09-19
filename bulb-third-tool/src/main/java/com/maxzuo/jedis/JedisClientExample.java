@@ -1,4 +1,4 @@
-package com.maxzuo.redis;
+package com.maxzuo.jedis;
 
 import org.junit.Test;
 import redis.clients.jedis.*;
@@ -24,7 +24,7 @@ public class JedisClientExample {
      */
     @Test
     public void clientMode() {
-        Jedis jedis = new Jedis("192.168.3.183", 6379);
+        Jedis jedis = new Jedis("47.98.199.80", 6379);
         jedis.auth("myredis");
         jedis.select(1);
 
