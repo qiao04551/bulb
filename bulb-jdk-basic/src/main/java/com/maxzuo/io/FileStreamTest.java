@@ -60,22 +60,61 @@ class FileStreamTest {
 
     @DisplayName("测试字符流缓冲区：BufferedReader/BufferedWriter")
     @Test
-    void testBufferReader() throws IOException {
-        File file = new File("demo.txt");
-        FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);
+    void testBufferReader() {
+        FileReader fr = null;
+        BufferedReader br = null;
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            fr = new FileReader(new File("demo.txt"));
+            br = new BufferedReader(fr);
 
-        // 指定Buffer中一个特定的position，之后可以通过调用reset()方法恢复到这个position
-        if (br.markSupported()) {
-            br.mark(0);
-            br.reset();
+            fw = new FileWriter(new File("demo-r.txt"));
+            bw = new BufferedWriter(fw);
+
+            // 指定Buffer中一个特定的position，之后可以通过调用reset()方法恢复到这个position
+            // if (br.markSupported()) {
+            //     br.mark(0);
+            //     br.reset();
+            // }
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+                bw.write(line);
+                bw.flush();
+            }
+        } catch (Exception e) {
+            if (bw != null) {
+                try {
+                    bw.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (fw != null) {
+                try {
+                    fw.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (fr != null) {
+                try {
+                    fr.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
-        FileWriter fw = new FileWriter(file);
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.close();
-        fw.close();
-        br.close();
-        fr.close();
+
     }
 
     @DisplayName("测试字节流缓冲区：BufferedInputStream和BufferedOutputStream")
