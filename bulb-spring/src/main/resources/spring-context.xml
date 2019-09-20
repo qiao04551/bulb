@@ -10,6 +10,5 @@
        http://www.springframework.org/schema/aop
 	   http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="userService" class="com.maxzuo.bulb.spring.service.UserService" />
-
+    <bean id="userService" class="com.maxzuo.bulb.spring.container.bean.UserService" />
 </beans>
