@@ -1,6 +1,6 @@
-package com.maxzuo.bulb.spring;
+package com.maxzuo.bulb.spring.container;
 
-import com.maxzuo.bulb.spring.service.UserService;
+import com.maxzuo.bulb.spring.container.bean.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
