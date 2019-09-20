@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.maxzuo.socket.http;
+package com.maxzuo.socket.heartbeat.client;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  * <p>
- * The parser provides functionality to parse raw bytes HTTP response to a {@link SimpleHttpResponse}.
+ * The parser provides functionality to parse raw bytes HTTP response to a SimpleHttpResponse
  * </p>
  * <p>
  * Note that this is a very NAIVE parser, {@code Content-Length} must be specified in the
@@ -51,7 +51,7 @@ public class SimpleHttpResponseParser {
     }
 
     /**
-     * Parse bytes from an input stream to a {@link SimpleHttpResponse}.
+     * Parse bytes from an input stream to a SimpleHttpResponse
      *
      * @param in input stream
      * @return parsed HTTP response entity

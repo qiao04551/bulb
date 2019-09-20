@@ -1,5 +1,9 @@
-package com.maxzuo.socket.http;
+package com.maxzuo.socket;
 
+import com.maxzuo.socket.heartbeat.client.SimpleHttpClient;
+import com.maxzuo.socket.heartbeat.client.SimpleHttpRequest;
+import com.maxzuo.socket.heartbeat.client.SimpleHttpResponse;
+import com.maxzuo.socket.heartbeat.client.SimpleHttpResponseParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
