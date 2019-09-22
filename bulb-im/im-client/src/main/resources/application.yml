@@ -1,0 +1,11 @@
+# zookeeper地址
+zookeeper:
+  address: 127.0.0.1:2181
+
+# 客户端唯一标识
+client:
+  username: dazuo
+  userid: 666666
+
+# 客户端重连最大次数
+reconect.count: 10

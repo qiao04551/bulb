@@ -87,6 +87,7 @@
         <module>bulb-spring-webflux</module>
         <module>bulb-print-template</module>
         <module>bulb-spring-cloud</module>
+        <module>bulb-im</module>
     </modules>
 
     <!--智创二方库-->
