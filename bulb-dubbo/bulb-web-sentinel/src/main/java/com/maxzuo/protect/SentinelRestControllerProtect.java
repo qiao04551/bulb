@@ -28,7 +28,7 @@ public class SentinelRestControllerProtect {
 
     @Around("execution(* com.maxzuo.controller..*(..))")
     public Object entrance (ProceedingJoinPoint joinPoint) throws Throwable {
-        String application = System.getProperty("appname");
+        String application = System.getProperty("serviceName");
         Entry entry = null;
         try {
             String resourceName = getResourceName(joinPoint);
