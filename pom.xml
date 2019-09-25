@@ -88,6 +88,7 @@
         <module>bulb-print-template</module>
         <module>bulb-spring-cloud</module>
         <module>bulb-im</module>
+        <module>bulb-spring-boot</module>
     </modules>
 
     <!--智创二方库-->
