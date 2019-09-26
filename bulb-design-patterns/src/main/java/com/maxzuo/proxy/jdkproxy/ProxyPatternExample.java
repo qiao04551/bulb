@@ -25,7 +25,15 @@ class ProxyPatternExample {
     @DisplayName("动态代理")
     @Test
     void testDynamicProxy() {
-        // 返回一个代理对象（Subject接口的实现类）
+        /*
+            返回一个代理对象（Subject接口的实现类）
+            参数：
+              1）第一个参数是被代理类的类加载器，通过此类加载器将代理类加载入jvm中；
+              2）第二个参数则是被代理类所实现的所有接口，需要所有的接口的目的是创建新的代理类实现被代理类的所有接口，保证被代理类所有
+                 方法都能够被代理。其实代理的核心就是新创建一个类并实例化对象，去集成被代理对象所有功能的同时，再加入某些特性化的功能；
+              3）第三个参数则是真正的扩展，使用动态代理的主要目的就是能够对原方法进行扩展，尤其是对于大部分方法都具有的重复方法(例如
+                 记录日志)，可以理解为面向切面编程中的增强。
+         */
         Subject subjectProxy = (Subject) Proxy.newProxyInstance(Subject.class.getClassLoader(),
             new Class[] { Subject.class }, new InvocationHandler() {
                 /**

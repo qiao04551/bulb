@@ -1,4 +1,4 @@
-package com.maxzuo.proxy.cglib;
+package com.maxzuo.proxy.cglib.util;
 
 import net.sf.cglib.beans.BeanCopier;
 
