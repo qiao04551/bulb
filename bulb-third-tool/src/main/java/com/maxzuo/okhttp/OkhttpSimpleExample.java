@@ -4,9 +4,14 @@ import com.alibaba.fastjson.JSONObject;
 import okhttp3.*;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 /**
  * okhttp3 简单使用
- * <p>
+ * <pre>
+ *  官网：https://square.github.io/okhttp/works_with_okhttp/
+ * </pre>
  * Created by zfh on 2019/08/23
  */
 public class OkhttpSimpleExample {
@@ -15,7 +20,7 @@ public class OkhttpSimpleExample {
      * 测试Get请求
      */
     @Test
-    public void testGetRequest () {
+    public void testGetRequest () throws InterruptedException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request
                 .Builder()
@@ -25,15 +30,37 @@ public class OkhttpSimpleExample {
                 .addHeader("Accept", "*/*")
                 .build();
 
-        try (Response response = client.newCall(request).execute()) {
-            ResponseBody body = response.body();
-            if (body != null) {
-                System.out.println(response.code());
-                System.out.println(new String(body.bytes()));
+        long start = System.currentTimeMillis();
+        /// 同步调用
+        // try (Response response = client.newCall(request).execute()) {
+        //     ResponseBody body = response.body();
+        //     if (body != null) {
+        //         System.out.println(response.code());
+        //         System.out.println(new String(body.bytes()));
+        //     }
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+
+        // 异步调用
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                ResponseBody body = response.body();
+                if (body != null) {
+                    System.out.println(response.code());
+                    System.out.println(new String(body.bytes()));
+                }
+            }
+        });
+
+        System.out.println("耗时：" + (System.currentTimeMillis() - start));
+        TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
     }
 
     /**
