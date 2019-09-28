@@ -11,14 +11,17 @@ import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Kafka Streams流处理程序
+ * Kafka Streams流处理程序（0.10.0.0）Kafka Streams从一个或多个输入topic进行连续的计算并输出到0或多个外部topic中。
  * Created by zfh on 2019/03/06
  */
 public class StreamsExample {
 
     private static final Logger logger            = LoggerFactory.getLogger(StreamsExample.class);
 
-    /** test：47.98.199.80:9092 cluster：192.168.3.192:9090,192.168.3.191:9090,192.168.3.181:9090 */
+    /**
+     * test：47.98.199.80:9092
+     * cluster：192.168.3.192:9090,192.168.3.191:9090,192.168.3.181:9090
+     */
     private static final String BOOTSTRAP_SERVERS = "47.98.199.80:9092";
 
     public static void main(String[] args) {
