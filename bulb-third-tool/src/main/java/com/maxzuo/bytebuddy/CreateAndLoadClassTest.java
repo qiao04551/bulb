@@ -1,10 +1,10 @@
 package com.maxzuo.bytebuddy;
 
 
-import com.maxzuo.proxy.bytebuddy.model.Boss;
-import com.maxzuo.proxy.bytebuddy.model.Employee;
-import com.maxzuo.proxy.bytebuddy.model.Fast;
-import com.maxzuo.proxy.bytebuddy.model.Slow;
+import com.maxzuo.bytebuddy.model.Boss;
+import com.maxzuo.bytebuddy.model.Employee;
+import com.maxzuo.bytebuddy.model.Fast;
+import com.maxzuo.bytebuddy.model.Slow;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.agent.ByteBuddyAgent;
 import net.bytebuddy.dynamic.ClassFileLocator;

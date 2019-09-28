@@ -1,6 +1,7 @@
 package com.maxzuo.bytebuddy;
 
-import com.maxzuo.proxy.bytebuddy.annotations.TokenImpl;
+import com.maxzuo.bytebuddy.annotations.TokenImpl;
+import com.maxzuo.bytebuddy.model.*;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.ClassFileVersion;
 import net.bytebuddy.description.modifier.FieldManifestation;
@@ -22,6 +23,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+import static net.bytebuddy.jar.asm.Opcodes.ACC_PRIVATE;
+import static net.bytebuddy.jar.asm.Opcodes.ACC_VOLATILE;
 import static net.bytebuddy.matcher.ElementMatchers.*;
 
 /**
@@ -31,6 +34,21 @@ import static net.bytebuddy.matcher.ElementMatchers.*;
 class DefineFieldAndMethodTest {
 
     private static final Logger logger = LoggerFactory.getLogger(DefineFieldAndMethodTest.class);
+
+    public static final String CONTEXT_ATTR_NAME = "_$EnhancedClassField_ws";
+
+    @DisplayName("增强类，添加属性和接口")
+    @Test
+    void testEnhanceInstance () {
+        DynamicType.Unloaded<Employee> dynamicType = new ByteBuddy()
+                .subclass(Employee.class)
+                .defineField(CONTEXT_ATTR_NAME, Object.class, ACC_PRIVATE | ACC_VOLATILE)
+                .implement(EnhancedInstance.class)
+                .intercept(FieldAccessor.ofField(CONTEXT_ATTR_NAME))
+                .make();
+
+        writeToFile(dynamicType.getBytes());
+    }
 
     @DisplayName("增强类的属性和方法")
     @Test
