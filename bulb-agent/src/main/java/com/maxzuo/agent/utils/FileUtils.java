@@ -15,7 +15,7 @@ public class FileUtils {
      * @param bytes 字节数组
      */
     public static void writeToFile(byte[] bytes) {
-        File file = new File("F:\\bulb\\bulb-agent\\ByteBuddy.class");
+        File file = new File("/Users/dazuo/workplace/bulb/bulb-agent/ByteBuddy.class");
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(file);
