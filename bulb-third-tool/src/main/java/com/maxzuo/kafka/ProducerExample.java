@@ -37,6 +37,8 @@ public class ProducerExample {
         for (int i = 0; i < 1; i++) {
             // 通过key去指定分区和使用hash来指向分区（如果需要，可重写分区函数）
             ProducerRecord<String, String> record = new ProducerRecord<>("test", "user","hello kafka" + "  i = " + i);
+            record.headers().add("name", "dazuo".getBytes()).add("age", "2343".getBytes());
+
             // send()方法是异步的，添加消息到缓冲区等待发送，并立即返回。
             Future<RecordMetadata> future = producer.send(record);
             try {

@@ -3,6 +3,8 @@ package com.maxzuo.kafka;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.header.Header;
+import org.apache.kafka.common.header.Headers;
 
 import java.util.Arrays;
 import java.util.Properties;
@@ -79,6 +81,12 @@ public class ConsumerExample {
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(100);
             for (ConsumerRecord<String, String> record : records) {
+                Headers headers = record.headers();
+                for (Header header : headers) {
+                    String key = header.key();
+                    byte[] value = header.value();
+                    System.out.println("headers: key = " + key + ", value = " + new String(value));
+                }
                 System.out.println("key: " + record.key() + " value = " + record.value());
             }
 
