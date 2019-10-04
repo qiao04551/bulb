@@ -5,13 +5,12 @@ import com.maxzuo.mybatis.dao.ShopOrderInfoMapper;
 import com.maxzuo.mybatis.entity.ScUserProfessionDO;
 import com.maxzuo.mybatis.entity.ShopOrderInfoDO;
 import com.maxzuo.mybatis.entity.UserAndOrderInfoDTO;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.session.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -130,5 +129,17 @@ public class SimpleQuery {
                 sqlSession.close();
             }
         }
+    }
+
+    /**
+     * 旧版本，探究已映射的 SQL 语句
+     */
+    @Test
+    public void testSelectOne () {
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+        // 在命名空间 “com.maxzuo.mybatis.dao.ShopOrderInfoMapper” 中定义了一个名为 “selectShopOrderInfoByPrimaryKey” 的映射语句，
+        // 允许你使用指定的完全限定名 “com.maxzuo.mybatis.dao.ShopOrderInfoMapper.selectShopOrderInfoByPrimaryKey” 来调用映射语句
+        List<Object> objects = sqlSession.selectList("com.maxzuo.mybatis.dao.ShopOrderInfoMapper.selectShopOrderInfoByPrimaryKey", 1);
+        System.out.println(objects);
     }
 }
