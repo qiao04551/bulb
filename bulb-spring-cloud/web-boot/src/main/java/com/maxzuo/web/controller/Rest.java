@@ -3,6 +3,7 @@ package com.maxzuo.web.controller;
 import com.maxzuo.web.form.UserInfoForm;
 import com.maxzuo.web.service.IScSysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 public class Rest {
+
+    @Value("${env}")
+    private String env;
 
     @Autowired
     private IScSysUserService scSysUserService;
@@ -26,5 +30,11 @@ public class Rest {
     public String json (@RequestBody UserInfoForm form) {
         System.out.println(form);
         return "hello world!";
+    }
+
+    @GetMapping("env")
+    public String doEnv () {
+        System.out.println("env：" + env);
+        return "hello getEnv";
     }
 }

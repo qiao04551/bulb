@@ -1,0 +1,7 @@
+# spring-config 客户端
+spring:
+  cloud:
+    config:
+      name: web-config
+      profile: dev
+      uri: http://localhost:8001/
