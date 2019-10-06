@@ -2,8 +2,7 @@ package com.maxzuo.basic;
 
 import org.junit.Test;
 
-import java.util.IdentityHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Map 家族类
@@ -11,6 +10,55 @@ import java.util.Map;
  * Created by zfh on 2019/09/26
  */
 public class MapExample {
+
+    /**
+     * HashMap源码分析
+     * <pre>
+     *   1.HashMap 底层是基于数组和链表实现的。
+     *   2.容量的默认大小是 16，负载因子是 0.75，当 HashMap 的 size > 16*0.75 时就会发生扩容(容量和负载因子都可以自由调整)。
+     * </pre>
+     */
+    @Test
+    public void testHashMap () {
+        HashMap<String, String> data = new HashMap<>(16);
+        data.put("name", "dazuo");
+        data.get("name");
+        System.out.println(data.toString());
+    }
+
+    /**
+     * HashSet源码分析（底层使用HashMap实现）
+     */
+    @Test
+    public void testHashSet () {
+        HashSet<String> data = new HashSet<>();
+        data.add("name");
+        data.add("age");
+        String[] array = data.toArray(new String[0]);
+        System.out.println(Arrays.toString(array));
+    }
+
+    /**
+     * 众所周知 HashMap 是一个无序的 Map，因为每次根据 key 的 hashcode 映射到 Entry 数组上，所以`遍历出来`的顺序并不是写入的顺序。
+     * JDK 推出一个基于 HashMap 但具有顺序的 LinkedHashMap 来解决有排序需求的场景。
+     *
+     * 它的底层是继承于 HashMap 实现的，由一个双向链表所构成。
+     *
+     * LinkedHashMap 的排序方式有两种：
+     *   1）根据写入顺序排序。
+     *   2）根据访问顺序排序。
+     */
+    @Test
+    public void testLinkedHashMap () {
+        Map<String, String> data = new LinkedHashMap<>(10);
+        data.put("name", "dazuo");
+        data.put("age", "22");
+        data.put("gender", "1");
+        Set<String> set = data.keySet();
+        for (String item : set) {
+            System.out.println(item);
+        }
+    }
 
     /**
      * IdentityHashMap
