@@ -65,7 +65,7 @@ public class UnsafeExample {
             如果在调用pack()前，一个unpack()调用已经出现了，这里只计数。
             参数：
               isAbsolute：如果为true，timeout是相对于新纪元之后的毫秒。否则这个值就是超时前的纳秒数。这个方法执行时也可能不合理地返回(没有具体原因)
-              timeout：可以是一个要等待的纳秒数，或者是一个相对于新纪元之后的毫秒数直到到达这个时间点。
+              timeout：可以是一个要等待的纳秒数，或者是一个相对于新纪元之后的毫秒数直到到达这个时间点。0 表示永远等待。
 
             参考：
               java.util.concurrent.locks.LockSupport.parkNanos(long nanos)
