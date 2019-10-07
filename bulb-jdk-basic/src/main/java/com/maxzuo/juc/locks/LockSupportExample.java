@@ -68,7 +68,7 @@ public class LockSupportExample {
     }
 
     /**
-     * 线程快照（Junit线程会接受，会中断LockSupport.park()，干扰实验结果）
+     * 线程快照（Junit会中断子线程，从而中断LockSupport.park()，干扰实验结果）
      * <pre>
      *   LockSupport.getBlocker()：返回提供给park方法的最近一次调用的blocker对象，该方法尚未被解除阻塞，如果未被阻塞，
      *   则返回null。返回的值只是一个瞬时快照——线程可能在不同的blocker对象上解除了阻塞或阻塞。
