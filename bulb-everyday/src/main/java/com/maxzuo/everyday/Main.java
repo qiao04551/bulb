@@ -6,6 +6,6 @@ package com.maxzuo.everyday;
 public class Main {
 
     public static void main(String[] args) {
-
+        // TODO: hello everyday
     }
 }
