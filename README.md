@@ -5,6 +5,7 @@
 - bulb-agent：               探针技术
 - bulb-design-patterns：     设计模式入门示例，以及收藏一些经典设计模式使用案例
 - bulb-dubbo：               dubbo RPC框架在项目中的结构
+- bulb-everyday：            每天举个栗子
 - bulb-hessian：             hessian框架的入门示例
 - bulb-jdk-basic：           语法基础以及jdk常用的类
 - bulb-openfire-client：     openfire的二次开发
