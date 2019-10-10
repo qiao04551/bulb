@@ -1,18 +1,19 @@
 package com.maxzuo.controller;
 
-import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import com.alibaba.fastjson.JSONObject;
 import com.maxzuo.dubbo.common.api.IScUserService;
 import com.maxzuo.dubbo.common.api.IShopOrderInfoService;
 import com.maxzuo.dubbo.common.model.ScUser;
 import com.maxzuo.dubbo.common.model.ShopOrderInfo;
 import com.maxzuo.form.Param;
-import com.maxzuo.util.RedisUtils;
 import com.maxzuo.vo.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,10 +50,8 @@ public class ShopRest {
             ShopOrderInfo orderInfo = shopOrderInfoService.getShopOrderInfoByPrimaryKey(orderId);
             // 2.查询dubbo服务
             ScUser userInfo = scUserService.queryUserByPrimaryKey(orderInfo.getUserId());
-            // 3.写入Redis
-            RedisUtils.setStr("userInfo", JSONObject.toJSONString(userInfo));
 
-            // 4.组装Response
+            // 3.组装Response
             Map<String, String> data = new HashMap<>(10);
             data.put("userId", userInfo.getId().toString());
             data.put("username", userInfo.getUsername());
@@ -71,14 +70,13 @@ public class ShopRest {
      */
     @PostMapping("/flow")
     public Result flow () {
-        logger.info("flowRules: {}", JSONObject.toJSONString(FlowRuleManager.getRules()));
         try {
             TimeUnit.MILLISECONDS.sleep(500);
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.err.println("Welcome to flow method !");
-        return new Result(Result.RESULT_SUCCESS, "ok");
+        return new Result(Result.RESULT_SUCCESS, "flow");
     }
 
     /**
@@ -92,6 +90,6 @@ public class ShopRest {
         } catch (InterruptedException e) {
             logger.info("接口超时异常！");
         }
-        return new Result(Result.RESULT_SUCCESS, "ok");
+        return new Result(Result.RESULT_SUCCESS, "degrade");
     }
 }

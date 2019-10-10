@@ -5,4 +5,18 @@ apikey: test
 
 cmd=shop/findTradingGiftList&data={"orderId":1}&version=1
 
+### 限流规则接口
+POST http://127.0.0.1:8081/zxcity_restful/ws/rest
+Content-Type: application/x-www-form-urlencoded
+apikey: test
+
+cmd=shop/flow&data={}
+
+### 降级规则接口
+POST http://127.0.0.1:8080/zxcity_restful/ws/rest
+Content-Type: application/x-www-form-urlencoded
+apikey: test
+
+cmd=shop/degrade&data={}
+
 ###
