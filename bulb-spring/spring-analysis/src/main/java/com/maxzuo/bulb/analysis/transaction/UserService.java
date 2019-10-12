@@ -1,4 +1,4 @@
-package com.maxzuo.bulb.spring.transaction;
+package com.maxzuo.bulb.analysis.transaction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

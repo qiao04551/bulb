@@ -1,4 +1,4 @@
-package com.maxzuo.bulb.spring.annotation;
+package com.maxzuo.bulb.analysis.annotation;
 
 import com.maxzuo.bulb.spring.annotation.bean.MiniContainer;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

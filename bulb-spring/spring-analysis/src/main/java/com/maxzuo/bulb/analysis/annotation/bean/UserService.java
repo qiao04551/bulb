@@ -1,4 +1,4 @@
-package com.maxzuo.bulb.spring.annotation.bean;
+package com.maxzuo.bulb.analysis.annotation.bean;
 
 import org.springframework.stereotype.Service;
 

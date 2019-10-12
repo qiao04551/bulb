@@ -1,4 +1,4 @@
-package com.maxzuo.bulb.spring.container.bean;
+package com.maxzuo.bulb.analysis.container.bean;
 
 import org.springframework.stereotype.Service;
 
