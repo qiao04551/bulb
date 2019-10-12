@@ -11,9 +11,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.maxzuo.bulb</groupId>
-    <artifactId>bulb-spring-boot-graphql</artifactId>
+    <artifactId>bulb-graphql-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <description>spring-boot graphql server</description>
+    <description>graphql server</description>
 
     <properties>
         <file_encoding>UTF-8</file_encoding>
