@@ -72,6 +72,7 @@
         <lucene.version>5.5.2</lucene.version>
         <commons-cli.version>1.4</commons-cli.version>
         <tomcat-embed.version>8.5.37</tomcat-embed.version>
+        <jjwt-api.version>0.10.7</jjwt-api.version>
     </properties>
 
     <modules>
@@ -603,6 +604,21 @@
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-websocket</artifactId>
                 <version>${tomcat-embed.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
