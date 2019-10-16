@@ -4,9 +4,12 @@ import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.NetworkConnector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
+import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import org.eclipse.jetty.util.thread.ThreadPool;
 import org.slf4j.Logger;
@@ -36,7 +39,7 @@ public class JettyWebServer {
     public static void main(String[] args) {
         try {
             logger.info("服务运行在：http://127.0.0.1:8080");
-            JettyWebServer server = new JettyWebServer(8080, "127.0.0.1");
+            JettyWebServer server = new JettyWebServer(8080, "0.0.0.0");
             server.start();
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,6 +75,14 @@ public class JettyWebServer {
     }
 
     private HandlerCollection createHandlers () {
+        // 静态资源访问
+        ResourceHandler resourceHandler = new ResourceHandler();
+        resourceHandler.setDirectoriesListed(true);
+        resourceHandler.setWelcomeFiles(new String[]{"index.html"});
+        resourceHandler.setBaseResource(Resource.newResource(JettyWebServer.class.getClassLoader().getResource("dist")));
+        ContextHandler context = new ContextHandler("/");
+        context.setHandler(resourceHandler);
+
         ServletContextHandler servletHandler = new ServletContextHandler();
         servletHandler.addServlet(new ServletHolder(new HttpServlet() {
             @Override
