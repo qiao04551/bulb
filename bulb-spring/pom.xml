@@ -18,5 +18,6 @@
         <module>spring-webflux</module>
         <module>spring-data-mongodb</module>
         <module>spring-security-jwt</module>
+        <module>spring-data-jpa</module>
     </modules>
 </project>
