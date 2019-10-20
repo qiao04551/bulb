@@ -1,4 +1,4 @@
-package com.maxzuo.basic;
+package com.maxzuo.collections;
 
 import org.junit.Test;
 
@@ -23,7 +23,11 @@ public class MapExample {
         HashMap<String, String> data = new HashMap<>(16);
         data.put("name", "dazuo");
         data.get("name");
-        System.out.println(data.toString());
+        System.out.println(data.size());
+        Set<Map.Entry<String, String>> entries = data.entrySet();
+        for (Map.Entry<String, String> entry : entries) {
+            System.out.println("key = " + entry.getKey() + ", value = " + entry.getValue());
+        }
     }
 
     /**
