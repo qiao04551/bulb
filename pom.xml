@@ -91,6 +91,7 @@
         <module>bulb-im</module>
         <module>bulb-everyday</module>
         <module>bulb-graphql-server</module>
+        <module>bulb-algorithm</module>
     </modules>
 
     <!--智创二方库-->
