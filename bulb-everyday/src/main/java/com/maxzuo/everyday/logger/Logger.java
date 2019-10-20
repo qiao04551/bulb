@@ -1,4 +1,4 @@
-package com.maxzuo.logger;
+package com.maxzuo.everyday.logger;
 
 /**
  * 日志记录器

@@ -1,4 +1,4 @@
-package com.maxzuo.logger;
+package com.maxzuo.everyday.logger;
 
 import sun.security.action.GetPropertyAction;
 
