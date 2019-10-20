@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -50,6 +51,8 @@ public class AbstractQueuedSynchronizerExample {
 
     private static final Mutex mutex = new Mutex();
 
+    private static AtomicInteger count = new AtomicInteger(0);
+
     public static void main(String[] args) {
         for (int i = 0; i < 5; i++) {
             pool.execute(new Runnable() {
@@ -57,7 +60,7 @@ public class AbstractQueuedSynchronizerExample {
                 public void run() {
                     mutex.lock();
                     try {
-                        sayHello();
+                        System.out.println("num = " + count.incrementAndGet());
                         Thread.sleep(1000);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -69,10 +72,6 @@ public class AbstractQueuedSynchronizerExample {
         }
         pool.shutdown();
     }
-
-    private static void sayHello () {
-        System.out.println("hello world");
-    }
 }
 
 /**
@@ -80,8 +79,12 @@ public class AbstractQueuedSynchronizerExample {
  */
 class Mutex implements Lock, java.io.Serializable {
 
+    private static final long serialVersionUID = -5370206610582694910L;
+
     // 自定义同步器
     private static class Sync extends AbstractQueuedSynchronizer {
+
+        private static final long serialVersionUID = -650697288373163551L;
 
         // 判断是否锁定状态
         protected boolean isHeldExclusively() {

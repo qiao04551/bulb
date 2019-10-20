@@ -1,9 +1,6 @@
 package com.maxzuo.juc.syncauxiliary;
 
-import java.util.Random;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * 同步辅助类-CountDownLatch使用案例：三个工人先全部干完活，老板才检查。
@@ -18,25 +15,53 @@ import java.util.concurrent.Executors;
 public class CountDownLatchExample {
 
     public static void main(String[] args) {
-        ExecutorService poolExecutor = Executors.newCachedThreadPool();
-
-        // 闭锁
         CountDownLatch downLatch = new CountDownLatch(3);
-        Random random = new Random();
-        for (int i = 0; i < 3; i++) {
-            poolExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(random.nextInt(3) * 1000);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        downLatch.countDown();
-                    }
+
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    System.out.println("t1 ok!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    downLatch.countDown();
                 }
-            });
-        }
+            }
+        });
+        t1.start();
+
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(10000);
+                    System.out.println("t2 ok!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    downLatch.countDown();
+                }
+            }
+        });
+        t2.start();
+
+        Thread t3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(20000);
+                    System.out.println("t3 ok!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    downLatch.countDown();
+                }
+            }
+        });
+        t3.start();
+
         try {
             System.out.println("等待三个线程执行完...");
             downLatch.await();
@@ -44,6 +69,5 @@ public class CountDownLatchExample {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        poolExecutor.shutdown();
     }
 }
