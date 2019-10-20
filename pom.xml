@@ -75,6 +75,7 @@
         <jjwt-api.version>0.10.7</jjwt-api.version>
         <validation-api.version>1.1.0.Final</validation-api.version>
         <hibernate.version>5.2.0.Final</hibernate.version>
+        <shiro.version>1.4.1</shiro.version>
     </properties>
 
     <modules>
@@ -632,6 +633,11 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+                <version>${shiro.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
