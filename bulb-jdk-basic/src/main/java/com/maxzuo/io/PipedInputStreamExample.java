@@ -9,6 +9,17 @@ import java.time.LocalDateTime;
  * PipedInputStream和PipedOutputStream
  * 管道流，线程流，顾名思义就是在线程之间传输数据的流。主要用途自然就是用于线程之间通讯。
  *
+ * <pre>
+ *   1.PipedOutputStream和PipedInputStream分别是管道输出流和管道输入流，它们都是线程安全的，作用是让多线程可以通过
+ *     管道进行线程间的通讯。在使用管道通信时，必须将PipedOutputStream和PipedInputStream配套使用。
+ *
+ *   2.使用管道通信时，大致的流程是：我们在线程A中向PipedOutputStream中写入数据，这些数据会自动的发送到与PipedOutputStream
+ *     对应的PipedInputStream中，进而存储在PipedInputStream的缓冲中；此时，线程B通过读取PipedInputStream中的数据。
+ *     就可以实现线程A和线程B的通信。
+ *
+ *   3.Java官方不推荐在单个线程中同时使用管道输出流和管道输入流，这种用法可能会导致死锁。
+ * </pre>
+ *
  * Created by zfh on 2019/06/16
  */
 public class PipedInputStreamExample {
