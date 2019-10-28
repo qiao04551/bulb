@@ -2,8 +2,11 @@ package com.maxzuo.thread;
 
 import org.junit.Test;
 import sun.misc.Unsafe;
+import sun.nio.ch.DirectBuffer;
 
+import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 
 /**
  * sun.misc.Unsafe类的应用解析
@@ -127,5 +130,33 @@ public class UnsafeExample {
         Unsafe unsafe = Unsafe.getUnsafe();
         // 内存屏障，禁止load操作重排序。屏障前的load操作不能被重排序到屏障后，屏障后的load操作，不能被重排序到屏障前。
         unsafe.loadFence();
+    }
+
+    /**
+     * 通过反射，获取Unsafe类实例
+     */
+    @Test
+    public void testUseUnsafe () {
+        try {
+            Field f = Unsafe.class.getDeclaredField("theUnsafe");
+            f.setAccessible(true);
+            Unsafe UNSAFE = (Unsafe) f.get(null);
+
+            ByteBuffer buffer = ByteBuffer.allocateDirect(4);
+            long addresses = ((DirectBuffer) buffer).address();
+            byte[] data = new byte[4];
+            data[0] = 1;
+            data[1] = 2;
+            data[2] = 3;
+            data[3] = 4;
+            // 内存堆内-拷贝堆外
+            UNSAFE.copyMemory(data, 16, null, addresses, 4);
+            // 堆外堆内-拷贝堆内
+            byte[] bytes = new byte[4];
+            UNSAFE.copyMemory(null, addresses, bytes, 16, 4);
+            System.out.println(Arrays.toString(bytes));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
