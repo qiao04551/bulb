@@ -66,3 +66,7 @@
 - 建造者模式
 - 装饰者模式
 - 策略模式
+
+### 参考文献
+
+1.[Java 语言的各种编程模式](https://java-design-patterns.com/patterns/)
