@@ -352,6 +352,10 @@
             <groupId>com.hankcs</groupId>
             <artifactId>hanlp</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock-standalone</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
