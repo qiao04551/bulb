@@ -78,6 +78,7 @@
         <shiro.version>1.4.1</shiro.version>
         <hanlp.version>portable-1.7.5</hanlp.version>
         <wiremock.version>2.19.0</wiremock.version>
+        <karate.version>0.9.4</karate.version>
     </properties>
 
     <modules>
@@ -650,6 +651,16 @@
                 <groupId>com.github.tomakehurst</groupId>
                 <artifactId>wiremock-standalone</artifactId>
                 <version>${wiremock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.intuit.karate</groupId>
+                <artifactId>karate-apache</artifactId>
+                <version>${karate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.intuit.karate</groupId>
+                <artifactId>karate-junit4</artifactId>
+                <version>${karate.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
