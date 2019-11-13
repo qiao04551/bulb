@@ -364,6 +364,10 @@
             <groupId>com.intuit.karate</groupId>
             <artifactId>karate-junit4</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
