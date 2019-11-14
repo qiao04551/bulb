@@ -1,4 +1,4 @@
-package com.maxzuo.guava;
+package com.maxzuo.guava.enums;
 
 import com.google.common.base.Converter;
 import com.google.common.base.Enums;

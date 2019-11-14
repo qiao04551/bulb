@@ -1,4 +1,4 @@
-package com.maxzuo.guava;
+package com.maxzuo.guava.enums;
 
 /**
  * 应用来源类型
