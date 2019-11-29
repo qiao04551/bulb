@@ -2,6 +2,7 @@ package com.maxzuo.bulb.im.util;
 
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,50 +14,60 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class SessionSocketHolder {
 
-    private static final Map<Integer, NioSocketChannel> CHANNEL_MAP = new ConcurrentHashMap<>(16);
+    private static final Map<String, NioSocketChannel> CHANNEL_MAP = new ConcurrentHashMap<>(16);
 
-    private static final Map<Integer, String> SESSION_MAP = new ConcurrentHashMap<>(16);
+    private static final HashSet<String> SESSION_SET = new HashSet<>(16);
 
     /**
      * 保存客户端注册session
      */
-    public static void saveSession (Integer userid, String username) {
-        SESSION_MAP.put(userid, username);
+    private static void saveSession(String username) {
+        SESSION_SET.add(username);
     }
 
     /**
      * 移除客户端注册session
      */
-    public static void removeSession (Integer userid) {
-        SESSION_MAP.remove(userid);
+    private static void removeSession(String username) {
+        SESSION_SET.remove(username);
     }
 
     /**
      * 保存连接
      */
-    public static void put(Integer userid, NioSocketChannel channel) {
-        CHANNEL_MAP.put(userid, channel);
+    private static void put(String username, NioSocketChannel channel) {
+        CHANNEL_MAP.put(username, channel);
     }
 
     /**
      * 移除连接
      */
-    public static void remove (Integer userid) {
-        CHANNEL_MAP.remove(userid);
+    private static void remove(String username) {
+        CHANNEL_MAP.remove(username);
     }
 
     /**
      * 获取客户端信息
      */
     public static String getUserInfo (NioSocketChannel channel) {
-        Set<Map.Entry<Integer, NioSocketChannel>> entries = CHANNEL_MAP.entrySet();
-        for (Map.Entry<Integer, NioSocketChannel> entry : entries) {
-            if (entry.getValue() == channel) {
-                Set<Map.Entry<Integer, String>> sessionEntres = SESSION_MAP.entrySet();
-                for (Map.Entry<Integer, String> userEntry : sessionEntres) {
-                    if (entry.getKey().equals(userEntry.getKey())) {
-                        return userEntry.getValue();
-                    }
+        Set<Map.Entry<String, NioSocketChannel>> entries = CHANNEL_MAP.entrySet();
+        for (Map.Entry<String, NioSocketChannel> entry : entries) {
+            if (entry.getValue() == channel && SESSION_SET.contains(entry.getKey())) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取用户映射的连接
+     */
+    public static NioSocketChannel getChannel (String username) {
+        if (SESSION_SET.contains(username)) {
+            Set<Map.Entry<String, NioSocketChannel>> entries = CHANNEL_MAP.entrySet();
+            for (Map.Entry<String, NioSocketChannel> entry : entries) {
+                if (entry.getKey().equals(username)) {
+                    return entry.getValue();
                 }
             }
         }
@@ -66,23 +77,23 @@ public class SessionSocketHolder {
     /**
      * 客户端上线
      */
-    public static void userOnline (Integer userid, String username, NioSocketChannel channel) {
-        put(userid, channel);
-        saveSession(userid, username);
+    public static void userOnline (String username, NioSocketChannel channel) {
+        put(username, channel);
+        saveSession(username);
     }
 
     /**
      * 客户端离线处理
      */
     public static void userOffLine (NioSocketChannel channel) {
-        Integer userid = null;
-        Set<Map.Entry<Integer, NioSocketChannel>> entries = CHANNEL_MAP.entrySet();
-        for (Map.Entry<Integer, NioSocketChannel> entry : entries) {
+        String username = null;
+        Set<Map.Entry<String, NioSocketChannel>> entries = CHANNEL_MAP.entrySet();
+        for (Map.Entry<String, NioSocketChannel> entry : entries) {
             if (entry.getValue() == channel) {
-                userid = entry.getKey();
+                username = entry.getKey();
             }
         }
-        removeSession(userid);
-        remove(userid);
+        removeSession(username);
+        remove(username);
     }
 }

@@ -1,6 +1,8 @@
 package com.maxzuo.bulb.im.handler;
 
 import com.alibaba.fastjson.JSONObject;
+import com.maxzuo.bulb.im.common.ChatMessageDTO;
+import com.maxzuo.bulb.im.common.HealthMessageDTO;
 import com.maxzuo.bulb.im.common.MessageDTO;
 import com.maxzuo.bulb.im.constant.Const;
 import com.maxzuo.bulb.im.service.impl.ClientHeartBeatHandlerImpl;
@@ -33,10 +35,9 @@ public class BIMClientHandler extends SimpleChannelInboundHandler<String> {
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         if (evt instanceof IdleStateEvent){
             IdleStateEvent idleStateEvent = (IdleStateEvent) evt ;
-            logger.info("定时检测服务端是否存活，发送心跳");
+            // 定时检测服务端是否存活，发送心跳
             if (idleStateEvent.state() == IdleState.WRITER_IDLE){
-                MessageDTO messageDTO =  new MessageDTO();
-                messageDTO.setUserid(666);
+                HealthMessageDTO messageDTO =  new HealthMessageDTO();
                 messageDTO.setCommandType(Const.CommandType.PING);
                 messageDTO.setPayLoad("PING");
                 byte[] content = JSONObject.toJSONBytes(messageDTO);
@@ -84,10 +85,12 @@ public class BIMClientHandler extends SimpleChannelInboundHandler<String> {
             MessageDTO messageDTO = JSONObject.parseObject(msg, MessageDTO.class);
             switch (messageDTO.getCommandType()) {
                 case Const.CommandType.MSG:
-                    logger.info("普通消息：{}", messageDTO.toString());
+                    ChatMessageDTO chatDTO = JSONObject.parseObject(msg, ChatMessageDTO.class);
+                    logger.info("收到消息 sendUser = {} msg = {}", chatDTO.getFrom(), chatDTO.getMsg());
                     break;
                 case Const.CommandType.PING:
-                    logger.info("服务器心跳响应：{} message = {}", LocalTime.now(), messageDTO.getPayLoad());
+                    HealthMessageDTO ppDTO = JSONObject.parseObject(msg, HealthMessageDTO.class);
+                    logger.debug("服务器心跳响应 time = {} payLoad = {}", LocalTime.now(), ppDTO.getPayLoad());
                     break;
                 default:
             }

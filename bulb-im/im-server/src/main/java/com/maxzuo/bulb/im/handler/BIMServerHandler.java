@@ -1,7 +1,10 @@
 package com.maxzuo.bulb.im.handler;
 
 import com.alibaba.fastjson.JSONObject;
+import com.maxzuo.bulb.im.common.ChatMessageDTO;
+import com.maxzuo.bulb.im.common.LoginMessageDTO;
 import com.maxzuo.bulb.im.common.MessageDTO;
+import com.maxzuo.bulb.im.common.HealthMessageDTO;
 import com.maxzuo.bulb.im.constant.Const;
 import com.maxzuo.bulb.im.service.IHeartBeatHandler;
 import com.maxzuo.bulb.im.util.NettyAttrUtil;
@@ -18,7 +21,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+
+import static com.maxzuo.bulb.im.util.SessionSocketHolder.getChannel;
 
 /**
  * Netty 消息handler
@@ -60,34 +64,51 @@ public class BIMServerHandler extends SimpleChannelInboundHandler<String> {
             MessageDTO messageDTO = JSONObject.parseObject(msg, MessageDTO.class);
             switch (messageDTO.getCommandType()) {
                 case Const.CommandType.LOGIN:
-                    logger.info("用户登录：{}", messageDTO.toString());
-                    SessionSocketHolder.userOnline(messageDTO.getUserid(), messageDTO.getUsername(), (NioSocketChannel) ctx.channel());
+                    LoginMessageDTO loginDTO = JSONObject.parseObject(msg, LoginMessageDTO.class);
+                    logger.info("用户登录 uesrname = {}", loginDTO.getUsername());
+                    SessionSocketHolder.userOnline(loginDTO.getUsername(), (NioSocketChannel) ctx.channel());
                     break;
                 case Const.CommandType.MSG:
-                    logger.info("普通消息：{}", messageDTO.toString());
+                    // 点对点发送
+                    ChatMessageDTO chatMsg = JSONObject.parseObject(msg, ChatMessageDTO.class);
+                    NioSocketChannel channel = getChannel(chatMsg.getTo());
+                    if (channel == null) {
+                        logger.warn("用户已下线无法发送消息 to = {}", chatMsg.getTo());
+                        return;
+                    }
+                    sendMsg(channel, msg.getBytes());
                     break;
                 case Const.CommandType.PING:
-                    logger.info("客户端心跳消息：{} userid = {}  message = {}", LocalTime.now(), messageDTO.getUserid(), messageDTO.getPayLoad());
-                    // 更新心跳时间，响应PONG
-                    MessageDTO response = new MessageDTO();
+                    HealthMessageDTO healthDTO = JSONObject.parseObject(msg, HealthMessageDTO.class);
+                    logger.debug("客户端心跳检测 time = {} payLoad = {}", LocalDateTime.now(), healthDTO.getPayLoad());
+                    HealthMessageDTO response = new HealthMessageDTO();
                     response.setCommandType(Const.CommandType.PING);
                     response.setPayLoad("PONG");
                     byte[] content = JSONObject.toJSONBytes(response);
 
-                    NettyAttrUtil.updateReaderTime(ctx.channel(),System.currentTimeMillis());
-                    ByteBuf message = Unpooled.buffer(content.length);
-                    message.writeBytes(content);
-                    ChannelFuture future = ctx.channel().writeAndFlush(message);
-                    future.addListener((ChannelFutureListener) channelFuture -> {
-                        if (!channelFuture.isSuccess()) {
-                            logger.error("IO error，close Channel");
-                            future.channel().close();
-                        }
-                    });
+                    sendMsg((NioSocketChannel) ctx.channel(), content);
                     break;
                 default:
             }
         }
+    }
+
+    /**
+     * 统一发送消息
+     * @param channel 连接
+     * @param content 消息
+     */
+    private void sendMsg (NioSocketChannel channel, byte[] content) {
+        NettyAttrUtil.updateReaderTime(channel,System.currentTimeMillis());
+        ByteBuf message = Unpooled.buffer(content.length);
+        message.writeBytes(content);
+        ChannelFuture future = channel.writeAndFlush(message);
+        future.addListener((ChannelFutureListener) channelFuture -> {
+            if (!channelFuture.isSuccess()) {
+                logger.error("IO error，close Channel");
+                future.channel().close();
+            }
+        });
     }
 
     /**

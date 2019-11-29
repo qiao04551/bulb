@@ -1,5 +1,7 @@
 package com.maxzuo.bulb.im.common;
 
+import com.maxzuo.bulb.im.constant.Const;
+
 /**
  * 通信的消息体
  * <p>
@@ -7,29 +9,10 @@ package com.maxzuo.bulb.im.common;
  */
 public class MessageDTO {
 
-    private Integer userid;
-
-    private String username;
-
+    /**
+     * 通信类型 {@link Const.CommandType}
+     */
     private Integer commandType;
-
-    private String payLoad;
-
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public Integer getCommandType() {
         return commandType;
@@ -37,23 +20,5 @@ public class MessageDTO {
 
     public void setCommandType(Integer commandType) {
         this.commandType = commandType;
-    }
-
-    public String getPayLoad() {
-        return payLoad;
-    }
-
-    public void setPayLoad(String payLoad) {
-        this.payLoad = payLoad;
-    }
-
-    @Override
-    public String toString() {
-        return "MessageEntiry{" +
-                "userid=" + userid +
-                ", username='" + username + '\'' +
-                ", commandType=" + commandType +
-                ", payLoad='" + payLoad + '\'' +
-                '}';
     }
 }

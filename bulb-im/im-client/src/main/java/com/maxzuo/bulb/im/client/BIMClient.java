@@ -1,9 +1,6 @@
 package com.maxzuo.bulb.im.client;
 
-import com.alibaba.fastjson.JSONObject;
-import com.maxzuo.bulb.im.common.MessageDTO;
 import com.maxzuo.bulb.im.common.ServerOnlineInfo;
-import com.maxzuo.bulb.im.constant.Const;
 import com.maxzuo.bulb.im.handler.BIMClientHandler;
 import com.maxzuo.bulb.im.service.IServerDiscoveryService;
 import io.netty.bootstrap.Bootstrap;
@@ -39,12 +36,6 @@ public class BIMClient {
 
     private EventLoopGroup group = new NioEventLoopGroup(0, new DefaultThreadFactory("bim-work"));
 
-    @Value("${client.username}")
-    private String username;
-
-    @Value("${client.userid}")
-    private Integer userId;
-
     @Value("${reconect.count}")
     private Integer maxReconnectCount;
 
@@ -59,7 +50,6 @@ public class BIMClient {
     public void start() {
         ServerOnlineInfo serverOnlineInfo = serverDiscoveryService.obtainServerInfo();
         startClient(serverOnlineInfo);
-        loginServer();
     }
 
     @PreDestroy
@@ -101,42 +91,15 @@ public class BIMClient {
     }
 
     /**
-     * 向服务器注册
+     * 发送消息
      */
-    private void loginServer () {
-        MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setUserid(userId);
-        messageDTO.setUsername(username);
-        messageDTO.setCommandType(Const.CommandType.LOGIN);
-        byte[] content = JSONObject.toJSONBytes(messageDTO);
-
+    public void sendStringMessage (byte[] content) {
         ByteBuf message = Unpooled.buffer(content.length);
         message.writeBytes(content);
         ChannelFuture future = channel.writeAndFlush(message);
         future.addListener((ChannelFutureListener) channelFuture -> {
             if (channelFuture.isSuccess()) {
-                logger.info("客户端注册成功：username = {} userid = {}", username, userId);
-            }
-        });
-    }
-
-    /**
-     * 发送字符串消息
-     */
-    public void sendStringMessage (String msg) {
-        MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setUserid(userId);
-        messageDTO.setUsername(username);
-        messageDTO.setCommandType(Const.CommandType.MSG);
-        messageDTO.setPayLoad(msg);
-        byte[] content = JSONObject.toJSONBytes(messageDTO);
-
-        ByteBuf message = Unpooled.buffer(content.length);
-        message.writeBytes(content);
-        ChannelFuture future = channel.writeAndFlush(message);
-        future.addListener((ChannelFutureListener) channelFuture -> {
-            if (channelFuture.isSuccess()) {
-                logger.info("客户端发消息成功：username = {} userid = {}", username, userId);
+                logger.debug("客户端发消息成功");
             }
         });
     }
