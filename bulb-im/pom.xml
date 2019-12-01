@@ -14,6 +14,7 @@
         <module>im-client</module>
         <module>im-common</module>
         <module>im-bio</module>
+        <module>im-nio</module>
     </modules>
 
     <artifactId>bulb-im</artifactId>

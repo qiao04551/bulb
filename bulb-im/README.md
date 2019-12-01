@@ -21,3 +21,7 @@ IM即时聊天室，多种实现方式（BIO、NIO、Netty）
 ### Road Map
 
 1.im-router 路由负载均衡,ZK协调负载均衡
+
+2.粘包、断包的问题
+
+3.Google Protobuf编码解码
