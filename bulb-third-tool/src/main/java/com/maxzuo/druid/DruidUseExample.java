@@ -14,9 +14,9 @@ public class DruidUseExample {
 
     public static void main(String[] args) {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl("jdbc:mysql://139.xx.xx.xx:8066/mooc?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true");
-        dataSource.setPassword("xx");
-        dataSource.setUsername("xx");
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/mooc");
+        dataSource.setUsername("root");
+        dataSource.setPassword("123456");
         dataSource.setInitialSize(5);
         dataSource.setMaxActive(10);
         dataSource.setMinIdle(10);
@@ -40,9 +40,9 @@ public class DruidUseExample {
 
             DruidPooledConnection connection = dataSource.getConnection();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM sc_base_coupon WHERE id = 100");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM sc_user WHERE id = 1");
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("name"));
+                System.out.println(resultSet.getString("username"));
             }
         } catch (Exception e) {
             e.printStackTrace();

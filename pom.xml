@@ -80,6 +80,7 @@
         <wiremock.version>2.19.0</wiremock.version>
         <karate.version>0.9.4</karate.version>
         <config.version>1.4.0</config.version>
+        <HikariCP.version>3.4.1</HikariCP.version>
     </properties>
 
     <modules>
@@ -661,6 +662,11 @@
                 <groupId>com.typesafe</groupId>
                 <artifactId>config</artifactId>
                 <version>${config.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>${HikariCP.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
