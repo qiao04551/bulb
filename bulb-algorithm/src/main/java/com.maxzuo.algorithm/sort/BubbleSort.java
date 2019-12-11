@@ -3,7 +3,7 @@ package com.maxzuo.algorithm.sort;
 import java.util.Arrays;
 
 /**
- * 冒泡排序，O(n2) 的时间复杂度
+ * 冒泡排序，O(n^2) 的时间复杂度，O（1）空间复杂度
  * <p>
  * Created by zfh on 2019/10/20
  */
