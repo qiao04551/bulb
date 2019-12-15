@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: SofaBoot
+logging:
+  path: ./logs
+# 使用zookeeper作为注册中心
+com:
+  alipay:
+    sofa:
+      rpc:
+        registry-address: zookeeper://127.0.0.1:2181

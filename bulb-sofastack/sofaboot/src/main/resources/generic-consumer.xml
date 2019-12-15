@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sofa="http://sofastack.io/schema/sofaboot"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
+       default-autowire="byName">
+
+    <!--provider配置-->
+    <!--<bean id="helloSyncServiceImpl" class="com.maxzuo.service.HelloSyncServiceImpl"/>-->
+    <!--<sofa:service ref="helloSyncServiceImpl" interface="com.maxzuo.service.HelloSyncService">-->
+    <!--    <sofa:binding.bolt/>-->
+    <!--</sofa:service>-->
+
+    <!--consumer配置-->
+    <sofa:reference id="helloSyncService" interface="com.maxzuo.sofa.IHelloSyncService">
+        <sofa:binding.bolt/>
+    </sofa:reference>
+
+    <sofa:reference id="scUserService" interface="com.maxzuo.dubbo.IScUserService">
+        <sofa:binding.dubbo/>
+    </sofa:reference>
+</beans>
