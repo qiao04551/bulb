@@ -83,4 +83,20 @@ public class MapExample {
         // 输出：2
         System.out.println(data.size());
     }
+
+    /**
+     * TreeMap实现SortedMap接口，能够把它保存的记录根据键排序，默认是按键值的升序排序，也可以指定排序的比较器，
+     * 当用Iterator遍历TreeMap时，得到的记录是排过序的。
+     */
+    @Test
+    public void testTreeMap () {
+        Map<String, String> treeMap = new TreeMap<>();
+        treeMap.put("abc", "abc");
+        treeMap.put("23", "23");
+        treeMap.put("cjk", "cjk");
+        Set<Map.Entry<String, String>> entries = treeMap.entrySet();
+        for (Map.Entry<String, String> entry : entries) {
+            System.out.println(entry.getKey());
+        }
+    }
 }
