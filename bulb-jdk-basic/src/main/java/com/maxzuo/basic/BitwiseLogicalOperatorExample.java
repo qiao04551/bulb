@@ -349,4 +349,22 @@ class BitwiseLogicalOperatorExample {
 
         System.out.println(Integer.MAX_VALUE - 4);
     }
+
+    /**
+     * 位运算缩写语法
+     */
+    @Test
+    void testAbbreviationBigOperator () {
+        int a = 8;
+        // 拆开就是：a = a << 1;
+        a <<= 1;
+        System.out.println(a);
+
+        a >>=1;
+        System.out.println(a);
+
+        a |= 1;
+        // 拆开就是：a = a | 1;
+        System.out.println(a);
+    }
 }
