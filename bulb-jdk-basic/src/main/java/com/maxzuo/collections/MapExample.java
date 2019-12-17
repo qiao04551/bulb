@@ -16,6 +16,8 @@ public class MapExample {
      * <pre>
      *   1.HashMap 底层是基于数组和链表实现的。
      *   2.容量的默认大小是 16，负载因子是 0.75，当 HashMap 的 size > 16*0.75 时就会发生扩容(容量和负载因子都可以自由调整)。
+     *   3.HashMap resize()扩容机制 和 高并发情况下的HashMap：
+     *     美团技术文章：https://tech.meituan.com/2016/06/24/java-hashmap.html
      * </pre>
      */
     @Test
