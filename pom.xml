@@ -81,6 +81,7 @@
         <karate.version>0.9.4</karate.version>
         <config.version>1.4.0</config.version>
         <HikariCP.version>3.4.1</HikariCP.version>
+        <zxing.version>3.3.3</zxing.version>
     </properties>
 
     <modules>
@@ -668,6 +669,16 @@
                 <groupId>com.zaxxer</groupId>
                 <artifactId>HikariCP</artifactId>
                 <version>${HikariCP.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>${zxing.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>${zxing.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
