@@ -82,6 +82,7 @@
         <config.version>1.4.0</config.version>
         <HikariCP.version>3.4.1</HikariCP.version>
         <zxing.version>3.3.3</zxing.version>
+        <quartz.version>2.3.0</quartz.version>
     </properties>
 
     <modules>
@@ -679,6 +680,11 @@
                 <groupId>com.google.zxing</groupId>
                 <artifactId>javase</artifactId>
                 <version>${zxing.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
