@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BootController {
 
-    @Value("${timeout:0}")
+    @Value("${timeout}")
     private Integer timeout;
 
-    @Value("${spring.jdbc.url:unknown}")
+    @Value("${spring.jdbc.url}")
     private String jdbcUrl;
 
     @GetMapping("config")

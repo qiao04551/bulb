@@ -1,6 +1,2 @@
 server:
   port: 8081
-
-# Apollo\u914D\u7F6E
-app.id: SampleApp
-apollo.meta: http://127.0.0.1:8080
