@@ -1,5 +1,9 @@
 ## Apollo配置中心-客户端
 
+> 外网访问部署
+
+-Deureka.instance.ip-address=${指定的IP}
+
 > 基于application.properties的方式
 
 ```yaml
@@ -22,4 +26,4 @@ apollo.meta: http://127.0.0.1:8080
 
 > 示例配置
 
--Denv=Local -Dapp.id=SampleApp -Dapollo.meta=http://127.0.0.1:8080
+-DLocal -Dapp.id=SampleApp -Dapollo.meta=http://118.190.141.231:8071
