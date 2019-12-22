@@ -6,9 +6,12 @@
             http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
        default-autowire="byName">
 
-    <bean id="helloSyncServiceImpl" class="com.maxzuo.sofa.HelloSyncServiceImpl"/>
-    <sofa:service ref="helloSyncServiceImpl" interface="com.maxzuo.sofa.IHelloSyncService">
+    <sofa:service ref="helloSyncService" interface="com.maxzuo.sofa.IHelloSyncService">
         <sofa:binding.dubbo/>
     </sofa:service>
 
+    <sofa:service ref="scMemberService" interface="com.maxzuo.sofa.IScMemberService">
+        <sofa:binding.rest/>
+        <sofa:binding.bolt/>
+    </sofa:service>
 </beans>

@@ -1,8 +1,11 @@
 package com.maxzuo.sofa;
 
+import org.springframework.stereotype.Service;
+
 /**
  * Created by zfh on 2019/12/15
  */
+@Service("helloSyncService")
 public class HelloSyncServiceImpl implements IHelloSyncService {
 
     @Override

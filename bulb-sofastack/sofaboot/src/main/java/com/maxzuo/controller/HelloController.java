@@ -2,6 +2,7 @@ package com.maxzuo.controller;
 
 import com.maxzuo.dubbo.IScUserService;
 import com.maxzuo.sofa.IHelloSyncService;
+import com.maxzuo.sofa.IScMemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,12 @@ public class HelloController {
     @Autowired
     private IScUserService scUserService;
 
-    @GetMapping("log")
-    public String log () {
-        logger.warn("打印日志");
-        return "hello log";
+    @Autowired
+    private IScMemberService scMemberService;
+
+    @GetMapping("member")
+    public String doMember(@RequestParam("name")String name) {
+        return scMemberService.sayName(name, 232);
     }
 
     @GetMapping("hello")

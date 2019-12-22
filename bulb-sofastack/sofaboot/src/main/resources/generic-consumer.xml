@@ -20,4 +20,8 @@
     <sofa:reference id="scUserService" interface="com.maxzuo.dubbo.IScUserService">
         <sofa:binding.dubbo/>
     </sofa:reference>
+
+    <sofa:reference id="scMemberService" interface="com.maxzuo.sofa.IScMemberService">
+        <sofa:binding.rest/>
+    </sofa:reference>
 </beans>

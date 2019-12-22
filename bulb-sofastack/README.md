@@ -32,3 +32,11 @@ logging:
 > SOFATracer
 
 功能不齐全，开发中
+
+> SofaRPC
+
+服务提供者，可以绑定多个协议；消费者只能绑定一个协议
+
+SOFARPC 的 RESTful 服务的默认端口为 8341。示例：http://localhost:8341/webapi/sayName/123/232
+
+JAXRS 的标准的注解的使用方式可以参考[RESTEasy 的文档](https://docs.jboss.org/resteasy/docs/3.0.12.Final/userguide/html/)
