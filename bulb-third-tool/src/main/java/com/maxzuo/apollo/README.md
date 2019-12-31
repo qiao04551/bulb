@@ -6,6 +6,8 @@
 
 > 基于application.properties的方式
 
+注解：@EnableApolloConfig
+
 ```yaml
 # Apollo配置
 app.id: SampleApp
