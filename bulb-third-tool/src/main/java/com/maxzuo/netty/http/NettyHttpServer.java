@@ -1,4 +1,4 @@
-package com.maxzuo.netty;
+package com.maxzuo.netty.http;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.Unpooled;
