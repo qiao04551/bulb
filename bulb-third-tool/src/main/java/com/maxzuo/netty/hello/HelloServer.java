@@ -1,5 +1,6 @@
-package com.maxzuo.netty;
+package com.maxzuo.netty.hello;
 
+import com.maxzuo.proto.protocol.MessagePayload;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -8,9 +9,13 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
+import io.netty.handler.codec.protobuf.ProtobufEncoder;
+import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
+import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
 /**
- * 丢弃任何进入的数据，启动服务端
+ * Netty服务端
  * <p>
  * Created by zfh on 2019/06/08
  */
@@ -52,8 +57,12 @@ public class HelloServer {
             b.childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
-                    // 自定义处理类
-                    ch.pipeline().addLast(new HelloServerHandler());
+                    ch.pipeline()
+                            .addLast(new ProtobufVarint32FrameDecoder())
+                            .addLast(new ProtobufDecoder(MessagePayload.getDefaultInstance()))
+                            .addLast(new ProtobufVarint32LengthFieldPrepender())
+                            .addLast(new ProtobufEncoder())
+                            .addLast(new HelloServerHandler());
                 }
             });
 
