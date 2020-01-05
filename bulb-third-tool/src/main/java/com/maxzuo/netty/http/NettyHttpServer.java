@@ -28,7 +28,8 @@ public class NettyHttpServer {
         System.out.println("准备运行端口：" + port);
 
         ServerBootstrap bootstrap = new ServerBootstrap();
-        bootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
+        bootstrap.group(bossGroup, workerGroup)
+                .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
