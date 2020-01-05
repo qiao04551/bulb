@@ -1,4 +1,4 @@
-package com.maxzuo.netty.hello;
+package com.maxzuo.netty.protobuf;
 
 import com.maxzuo.proto.protocol.MessagePayload;
 import io.netty.bootstrap.ServerBootstrap;
