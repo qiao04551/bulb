@@ -1,6 +1,6 @@
 package com.maxzuo.netty.protobuf;
 
-import com.maxzuo.proto.protocol.MessagePayload;
+import com.maxzuo.protobuf.protocol.MessagePayload;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

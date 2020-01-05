@@ -1,6 +1,6 @@
-package com.maxzuo.proto;
+package com.maxzuo.protobuf;
 
-import com.maxzuo.proto.protocol.MessagePayload;
+import com.maxzuo.protobuf.protocol.MessagePayload;
 
 import java.time.LocalDateTime;
 
