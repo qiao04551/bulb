@@ -87,6 +87,7 @@
         <apollo.version>1.5.1</apollo.version>
         <javax.mail.version>1.6.2</javax.mail.version>
         <jboss-marshalling.version>1.4.11.Final</jboss-marshalling.version>
+        <protostuff.version>1.6.0</protostuff.version>
     </properties>
 
     <modules>
@@ -714,6 +715,16 @@
                 <groupId>org.jboss.marshalling</groupId>
                 <artifactId>jboss-marshalling-serial</artifactId>
                 <version>${jboss-marshalling.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.protostuff</groupId>
+                <artifactId>protostuff-core</artifactId>
+                <version>${protostuff.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.protostuff</groupId>
+                <artifactId>protostuff-runtime</artifactId>
+                <version>${protostuff.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
