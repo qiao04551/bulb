@@ -86,6 +86,7 @@
         <testng.version>6.14.3</testng.version>
         <apollo.version>1.5.1</apollo.version>
         <javax.mail.version>1.6.2</javax.mail.version>
+        <jboss-marshalling.version>1.4.11.Final</jboss-marshalling.version>
     </properties>
 
     <modules>
@@ -703,6 +704,16 @@
                 <groupId>javax.mail</groupId>
                 <artifactId>javax.mail-api</artifactId>
                 <version>${javax.mail.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.marshalling</groupId>
+                <artifactId>jboss-marshalling</artifactId>
+                <version>${jboss-marshalling.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.marshalling</groupId>
+                <artifactId>jboss-marshalling-serial</artifactId>
+                <version>${jboss-marshalling.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
