@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:bulb="http://bulb.maxzuo.com/bulb"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://bulb.maxzuo.com/bulb
+                           http://bulb.maxzuo.com/bulb/bulb.xsd">
+
+    <bulb:people id="beanId" name="dazuo" age="23"/>
+</beans>

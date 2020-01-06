@@ -20,5 +20,6 @@
         <module>spring-security-jwt</module>
         <module>spring-data-jpa</module>
         <module>spring-batch</module>
+        <module>spring-support</module>
     </modules>
 </project>
