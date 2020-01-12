@@ -3,6 +3,7 @@ package com.maxzuo.basic;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -79,5 +80,14 @@ class RegularTest {
             return m.group(1);
         }
         return "";
+    }
+
+    @Test
+    void testSplit() {
+        String str = "hello.world";
+        String[] split = str.split("\\.");  // . 是转义字符，需要转义
+        System.out.println(Arrays.toString(split));
+
+        System.out.println(str.indexOf("."));   // 不需要转义
     }
 }
