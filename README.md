@@ -18,3 +18,18 @@
 - bulb-spring-boot-graphql： 使用Graphql查询的一个web项目
 - bulb-spring-cloud：        基于Spring Cloud项目结构
 - bulb-third-tool：          第三方流行框架和工具jar的使用
+
+### 微信公众号
+> 爱好阅读科技周刊，时而写一点博客
+
+<a href="#" target="_blank">
+<img src="https://github.com/ZuoFuhong/bulb/blob/master/doc/qrcode_for_gh.jpg" width="100px" height="100px">
+</a>
+
+
+### Backer and Sponsor
+> jetbrains
+
+<a href="https://www.jetbrains.com/?from=ZuoFuhong/bulb" target="_blank">
+<img src="https://github.com/ZuoFuhong/bulb/blob/master/doc/jetbrains-gold-reseller.svg" width="100px" height="100px">
+</a>
