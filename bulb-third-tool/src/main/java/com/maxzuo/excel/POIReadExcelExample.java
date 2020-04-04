@@ -45,14 +45,14 @@ public class POIReadExcelExample {
      */
     private static ApplyTableExcelVO mockFillData() {
         ApplyTableExcelVO excelVO = new ApplyTableExcelVO();
-        excelVO.setCompany("智创工场");
+        excelVO.setCompany("xxx");
         excelVO.setFillTableTime("2019年5月9日");
         excelVO.setApplicant("dazuo");
         excelVO.setActivityType(1);
         excelVO.setActivitySubject("winner winner clicken dinner");
         excelVO.setActivityGoal("clicken dinner");
         excelVO.setActivityTime("2019-5-9");
-        excelVO.setActivityPlace("东沙大厦");
+        excelVO.setActivityPlace("xxx");
         excelVO.setPersonnel("dazuo、wang");
         excelVO.setActivityItems("ipad、MAC");
         excelVO.setActivityIntroduced("一起happy");

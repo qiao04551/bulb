@@ -15,19 +15,19 @@ import java.util.List;
  */
 public class RedisShardedPoolUtil {
 
-    private static final String     HOST_1    = "47.98.199.80";
+    private static final String     HOST_1    = "xxx";
 
     private static final Integer    PORT_1    = 6377;
 
     private static final Integer    TIMEOUT_1 = 2000;
 
-    private static final String     HOST_2    = "47.98.199.80";
+    private static final String     HOST_2    = "xxx";
 
     private static final Integer    PORT_2    = 6378;
 
     private static final Integer    TIMEOUT_2 = 2000;
 
-    private static final String     PASSWORD  = "dazuo.123";
+    private static final String     PASSWORD  = "xxx";
 
     private static final Integer    DATABASE  = 0;
 
@@ -56,9 +56,9 @@ public class RedisShardedPoolUtil {
         config.setBlockWhenExhausted(true);
 
         JedisShardInfo var1 = new JedisShardInfo(HOST_1, PORT_1, TIMEOUT_1);
-        var1.setPassword("dazuo.123");
+        var1.setPassword("xxx");
         JedisShardInfo var2 = new JedisShardInfo(HOST_2, PORT_2, TIMEOUT_2);
-        var2.setPassword("dazuo.123");
+        var2.setPassword("xxx");
         List<JedisShardInfo> var3 = new ArrayList<>();
         var3.add(var1);
         var3.add(var2);
