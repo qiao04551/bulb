@@ -22,7 +22,7 @@ public class WorkspaceNotifyExample {
 
     @Before
     public void init() {
-        jedis = new Jedis("47.98.199.80", 6379);
+        jedis = new Jedis("192.168.1.1", 6379);
         jedis.auth("myredis");
     }
 

@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
  */
 public class JedisPoolExample {
 
-    private static final String HOST = "47.98.199.80";
+    private static final String HOST = "192.168.1.1";
 
     private static final Integer PORT = 6379;
 

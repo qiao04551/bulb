@@ -30,7 +30,7 @@ public class DocumentApiExample extends ElasticApiBase {
      * 通过ID查询数据
      * <pre>
      *  通过RESTful API 查询所有数据
-     *  $ curl http://47.98.199.80:9200/zxcity_elk/file/_search
+     *  $ curl http://192.168.1.1:9200/zxcity_elk/file/_search
      * </pre>
      */
     @Test

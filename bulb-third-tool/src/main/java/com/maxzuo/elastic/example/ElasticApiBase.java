@@ -17,7 +17,7 @@ public class ElasticApiBase {
 
     private static final Logger logger = LoggerFactory.getLogger(DocumentApiExample.class);
 
-    private static final String ES_IP = "47.98.199.80";
+    private static final String ES_IP = "192.168.1.1";
 
     private static final Integer ES_PROT = 9300;
 

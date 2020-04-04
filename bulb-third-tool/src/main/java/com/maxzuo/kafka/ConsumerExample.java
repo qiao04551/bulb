@@ -20,10 +20,9 @@ import java.util.concurrent.TimeUnit;
 public class ConsumerExample {
 
     /**
-     * test：47.98.199.80:9092
      * cluster：192.168.3.192:9090,192.168.3.191:9090,192.168.3.181:9090
      */
-    private static final String BOOTSTRAP_SERVERS = "47.98.199.80:9092";
+    private static final String BOOTSTRAP_SERVERS = "192.168.3.192:9092";
 
     /**
      * 1.偏移量和消费者的位置

@@ -17,7 +17,7 @@ public class Consumer {
     public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
         // 1.创建一个ConnectionFactory，并进行配置
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("47.98.199.80");
+        factory.setHost("192.168.1.1");
         factory.setPort(5672);
         factory.setVirtualHost("/");
         Connection connection = factory.newConnection();

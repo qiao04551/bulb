@@ -24,7 +24,7 @@ public class JedisClientExample {
      */
     @Test
     public void clientMode() {
-        Jedis jedis = new Jedis("47.98.199.80", 6379);
+        Jedis jedis = new Jedis("192.168.1.1", 6379);
         jedis.auth("myredis");
         jedis.select(1);
 

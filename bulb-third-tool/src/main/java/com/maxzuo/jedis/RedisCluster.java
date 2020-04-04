@@ -32,12 +32,12 @@ public class RedisCluster {
         config.setBlockWhenExhausted(true);
 
         Set<HostAndPort> nodes = new HashSet<>();
-        HostAndPort var1 = new HostAndPort("47.98.199.80", 6373);
-        HostAndPort var2 = new HostAndPort("47.98.199.80", 6374);
-        HostAndPort var3 = new HostAndPort("47.98.199.80", 6375);
-        HostAndPort var4 = new HostAndPort("47.98.199.80", 6376);
-        HostAndPort var5 = new HostAndPort("47.98.199.80", 6377);
-        HostAndPort var6 = new HostAndPort("47.98.199.80", 6378);
+        HostAndPort var1 = new HostAndPort("192.168.1.1", 6373);
+        HostAndPort var2 = new HostAndPort("192.168.1.1", 6374);
+        HostAndPort var3 = new HostAndPort("192.168.1.1", 6375);
+        HostAndPort var4 = new HostAndPort("192.168.1.1", 6376);
+        HostAndPort var5 = new HostAndPort("192.168.1.1", 6377);
+        HostAndPort var6 = new HostAndPort("192.168.1.1", 6378);
         nodes.add(var1);
         nodes.add(var2);
         nodes.add(var3);
@@ -61,7 +61,7 @@ public class RedisCluster {
         Map<String, JedisPool> clusterNodes = jedisCluster.getClusterNodes();
 
         // 单个节点可以监听到
-        JedisPool pool = clusterNodes.get("47.98.199.80:6374");
+        JedisPool pool = clusterNodes.get("192.168.1.1:6374");
         Jedis jedis = pool.getResource();
         jedis.subscribe(new JedisPubSub() {
             @Override

@@ -29,7 +29,7 @@ public class BaseOperationExample {
     @Before
     public void initConnect () {
         Configuration config = HBaseConfiguration.create();
-        config.set("hbase.zookeeper.quorum", "47.98.199.80");
+        config.set("hbase.zookeeper.quorum", "192.168.1.1");
         try {
             connection = ConnectionFactory.createConnection(config);
         } catch (IOException e) {
