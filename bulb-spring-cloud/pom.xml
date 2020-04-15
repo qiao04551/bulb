@@ -26,6 +26,7 @@
         <module>user-producer</module>
         <module>zuul-server</module>
         <module>config-server</module>
+        <module>spring-cloud-gateway</module>
     </modules>
 
     <dependencyManagement>

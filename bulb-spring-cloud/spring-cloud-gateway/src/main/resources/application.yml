@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: zxcity-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: url-proxy-1
+          uri: http://httpbin.org:80
+          predicates:
+            - Path=/get
+            - Method=GET
+          filters:
+            - PrefixPath=/httpbin
+            - StripPrefix=1
+            - AddRequestHeader=X-Request-Foo, Bar
+            - AddRequestParameter=age, 18
+            - Authorize=1
