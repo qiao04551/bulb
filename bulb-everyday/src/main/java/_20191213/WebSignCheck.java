@@ -1,4 +1,4 @@
-package com.maxzuo.everyday.sign;
+package _20191213;
 
 import org.apache.commons.codec.digest.DigestUtils;
 

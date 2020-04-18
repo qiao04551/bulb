@@ -1,8 +1,12 @@
-package com.maxzuo.everyday.rsa;
+package _20191230;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+/**
+ * Base64编/解码
+ * Created by zfh on 2019/12/30
+ */
 public class Base64Utils {
 
     /**

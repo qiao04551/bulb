@@ -1,11 +1,11 @@
-package com.maxzuo.everyday;
+package _20191005;
 
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Tianchi 选手代码，Thread.join()的使用
  * <p>
- * Created by zfh on 2019/10/08
+ * Created by zfh on 2019/10/05
  */
 public class TianchiDemo implements Runnable {
 

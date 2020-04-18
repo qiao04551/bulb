@@ -1,9 +1,9 @@
-package com.maxzuo.everyday;
+package _20191001;
 
 /**
  * Java用数组实现一个栈（栈是先进先出的结构）
  * <p>
- * Created by zfh on 2019/10/08
+ * Created by zfh on 2019/10/01
  */
 public class SimpleStack<T> {
 

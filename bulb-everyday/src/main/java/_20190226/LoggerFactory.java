@@ -1,4 +1,4 @@
-package com.maxzuo.everyday.logger;
+package _20190226;
 
 /**
  * 日志工厂-生成日志记录器

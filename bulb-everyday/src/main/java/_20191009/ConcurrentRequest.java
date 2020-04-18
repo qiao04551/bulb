@@ -1,4 +1,4 @@
-package com.maxzuo.everyday;
+package _20191009;
 
 import com.alibaba.fastjson.JSONObject;
 import okhttp3.*;
@@ -10,9 +10,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 并发请求
+ * 多线程-模拟并发请求
  * <p>
- * Created by zfh on 2019/10/08
+ * Created by zfh on 2019/10/09
  */
 public class ConcurrentRequest {
 

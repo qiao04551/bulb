@@ -1,4 +1,4 @@
-package com.maxzuo.everyday.binlog;
+package _20191008;
 
 import javax.sql.DataSource;
 import java.io.*;
@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * rollback.sql 数据清洗
+ * MySQL binlog 日志-rollback.sql 数据清洗
  * <p>
  * Created by zfh on 2019/10/08
  */
