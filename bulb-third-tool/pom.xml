@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>bulb-demo</artifactId>
+    <artifactId>bulb-third-tool</artifactId>
 
     <dependencies>
         <dependency>
@@ -56,14 +56,6 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy-agent</artifactId>
-        </dependency>
-        <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
         </dependency>
@@ -77,10 +69,6 @@
             <version>${java.version}</version>
             <scope>system</scope>
             <systemPath>${java.home}/../lib/tools.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>transmittable-thread-local</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
