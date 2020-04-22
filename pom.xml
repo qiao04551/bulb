@@ -99,7 +99,6 @@
         <module>bulb-jdk-basic</module>
         <module>bulb-design-patterns</module>
         <module>bulb-dubbo</module>
-        <module>bulb-print-template</module>
         <module>bulb-spring-cloud</module>
         <module>bulb-im</module>
         <module>bulb-everyday</module>

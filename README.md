@@ -12,7 +12,6 @@
 - bulb-im                    网络IM聊天室项目
 - bulb-jdk-basic：           语法基础以及jdk常用的类
 - bulb-openfire-client：     openfire的二次开发
-- bulb-print-template：      打印模板组件
 - bulb-sofastack             sofastack体系组件
 - bulb-spring-spring：       Spring系列
 - bulb-spring-boot-graphql： 使用Graphql查询的一个web项目
