@@ -88,6 +88,7 @@
         <javax.mail.version>1.6.2</javax.mail.version>
         <jboss-marshalling.version>1.4.11.Final</jboss-marshalling.version>
         <protostuff.version>1.6.0</protostuff.version>
+        <guice.version>4.2.3</guice.version>
     </properties>
 
     <modules>
@@ -724,6 +725,11 @@
                 <groupId>io.protostuff</groupId>
                 <artifactId>protostuff-runtime</artifactId>
                 <version>${protostuff.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
