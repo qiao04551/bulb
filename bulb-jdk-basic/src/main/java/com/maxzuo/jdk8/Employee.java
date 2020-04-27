@@ -1,4 +1,4 @@
-package com.maxzuo.lambda;
+package com.maxzuo.jdk8;
 
 /**
  * Created by zfh on 2019/11/13
@@ -7,10 +7,10 @@ public class Employee {
 
     public String name = "dazuo";
 
-    public Employee () {
+    Employee() {
     }
 
-    public Employee(String name) {
-        name = name;
+    Employee(String name) {
+        this.name = name;
     }
 }
