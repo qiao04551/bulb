@@ -14,7 +14,7 @@
 
     <modules>
         <module>spring-analysis</module>
-        <module>spring-boot-starting</module>
+        <module>spring-deferred-result</module>
         <module>spring-webflux</module>
         <module>spring-data-mongodb</module>
         <module>spring-security-jwt</module>

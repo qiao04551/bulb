@@ -8,13 +8,18 @@
         <version>2.1.5.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>spring-boot-starting</artifactId>
+    <artifactId>spring-deferred-result</artifactId>
+    <description>通过spring提供的DeferredResult实现长轮询服务端推送消息</description>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.0-jre</version>
         </dependency>
     </dependencies>
 
