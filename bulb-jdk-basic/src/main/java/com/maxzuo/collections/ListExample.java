@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public class ListExample {
 
     /**
-     * 基于数组实现，随机访问数组元素效率高，时间复杂度O(1)；删除数据开销很大，需要重排数组中所有的数据。
+     * 基于数组实现，随机访问数组元素效率高，时间复杂度O(1)；删除数据开销很大，需要重排数组中所有的数据。根据最坏打算，时间复杂度是O(n)。
      * <pre>
      *   1.ArrayList 实现了 RandomAccess 接口，实现了这个接口的 List，那么使用for循环的方式获取数据会优于用迭代器获取数据。
      *   2.扩容策略：int newCapacity = oldCapacity + (oldCapacity >> 1);  扩大一半。
@@ -22,17 +22,15 @@ public class ListExample {
     @Test
     public void testArrayList () {
         ArrayList<String> list = new ArrayList<>(10);
-        list.add("hello");
-        list.add("world");
-        list.add("world");
-        list.get(0);
-        list.set(1, "test");
+        list.add("one");
+        list.add("two");
+        list.set(1, "three");
+        list.add(2, "four");
         list.remove(0);
 
+        System.out.println(list.get(0));
+
         list.clear();
-        for (String s : list) {
-            System.out.println(s);
-        }
     }
 
     /**
@@ -45,12 +43,9 @@ public class ListExample {
         linkedList.addFirst("first");
         linkedList.addLast("last");
 
-        linkedList.get(0);
         linkedList.poll();
         linkedList.pop();
 
-        for (String s : linkedList) {
-            System.out.println(s);
-        }
+        System.out.println(linkedList.get(0));
     }
 }
