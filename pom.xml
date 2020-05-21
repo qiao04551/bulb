@@ -89,6 +89,7 @@
         <jboss-marshalling.version>1.4.11.Final</jboss-marshalling.version>
         <protostuff.version>1.6.0</protostuff.version>
         <guice.version>4.2.3</guice.version>
+        <smack.version>4.3.4</smack.version>
     </properties>
 
     <modules>
@@ -96,7 +97,6 @@
         <module>bulb-third-tool</module>
         <module>bulb-spring</module>
         <module>bulb-hessian</module>
-        <module>bulb-openfire-client</module>
         <module>bulb-jdk-basic</module>
         <module>bulb-design-patterns</module>
         <module>bulb-spring-cloud</module>
@@ -729,6 +729,31 @@
                 <groupId>com.google.inject</groupId>
                 <artifactId>guice</artifactId>
                 <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.igniterealtime.smack</groupId>
+                <artifactId>smack-core</artifactId>
+                <version>${smack.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.igniterealtime.smack</groupId>
+                <artifactId>smack-tcp</artifactId>
+                <version>${smack.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.igniterealtime.smack</groupId>
+                <artifactId>smack-extensions</artifactId>
+                <version>${smack.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.igniterealtime.smack</groupId>
+                <artifactId>smack-java7</artifactId>
+                <version>${smack.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.igniterealtime.smack</groupId>
+                <artifactId>smack-im</artifactId>
+                <version>${smack.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

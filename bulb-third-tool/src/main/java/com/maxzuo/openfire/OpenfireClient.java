@@ -1,4 +1,4 @@
-package com.maxzuo.openfire.client;
+package com.maxzuo.openfire;
 
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SmackException;
