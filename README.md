@@ -7,7 +7,6 @@
 - bulb-design-patterns：     设计模式入门示例，以及收藏一些经典设计模式使用案例
 - bulb-everyday：            每天举个栗子
 - bulb-graphql-server：      使用graphql查询的服务器
-- bulb-hessian：             hessian框架的入门示例
 - bulb-im                    网络IM聊天室项目
 - bulb-jdk-basic：           语法基础以及jdk常用的类
 - bulb-sofastack             sofastack体系组件

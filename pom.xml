@@ -62,7 +62,7 @@
         <libthrift.version>0.12.0</libthrift.version>
         <servlet.version>3.1.0</servlet.version>
         <hessian.version>4.0.62</hessian.version>
-        <jetty.version>9.4.19.v20190610</jetty.version>
+        <jetty.version>9.4.28.v20200408</jetty.version>
         <httpclient.version>4.5.9</httpclient.version>
         <okhttp.version>3.14.2</okhttp.version>
         <protobuf-java.version>3.9.1</protobuf-java.version>
@@ -96,7 +96,6 @@
         <module>bulb-agent</module>
         <module>bulb-third-tool</module>
         <module>bulb-spring</module>
-        <module>bulb-hessian</module>
         <module>bulb-jdk-basic</module>
         <module>bulb-design-patterns</module>
         <module>bulb-spring-cloud</module>
@@ -544,6 +543,20 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-servlets</artifactId>
                 <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-util</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-http</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-io</artifactId>
             </dependency>
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>

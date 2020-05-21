@@ -1,24 +1,23 @@
-package com.maxzuo.bulb.hessian;
+package com.maxzuo.hessian;
 
 import com.caucho.hessian.client.HessianProxyFactory;
-import com.maxzuo.bulb.hessian.service.IBasic;
 
 /**
- * Hessian 客户端
+ * Hessian客户端
  * <p>
- * Created by zfh on 2019/08/13
+ * Created by zfh on 2020/05/21
  */
 public class HessianClient {
 
     public static void main(String[] args) {
         try {
-            String url = "http://localhost:8080/hessian";
+            String url = "http://localhost:8080/token";
 
             HessianProxyFactory factory = new HessianProxyFactory();
             factory.setOverloadEnabled(true);
-            IBasic basic = (IBasic) factory.create(IBasic.class, url);
+            TokenService tokenService = (TokenService) factory.create(TokenService.class, url);
 
-            System.out.println(basic.sayHello("dazuo"));
+            System.out.println(tokenService.getToken(10));
         } catch (Exception e) {
             e.printStackTrace();
         }
