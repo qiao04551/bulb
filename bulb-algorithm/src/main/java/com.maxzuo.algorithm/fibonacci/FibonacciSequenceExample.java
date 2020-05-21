@@ -1,4 +1,4 @@
-package com.maxzuo.algorithm;
+package com.maxzuo.algorithm.fibonacci;
 
 /**
  * 斐波那契数列
