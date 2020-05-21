@@ -21,5 +21,6 @@
         <module>spring-data-jpa</module>
         <module>spring-batch</module>
         <module>spring-support</module>
+        <module>spring-mvc</module>
     </modules>
 </project>
