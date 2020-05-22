@@ -17,6 +17,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * <p>RateLimiter经常用于限制对一些物理资源或者逻辑资源的访问速率。与Semaphore 相比，Semaphore 限制了并发访问的数量而不是使用速率。
  *
+ * <p>参考文章：
+ * 限流算法之漏桶算法、令牌桶算法：https://www.cnblogs.com/SUNSHINEC/p/9577682.html
+ * 高并发系统之限流特技：https://www.iteye.com/blog/jinnianshilongnian-2305117
+ *
  * Created by zfh on 2020/04/28
  */
 public class RateLimiterExample {
