@@ -1,4 +1,4 @@
-package _20200418.servlet;
+package _20200418.example;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * <p>
  * Created by zfh on 2020/04/18
  */
-public class ClientBootstrap {
+public class client {
 
     private static final String SYNC_URL = "http://localhost:8080/long-polling";
 
@@ -21,6 +21,7 @@ public class ClientBootstrap {
 
     void poll() {
         // 循环执行，保证每次longpolling结束，再次发起longpolling
+        // 结束条件，超时或者拿到数据
         while (!Thread.interrupted()) {
             doPoll();
         }
@@ -76,7 +77,7 @@ public class ClientBootstrap {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        ClientBootstrap bootstrap = new ClientBootstrap();
+        client bootstrap = new client();
         bootstrap.poll();
 
         Thread.sleep(Integer.MAX_VALUE);
