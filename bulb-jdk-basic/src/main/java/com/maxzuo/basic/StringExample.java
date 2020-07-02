@@ -1,11 +1,13 @@
 package com.maxzuo.basic;
 
+import org.junit.Test;
+
 /**
- * 字符串格式化
+ * 字符串 示例
  * <p>
  * Created by zfh on 2019/08/04
  */
-public class StringFormatExample {
+public class StringExample {
 
     /**
      * %s 字符串类型
@@ -23,11 +25,12 @@ public class StringFormatExample {
      * %n 换行符
      * %tx 日期与时间类型（x代表不同的日期与时间转换符
      */
-    public static void main(String[] args) {
+    @Test
+    public void testStringFormat() {
         String str;
-        str=String.format("Hi,%s", "王力");
+        str = String.format("Hi,%s", "王力");
         System.out.println(str);
-        str=String.format("Hi,%s:%s.%s", "王南","王力","王张");
+        str = String.format("Hi,%s:%s.%s", "王南","王力","王张");
         System.out.println(str);
         System.out.printf("字母a的大写是：%c %n", 'A');
         System.out.printf("3>7的结果是：%b %n", 3>7);
