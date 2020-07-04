@@ -2,8 +2,7 @@ package com.maxzuo.collections;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * 集合框架-List
@@ -47,5 +46,27 @@ public class ListExample {
         linkedList.pop();
 
         System.out.println(linkedList.get(0));
+    }
+
+    /**
+     * 迭代器（iterator）有时又称游标（cursor）是程序设计的软件设计模式，可在容器（container，例如链表或阵列）上遍访的接口，
+     * 设计人员无需关心容器的内容。
+     * <pre>
+     *   Java要求集合必须实现Iterable接口，才能使用for-each语法糖遍历该集合的实例。
+     * </pre>
+     */
+    @Test
+    public void testIterator() {
+        ArrayList<String> list = new ArrayList<>(10);
+        list.add("one");
+        list.add("two");
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            String item = iterator.next();
+            System.out.println(item);
+            if (item.equals("one")) {
+                iterator.remove();
+            }
+        }
     }
 }
