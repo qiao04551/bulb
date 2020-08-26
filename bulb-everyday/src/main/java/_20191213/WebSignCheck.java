@@ -60,7 +60,7 @@ public class WebSignCheck {
         form.setAppid(APPID);
         form.setBody("test body");
         form.setDetail("test detail");
-        form.setNonceStr("ivv49q404zfp8075ivbcw194ardqafha");
+        form.setNonceStr(createNonceStr(10));
         form.setTotalAmount(88);
         return form;
     }
