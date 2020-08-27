@@ -90,6 +90,7 @@
         <protostuff.version>1.6.0</protostuff.version>
         <guice.version>4.2.3</guice.version>
         <smack.version>4.3.4</smack.version>
+        <okio.version>2.8.0</okio.version>
     </properties>
 
     <modules>
@@ -768,6 +769,11 @@
                 <groupId>org.igniterealtime.smack</groupId>
                 <artifactId>smack-im</artifactId>
                 <version>${smack.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okio</groupId>
+                <artifactId>okio</artifactId>
+                <version>${okio.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
