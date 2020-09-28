@@ -7,11 +7,11 @@ import org.zeromq.ZMQ;
 import java.nio.charset.StandardCharsets;
 
 /**
- * 客户端 SocketType.REQ
+ * TCP单播通信：客户端
  * <p>
  * Created by zfh on 2020/09/26
  */
-public class ZeromqClient {
+public class ZeromqTCPClient {
 
     public static void main(String[] args) {
         try (ZContext context = new ZContext()) {
