@@ -57,11 +57,11 @@ public class WebSignCheck {
      */
     private PlaceOrderForm mockWebForm () {
         PlaceOrderForm form = new PlaceOrderForm();
-        form.setAppid(APPID);
-        form.setBody("test body");
-        form.setDetail("test detail");
-        form.setNonceStr(createNonceStr(10));
-        form.setTotalAmount(88);
+        form.appid = APPID;
+        form.body = "test body";
+        form.detail = "test detail";
+        form.nonceStr = "123456";
+        form.totalAmount = 88;
         return form;
     }
 
@@ -99,22 +99,5 @@ public class WebSignCheck {
         sb.append("appsecret=");
         sb.append(APP_SECRET);
         return DigestUtils.md5Hex(sb.toString()).toUpperCase();
-    }
-
-    /**
-     * 生成随机字符串
-     * @param lenth 长度
-     */
-    private static String createNonceStr (int lenth) {
-        String[] chars = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "a", "b", "c", "d",
-                "e", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
-                "v", "w", "x", "y", "z"};
-
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < lenth; i++) {
-            int nextIndex = new Random().nextInt(chars.length);
-            builder.append(chars[nextIndex]);
-        }
-        return builder.toString();
     }
 }
