@@ -8,7 +8,7 @@ import java.util.Properties;
 import java.util.concurrent.Future;
 
 /**
- * Kafka-生产者（0.10.0.0）
+ * Kafka-生产者
  * Created by zfh on 2018/10/14
  */
 public class ProducerExample {
@@ -16,7 +16,7 @@ public class ProducerExample {
     /**
      * cluster：192.168.3.192:9090,192.168.3.191:9090,192.168.3.181:9090
      */
-    private static final String BOOTSTRAP_SERVERS = "192.168.1.1:9092";
+    private static final String BOOTSTRAP_SERVERS = "127.0.0.1:9092";
 
     /**
      * 消息是Kafka通信的基本单位，有一个固定长度的消息头和一个可变长度的消息体构成。在老版本中，每一条消息称为Message；
@@ -35,7 +35,7 @@ public class ProducerExample {
         KafkaProducer<String, String> producer = new KafkaProducer<>(prop);
         for (int i = 0; i < 1; i++) {
             // 通过key去指定分区和使用hash来指向分区（如果需要，可重写分区函数）
-            ProducerRecord<String, String> record = new ProducerRecord<>("test", "user","hello kafka" + "  i = " + i);
+            ProducerRecord<String, String> record = new ProducerRecord<>("quickstart-events", "user","hello kafka" + "  i = " + i);
             record.headers().add("name", "dazuo".getBytes()).add("age", "2343".getBytes());
 
             // send()方法是异步的，添加消息到缓冲区等待发送，并立即返回。

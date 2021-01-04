@@ -6,7 +6,9 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.header.Header;
 import org.apache.kafka.common.header.Headers;
 
+import java.time.Duration;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +24,7 @@ public class ConsumerExample {
     /**
      * cluster：192.168.3.192:9090,192.168.3.191:9090,192.168.3.181:9090
      */
-    private static final String BOOTSTRAP_SERVERS = "192.168.3.192:9092";
+    private static final String BOOTSTRAP_SERVERS = "127.0.0.1:9092";
 
     /**
      * 1.偏移量和消费者的位置
@@ -75,10 +77,10 @@ public class ConsumerExample {
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
         // 订阅Topic
-        consumer.subscribe(Arrays.asList("test", "test2"));
+        consumer.subscribe(Collections.singletonList("quickstart-events"));
 
         while (true) {
-            ConsumerRecords<String, String> records = consumer.poll(100);
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(100L));
             for (ConsumerRecord<String, String> record : records) {
                 Headers headers = record.headers();
                 for (Header header : headers) {

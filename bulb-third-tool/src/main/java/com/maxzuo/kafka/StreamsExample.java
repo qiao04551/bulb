@@ -1,9 +1,9 @@
 package com.maxzuo.kafka;
 
 import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.KStreamBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,17 +29,16 @@ public class StreamsExample {
         props.put("bootstrap.servers", BOOTSTRAP_SERVERS);
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        StreamsConfig config = new StreamsConfig(props);
 
-        KStreamBuilder builder = new KStreamBuilder();
-        KStream<Object, Object> source = builder.stream("test").mapValues(value -> {
+        StreamsBuilder builder = new StreamsBuilder();
+        KStream<Object, Object> source = builder.stream("quickstart-events").mapValues(value -> {
             logger.info("value: {}", new String((byte[]) value));
             return value;
         });
         /// 投递到新的topic上
         //source.to("output-topic");
 
-        final KafkaStreams streams = new KafkaStreams(builder, config);
+        final KafkaStreams streams = new KafkaStreams(builder.build(), props);
         final CountDownLatch latch = new CountDownLatch(1);
 
         // 捕获用户中断，并在终止该程序时关闭客户端
