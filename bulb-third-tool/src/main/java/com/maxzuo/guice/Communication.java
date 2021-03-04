@@ -12,10 +12,14 @@ public class Communication {
     @Inject
     private Communicator communicator;
 
+    @Inject
+    private TransactionLog transactionLog;
+
     public static void main(String[] args) {
         Injector injector = Guice.createInjector(new BasicModule());
         Communication comm = injector.getInstance(Communication.class);
 
         comm.communicator.sendMessage("hello Guice");
+        comm.transactionLog.setJdbcUrl("jdbc:mysql://localhost");
     }
 }
