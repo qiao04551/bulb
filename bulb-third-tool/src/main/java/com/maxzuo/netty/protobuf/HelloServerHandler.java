@@ -1,6 +1,6 @@
 package com.maxzuo.netty.protobuf;
 
-import com.maxzuo.protobuf.protocol.MessagePayload;
+import com.maxzuo.netty.protobuf.protocol.MessagePayload;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
