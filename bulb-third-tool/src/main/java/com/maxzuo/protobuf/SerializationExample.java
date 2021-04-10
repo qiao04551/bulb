@@ -1,6 +1,12 @@
 package com.maxzuo.protobuf;
 
 
+import com.google.common.io.BaseEncoding;
+import com.google.protobuf.ByteString;
+import com.googlecode.protobuf.format.JsonFormat;
+
+import java.nio.charset.StandardCharsets;
+
 /**
  * Protocol Buffer 序列化和反序列化
  * <p>
@@ -19,6 +25,20 @@ public class SerializationExample {
         company = company.toBuilder().setId(3).setType(4).addEmployees(cathy).build();
         System.out.printf("%d, %d, %d, %s\n",
                 company.getId(), company.getType(), company.getEmployeesCount(), company.getSummary());
+    }
+
+    private static void pbToJson() {
+        NetworkEntity.Employee employee = NetworkEntity.Employee.newBuilder()
+                .setName("mars").setAge(25).setMsg(ByteString.copyFrom("中文".getBytes(StandardCharsets.UTF_8))).build();
+
+        String encode = BaseEncoding.base64().encode("中文".getBytes(StandardCharsets.UTF_8));
+        System.out.println(encode);
+        try {
+            String s = JsonFormat.printToString(employee);
+            System.out.println(s);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void descrialize() {

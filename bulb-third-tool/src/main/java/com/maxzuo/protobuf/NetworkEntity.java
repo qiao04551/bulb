@@ -35,6 +35,12 @@ public final class NetworkEntity {
      * @return The age.
      */
     int getAge();
+
+    /**
+     * <code>bytes msg = 3;</code>
+     * @return The msg.
+     */
+    com.google.protobuf.ByteString getMsg();
   }
   /**
    * Protobuf type {@code Employee}
@@ -50,6 +56,7 @@ public final class NetworkEntity {
     }
     private Employee() {
       name_ = "";
+      msg_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @Override
@@ -91,6 +98,11 @@ public final class NetworkEntity {
             case 16: {
 
               age_ = input.readInt32();
+              break;
+            }
+            case 26: {
+
+              msg_ = input.readBytes();
               break;
             }
             default: {
@@ -171,6 +183,16 @@ public final class NetworkEntity {
       return age_;
     }
 
+    public static final int MSG_FIELD_NUMBER = 3;
+    private com.google.protobuf.ByteString msg_;
+    /**
+     * <code>bytes msg = 3;</code>
+     * @return The msg.
+     */
+    public com.google.protobuf.ByteString getMsg() {
+      return msg_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @Override
     public final boolean isInitialized() {
@@ -191,6 +213,9 @@ public final class NetworkEntity {
       if (age_ != 0) {
         output.writeInt32(2, age_);
       }
+      if (!msg_.isEmpty()) {
+        output.writeBytes(3, msg_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -206,6 +231,10 @@ public final class NetworkEntity {
       if (age_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, age_);
+      }
+      if (!msg_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, msg_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -226,6 +255,8 @@ public final class NetworkEntity {
           .equals(other.getName())) return false;
       if (getAge()
           != other.getAge()) return false;
+      if (!getMsg()
+          .equals(other.getMsg())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -241,6 +272,8 @@ public final class NetworkEntity {
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + AGE_FIELD_NUMBER;
       hash = (53 * hash) + getAge();
+      hash = (37 * hash) + MSG_FIELD_NUMBER;
+      hash = (53 * hash) + getMsg().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -378,6 +411,8 @@ public final class NetworkEntity {
 
         age_ = 0;
 
+        msg_ = com.google.protobuf.ByteString.EMPTY;
+
         return this;
       }
 
@@ -406,6 +441,7 @@ public final class NetworkEntity {
         Employee result = new Employee(this);
         result.name_ = name_;
         result.age_ = age_;
+        result.msg_ = msg_;
         onBuilt();
         return result;
       }
@@ -460,6 +496,9 @@ public final class NetworkEntity {
         }
         if (other.getAge() != 0) {
           setAge(other.getAge());
+        }
+        if (other.getMsg() != com.google.protobuf.ByteString.EMPTY) {
+          setMsg(other.getMsg());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -592,6 +631,39 @@ public final class NetworkEntity {
       public Builder clearAge() {
         
         age_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString msg_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes msg = 3;</code>
+       * @return The msg.
+       */
+      public com.google.protobuf.ByteString getMsg() {
+        return msg_;
+      }
+      /**
+       * <code>bytes msg = 3;</code>
+       * @param value The msg to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMsg(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes msg = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMsg() {
+        
+        msg_ = getDefaultInstance().getMsg();
         onChanged();
         return this;
       }
@@ -1887,12 +1959,12 @@ public final class NetworkEntity {
       descriptor;
   static {
     String[] descriptorData = {
-      "\n\024message-entity.proto\"%\n\010Employee\022\014\n\004na" +
-      "me\030\001 \001(\t\022\013\n\003age\030\002 \001(\005\"`\n\007Company\022\n\n\002id\030\001" +
-      " \001(\005\022\017\n\007summary\030\002 \001(\t\022\014\n\004type\030\003 \001(\005\022\014\n\004t" +
-      "ime\030\004 \001(\t\022\034\n\temployees\030\005 \003(\0132\t.EmployeeB" +
-      "&\n\023com.maxzuo.protobufB\rNetworkEntityP\000b" +
-      "\006proto3"
+      "\n\024message-entity.proto\"2\n\010Employee\022\014\n\004na" +
+      "me\030\001 \001(\t\022\013\n\003age\030\002 \001(\005\022\013\n\003msg\030\003 \001(\014\"`\n\007Co" +
+      "mpany\022\n\n\002id\030\001 \001(\005\022\017\n\007summary\030\002 \001(\t\022\014\n\004ty" +
+      "pe\030\003 \001(\005\022\014\n\004time\030\004 \001(\t\022\034\n\temployees\030\005 \003(" +
+      "\0132\t.EmployeeB&\n\023com.maxzuo.protobufB\rNet" +
+      "workEntityP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1903,7 +1975,7 @@ public final class NetworkEntity {
     internal_static_Employee_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Employee_descriptor,
-        new String[] { "Name", "Age", });
+        new String[] { "Name", "Age", "Msg", });
     internal_static_Company_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Company_fieldAccessorTable = new
