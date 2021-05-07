@@ -1,4 +1,4 @@
-package com.maxzuo.algorithm.bloom;
+package com.maxzuo.guava.bloom;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;

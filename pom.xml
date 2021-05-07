@@ -105,7 +105,6 @@
         <module>bulb-im</module>
         <module>bulb-everyday</module>
         <module>bulb-graphql-server</module>
-        <module>bulb-algorithm</module>
         <module>bulb-sofastack</module>
     </modules>
 
