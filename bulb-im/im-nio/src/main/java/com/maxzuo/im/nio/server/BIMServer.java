@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -23,11 +24,11 @@ public class BIMServer {
 
     private static final Logger logger = LoggerFactory.getLogger(BIMServer.class);
 
-    private Map<String, SocketChannel> socketMap = new HashMap<>();
+    private final Map<String, SocketChannel> socketMap = new HashMap<>();
 
-    private ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+    private final ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 
-    private Charset charset = Charset.forName("UTF-8");
+    private final Charset charset = StandardCharsets.UTF_8;
 
     private Selector selector;
 
@@ -63,6 +64,7 @@ public class BIMServer {
                 }
             } catch (Exception e) {
                 logger.error("【BIM聊天室-服务端】监听发生异常！", e);
+                break;
             }
         }
     }
@@ -83,6 +85,9 @@ public class BIMServer {
                 logger.info("【BIM聊天室-服务端】新用户上线 clientName = {}", clientName);
             }
             if (sk.isReadable()) {
+                // 经典Reactor模式中，尽管一个线程可同时监控多个请求（Channel），但是所有读/写请求以及对新连接请求的处理都在
+                // 同一个线程中处理，无法充分利用多CPU的优势，同时读/写操作也会阻塞对新连接请求的处理。因此可以引入多线程，将对
+                // 新连接的处理和读/写操作的处理放在不同的线程中，并行处理多个读/写操作。
                 SocketChannel channel = (SocketChannel) sk.channel();
 
                 byteBuffer.clear();
