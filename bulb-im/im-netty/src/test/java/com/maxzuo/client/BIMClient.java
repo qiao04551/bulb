@@ -1,6 +1,8 @@
 package com.maxzuo.client;
 
 import com.alibaba.fastjson.JSONObject;
+import com.maxzuo.codec.BIMDecoder;
+import com.maxzuo.codec.BIMEncoder;
 import com.maxzuo.constant.Const;
 import com.maxzuo.model.ChatMessageDTO;
 import io.netty.bootstrap.Bootstrap;
@@ -13,8 +15,6 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,8 +45,11 @@ public class BIMClient {
                         protected void initChannel(Channel ch) throws Exception {
                             ch.pipeline()
                                     .addLast(new IdleStateHandler(0, 5, 0, TimeUnit.SECONDS))
-                                    .addLast("decoder", new StringDecoder())
-                                    .addLast("encoder", new StringEncoder())
+                                    // .addLast("decoder", new StringDecoder())
+                                    // .addLast("encoder", new StringEncoder())
+                                    // 私有协议-编解码
+                                    .addLast("decoder", new BIMDecoder())
+                                    .addLast("encoder", new BIMEncoder())
                                     .addLast(new MessageHandler());
                         }
                     });

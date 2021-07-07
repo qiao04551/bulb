@@ -1,5 +1,7 @@
 package com.maxzuo.server;
 
+import com.maxzuo.codec.BIMDecoder;
+import com.maxzuo.codec.BIMEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -8,8 +10,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
 
 import java.util.concurrent.TimeUnit;
@@ -38,8 +38,11 @@ public class BIMServer {
                             sc.pipeline()
                                     // 当服务端所有ChannelHandler中4s内没有read()事件，则会触发userEventTriggered方法
                                     .addLast(new IdleStateHandler(10, 0, 0, TimeUnit.SECONDS))
-                                    .addLast("decoder", new StringDecoder())
-                                    .addLast("encoder", new StringEncoder())
+                                    // .addLast("decoder", new StringDecoder())
+                                    // .addLast("encoder", new StringEncoder())
+                                    // 私有协议-编解码
+                                    .addLast("decoder", new BIMDecoder())
+                                    .addLast("encoder", new BIMEncoder())
                                     .addLast(new MessageHandler());
                         }
                     });
