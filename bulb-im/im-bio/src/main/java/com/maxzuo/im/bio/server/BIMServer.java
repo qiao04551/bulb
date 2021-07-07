@@ -32,22 +32,16 @@ public class BIMServer {
     /**
      * 连接池（维护客户端连接）
      */
-    private ExecutorService pool = Executors.newCachedThreadPool();
+    private final ExecutorService pool = Executors.newCachedThreadPool();
 
     /**
      * 用户和连接的映射
      */
-    private ConcurrentHashMap<String, Socket> chatMap = new ConcurrentHashMap<>(10);
-
-    /**
-     * 服务端口
-     */
-    private int port;
+    private final ConcurrentHashMap<String, Socket> chatMap = new ConcurrentHashMap<>(10);
 
     private ServerSocket serverSocket;
 
     BIMServer(int port) {
-        this.port = port;
         try {
             serverSocket = new ServerSocket(port);
         } catch (Exception e) {
@@ -66,6 +60,7 @@ public class BIMServer {
                 pool.execute(() -> handleClient(socket));
             } catch (Exception e) {
                 e.printStackTrace();
+                break;
             }
         }
     }
