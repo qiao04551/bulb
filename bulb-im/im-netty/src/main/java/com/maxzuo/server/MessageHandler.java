@@ -54,8 +54,9 @@ public class MessageHandler extends SimpleChannelInboundHandler<String> {
                 logger.info("定时检测，客户端是否存活！");
                 HeartBeatRespHandler.process(ctx);
             }
+        } else {
+            super.userEventTriggered(ctx, evt);
         }
-        super.userEventTriggered(ctx, evt);
     }
 
     @Override

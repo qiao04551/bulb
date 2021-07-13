@@ -44,6 +44,7 @@ public class BIMClient {
                         @Override
                         protected void initChannel(Channel ch) throws Exception {
                             ch.pipeline()
+                                    // 每4秒进行一次写检测，当4s内没有write事件，则会触发userEventTriggered方法
                                     .addLast(new IdleStateHandler(0, 5, 0, TimeUnit.SECONDS))
                                     // .addLast("decoder", new StringDecoder())
                                     // .addLast("encoder", new StringEncoder())

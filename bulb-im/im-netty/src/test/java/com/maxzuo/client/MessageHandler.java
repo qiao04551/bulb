@@ -50,8 +50,9 @@ public class MessageHandler extends SimpleChannelInboundHandler<String> {
                     }
                 }) ;
             }
+        } else {
+            super.userEventTriggered(ctx, evt);
         }
-        super.userEventTriggered(ctx, evt);
     }
 
     @Override

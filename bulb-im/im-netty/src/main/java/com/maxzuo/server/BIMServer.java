@@ -36,7 +36,7 @@ public class BIMServer {
                         @Override
                         protected void initChannel(SocketChannel sc) throws Exception {
                             sc.pipeline()
-                                    // 当服务端所有ChannelHandler中4s内没有read()事件，则会触发userEventTriggered方法
+                                    // 每10秒会进行一次读检测，当10s内没有read事件，则会触发userEventTriggered方法
                                     .addLast(new IdleStateHandler(10, 0, 0, TimeUnit.SECONDS))
                                     // .addLast("decoder", new StringDecoder())
                                     // .addLast("encoder", new StringEncoder())
