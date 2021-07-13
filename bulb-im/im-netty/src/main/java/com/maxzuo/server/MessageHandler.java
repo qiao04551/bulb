@@ -21,7 +21,6 @@ import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 
@@ -61,7 +60,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-        if (!StringUtils.isEmpty(msg)){
+        if (msg.trim().length() > 0){
             MessageDTO messageDTO = JSONObject.parseObject(msg, MessageDTO.class);
             switch (messageDTO.getCommandType()) {
                 case Const.CommandType.LOGIN:
