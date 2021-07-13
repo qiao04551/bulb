@@ -1,4 +1,4 @@
-package com.maxzuo.netty.advanced;
+package com.maxzuo.netty.timer;
 
 import io.netty.util.HashedWheelTimer;
 import org.slf4j.Logger;
@@ -25,14 +25,17 @@ public class HashedWheelTimerExample {
 
     private static final Logger logger = LoggerFactory.getLogger(HashedWheelTimerExample.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         HashedWheelTimer timer = new HashedWheelTimer(2,//每tick一次的时间间隔, 每tick一次就会到达下一个槽位
                 TimeUnit.SECONDS,
                 4);//轮中的slot数
 
-        // 添加延迟任务
+        // 指定一个TimerTask任务在指定的延迟后一次性执行
         timer.newTimeout(timeout -> {
             logger.info("run task ...");
         }, 2, TimeUnit.SECONDS);
+
+        TimeUnit.SECONDS.sleep(10);
+        timer.stop();
     }
 }
