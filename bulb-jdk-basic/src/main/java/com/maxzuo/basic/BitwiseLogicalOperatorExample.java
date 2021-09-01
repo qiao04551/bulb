@@ -154,4 +154,20 @@ class BitwiseLogicalOperatorExample {
         // 拆开就是：a = a | 1;
         System.out.println(a);
     }
+
+    /**
+     * 补充：
+     * 1.由于double，float在二进制中的表现比较特殊，因此不能用来进行移位操作。
+     * 2.整形byte，short移位前会先转换为int类型（32位）再进行移位。
+     * 3.当int类型进行左移操作时，左移位数大于等于32位操作时，会先求余（%）后再进行左移操作。也就是说左移32位相当于不进行移位操作，
+     *   左移40位相当于左移8位（40%32=8）。当long类型进行左移操作时，long类型在二进制中的体现是64位的，因此求余操作的基数也变成了64，
+     *   也就是说左移64位相当于没有移位，左移72位相当于左移8位（72%64=8）。
+     */
+    @Test
+    void testTypeMove() {
+        int v = 1;
+        // 等效：8 = 40 % 32, v << 8
+        // System.out.println(1 << 40);
+        System.out.println(v << 8);
+    }
 }
