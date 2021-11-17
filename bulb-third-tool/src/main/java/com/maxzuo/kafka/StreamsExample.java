@@ -12,6 +12,21 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * Kafka Streams流处理程序（0.10.0.0）Kafka Streams从一个或多个输入topic进行连续的计算并输出到0或多个外部topic中。
+ *
+ * <pre>
+ *  仅仅读，写和存储是不够的，kafka的目标是实时的流处理。
+ *
+ *  在kafka中，流处理持续获取输入topic的数据，进行处理加工，然后写入输出topic。例如，一个零售APP，接收销售和出货的输入流，统计数量
+ *  或调整价格后输出。
+ *
+ *  可以直接使用 producer 和 consumer API 进行简单的处理。对于复杂的转换，Kafka提供了更强大的 Streams API。可构建`聚合计算`或
+ *  `连接流到一起`的复杂应用程序。
+ *
+ *  助于解决此类应用面临的硬性问题：处理无序的数据，代码更改的再处理，执行状态计算等。
+ *
+ *  Sterams API在Kafka中的核心：使用producer和consumer API作为输入，利用Kafka做状态存储，使用相同的组机制在stream处理器实例之
+ *  间进行容错保障。
+ * </pre>
  * Created by zfh on 2019/03/06
  */
 public class StreamsExample {
