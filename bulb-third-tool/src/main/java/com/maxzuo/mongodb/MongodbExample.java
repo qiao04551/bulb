@@ -13,7 +13,7 @@ import java.util.Date;
 public class MongodbExample {
 
     public static void main(String[] args) {
-        MongoClient client = MongoClients.create("mongodb://139.129.216.xx:27017");
+        MongoClient client = MongoClients.create("mongodb://admin:123456@[127.0.0.1:27017]/test?authSource=admin");
         MongoDatabase database = client.getDatabase("test");
         MongoCollection<Document> collection = database.getCollection("user");
 
@@ -37,7 +37,7 @@ public class MongodbExample {
      * 查询文档
      */
     private static void queryRecord(MongoCollection<Document> collection) {
-        Document doc = new Document("name", "dazuo");
+        Document doc = new Document("name", "mars");
         FindIterable<Document> documents = collection.find(doc);
         for (Document document : documents) {
             System.out.println(document);
