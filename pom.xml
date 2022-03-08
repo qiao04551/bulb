@@ -44,7 +44,7 @@
         <disruptor.version>3.4.2</disruptor.version>
         <snakeyaml.version>1.24</snakeyaml.version>
         <sharding-jdbc-core.version>4.0.0-RC1</sharding-jdbc-core.version>
-        <poi.version>3.17</poi.version>
+        <poi.version>5.2.1</poi.version>
         <ooxml-schemas.version>1.3</ooxml-schemas.version>
         <aliyun-sdk-oss.version>2.0.6</aliyun-sdk-oss.version>
         <mongodb.vervion>3.10.1</mongodb.vervion>
